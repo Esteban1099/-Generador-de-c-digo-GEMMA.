@@ -1,0 +1,63 @@
+//Este es el archivo GVL del generador de código GEMMA.
+
+{attribute 'qualified_only'}
+VAR_GLOBAL
+
+[%
+// aca busco primero todos los OMs para crear la variable booleana
+var nameOm;
+var esOmInicial;
+var esOmInicialTexto;
+var tipoOm;
+for (om in Om.all) { 
+	nameOm = om.name;
+	esOmInicial = om.esOmRaiz;
+	if(esOmInicial){
+		esOmInicialTexto = "TRUE";
+	}
+	else{
+		esOmInicialTexto = "FALSE";
+	}
+	tipoOm = om.tipo.name;
+	%]
+[%= tipoOm %]_GEMMA : BOOL := [%= esOmInicialTexto %];
+	[%
+}
+%]
+
+
+[%
+// aca busco todas las transiciones posibles en el GEMMA.
+var nameTr;
+for (tr in Transicion.all) { 
+	nameTr = tr.name;
+// valido si existen transiciones entre macro a om para transformarlas en om a om
+	if(tr.isTypeOf(TransicionEntreMacroOmOm)){
+		var macroOm = tr.origen;
+		var nameNewTr;
+		for (om in macroOm.oms) { 
+			if(Transicion.all.select(tra|tra.origen == om and tra.destino == tr.destino).size() == 0){
+			nameNewTr = nameNewTr + om.tipo.name;
+			nameNewTr = nameNewTr+"_";
+			nameNewTr = nameNewTr + tr.destino.tipo.name;
+			nameNewTr = nameNewTr +"_T";
+			%]
+[%= nameNewTr %] : BOOL := FALSE;
+			[%
+			nameNewTr = "";
+			}
+		}
+	}
+	else {
+	%]
+[%= nameTr %] : BOOL := FALSE;
+	[%
+	}
+}
+%]
+
+
+// Acá puedes poner las demás variables globales que consideres necesarias en la programación de tus rutinas de control.
+
+
+END_VAR

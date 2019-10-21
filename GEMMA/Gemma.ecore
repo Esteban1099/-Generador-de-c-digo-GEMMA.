@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="Gemma" nsURI="http://www.uniandes.edu.co/gemma" nsPrefix="Gemma">
+  <eClassifiers xsi:type="ecore:EClass" name="Gemma">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="macroOms" lowerBound="1"
+        upperBound="-1" eType="#//MacroOm" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="transiciones" lowerBound="1"
+        upperBound="-1" eType="#//Transicion" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variables" upperBound="-1"
+        eType="#//Variable"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MacroOm">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tipo" eType="#//TipoMacroOm"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="oms" lowerBound="1" upperBound="-1"
+        eType="#//Om" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Om">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tipo" eType="#//TipoOm"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="esOmRaiz" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TipoOm">
+    <eLiterals name="A1"/>
+    <eLiterals name="A2" value="1"/>
+    <eLiterals name="A3" value="2"/>
+    <eLiterals name="A4" value="3"/>
+    <eLiterals name="A5" value="4"/>
+    <eLiterals name="A6" value="5"/>
+    <eLiterals name="A7" value="6"/>
+    <eLiterals name="F1" value="7"/>
+    <eLiterals name="F2" value="8"/>
+    <eLiterals name="F3" value="9"/>
+    <eLiterals name="F4" value="10"/>
+    <eLiterals name="F5" value="11"/>
+    <eLiterals name="F6" value="12"/>
+    <eLiterals name="D1" value="13"/>
+    <eLiterals name="D2" value="14"/>
+    <eLiterals name="D3" value="15"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TipoMacroOm">
+    <eLiterals name="A"/>
+    <eLiterals name="F" value="1"/>
+    <eLiterals name="D" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TrasicionEntreOmOm" eSuperTypes="#//Transicion">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="origen" lowerBound="1"
+        eType="#//Om"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="destino" lowerBound="1"
+        eType="#//Om"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TransicionEntreMacroOmOm" eSuperTypes="#//Transicion">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="origen" lowerBound="1"
+        eType="#//MacroOm"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="destino" lowerBound="1"
+        eType="#//Om"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExpresionBinaria" eSuperTypes="#//ElementoExpresion">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expresionIzquierda" eType="#//ElementoExpresion"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expresionDerecha" eType="#//ElementoExpresion"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ElementoExpresion"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Variable" eSuperTypes="#//ElementoExpresion">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tipo" eType="#//TipoVariable"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TipoVariable">
+    <eLiterals name="global"/>
+    <eLiterals name="privada" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Transicion">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expresionBinaria" lowerBound="1"
+        eType="#//ExpresionBinaria" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+</ecore:EPackage>

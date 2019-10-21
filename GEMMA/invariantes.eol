@@ -1,0 +1,225 @@
+//Aca crearemos las invariantes.
+System.out.println("Valor Consultas");
+Gemma.allInstances.first().sonMaximoTresMacroOms().println();
+sonMaximoDieciseisMacroOms().println();
+sonMaximoXTransiciones().println();
+tipoOmCoincideConMacroOm().println();
+existenDosOmsConMismoTipo().println();
+existenDosMacroOmsConMismoTipo().println();
+existenTransicionesConMismoOmOrigendaDestino().println();
+respetaElGemma().println();
+
+//El numero de macroOms maximo debe ser 3.
+operation Gemma sonMaximoTresMacroOms(){
+	return self.macroOMs.Size() <= 3;
+}
+
+
+//El numero de Oms maximo debe ser 16.
+operation Om sonMaximoDieciseisMacroOms (){
+	return self.Size() <= 16;
+}
+
+//El numero de Transiciones maximo debe se x.
+operation sonMaximoXTransiciones (){
+	return Transicion.all.Size() <= 30;
+}
+
+//El tipo de un om debe coincidir con su macroOm.
+operation tipoOmCoincideConMacroOm (){
+	for (om in Om.all) { 
+		if (om.tipo.name.contains(om.macroOm.tipo.name) == false){
+			return false;
+		}  
+	}
+	return true;
+}
+
+//No puden existir dos Oms con el mismo tipo.
+operation existenDosOmsConMismoTipo (){
+	var contador:Integer = 0;
+	for (tipo in Om.all.tipo.name) { 
+		for (tipoC in Om.all.tipo.name) { 
+			if(tipo.equals(tipoC)){
+				contador = contador+1;
+			}
+		}
+		if(contador > 1){
+			return true;		
+		}
+		contador = 0;
+	}
+	return false;
+}
+
+//No puden existir dos macroOms con el mismo tipo.
+operation existenDosMacroOmsConMismoTipo (){
+	var contador:Integer = 0;
+	for (tipo in MacroOm.all.tipo.name) { 
+		for (tipoC in MacroOm.all.tipo.name) { 
+			if(tipo.equals(tipoC)){
+				contador = contador+1;
+			}
+		}
+		if(contador > 1){
+			return true;		
+		}
+		contador = 0;
+	}
+	return false;
+}
+
+//No puede existir una trasicion que tenga el mismo origen y el mismo fin
+operation existenTransicionesConMismoOmOrigendaDestino (){
+	for (trasicion in Transicion.all) { 
+		if(trasicion.omOrigen == trasicion.omDestino){
+			return true;
+		}
+	}
+	return false;
+}
+
+//Se debe respetar las trasiciones de Gemma.
+operation respetaElGemma (){
+	var tipoOmOrigen:String;
+	var tipoOmDestino:String;
+	for (trasicion in Transicion.all) { 
+		tipoOmOrigen = trasicion.omOrigen.tipo.name;
+		tipoOmDestino = trasicion.omDestino.tipo.name;
+		if (tipoOmOrigen.equals("A6")) {
+			if (tipoOmDestino.equals("A1")) {
+				
+			}
+			else {
+				return false;
+			}
+		}
+		else if (tipoOmOrigen.equals("A1")) {
+			if (tipoOmDestino.equals("F4") or tipoOmDestino.equals("F5")
+				or tipoOmDestino.equals("F6") or tipoOmDestino.equals("F1") or tipoOmDestino.equals("F2")) {
+				
+			}
+			else {
+				return false;
+			}
+		}
+		else if (tipoOmOrigen.equals("A2")) {
+			if (tipoOmDestino.equals("A1")) {
+				
+			}
+			else {
+				return false;
+			}
+		}
+		else if (tipoOmOrigen.equals("A3")) {
+			if (tipoOmDestino.equals("A4")) {
+				
+			}
+			else {
+				return false;
+			}
+		}
+		else if (tipoOmOrigen.equals("A4")) {
+			if (tipoOmDestino.equals("F1")) {
+				
+			}
+			else {
+				return false;
+			}
+		}
+		else if (tipoOmOrigen.equals("A5")) {
+			if (tipoOmDestino.equals("A6") or tipoOmDestino.equals("A7")) {
+				
+			}
+			else {
+				return false;
+			}
+		}
+		else if (tipoOmOrigen.equals("A7")) {
+			if (tipoOmDestino.equals("A4")) {
+				
+			}
+			else {
+				return false;
+			}
+		}
+		else if (tipoOmOrigen.equals("D1")) {
+			if (tipoOmDestino.equals("A5") or tipoOmDestino.equals("D2")) {
+				
+			}
+			else {
+				return false;
+			}
+		}
+		else if (tipoOmOrigen.equals("D2")) {
+			if (tipoOmDestino.equals("A5")) {
+				
+			}
+			else {
+				return false;
+			}
+		}
+		else if (tipoOmOrigen.equals("D3")) {
+			if (tipoOmDestino.equals("A2") or tipoOmDestino.equals("A3")) {
+				
+			}
+			else {
+				return false;
+			}
+		}
+		else if (tipoOmOrigen.equals("F1")) {
+			if (tipoOmDestino.equals("A3") or tipoOmDestino.equals("A2")
+				or tipoOmDestino.equals("F3") or tipoOmDestino.equals("F5") or tipoOmDestino.equals("F6")
+				or tipoOmDestino.equals("D2") or tipoOmDestino.equals("F4")
+				or tipoOmDestino.equals("D1")) {
+				
+			}
+			else {
+				return false;
+			}
+		}
+		else if (tipoOmOrigen.equals("F2")) {
+			if (tipoOmDestino.equals("F1") or tipoOmDestino.equals("D1")) {
+				
+			}
+			else {
+				return false;
+			}
+		}
+		else if (tipoOmOrigen.equals("F3")) {
+			if (tipoOmDestino.equals("A1") or tipoOmDestino.equals("D1")) {
+				
+			}
+			else {
+				return false;
+			}
+		}
+		else if (tipoOmOrigen.equals("F4")) {
+			if (tipoOmDestino.equals("A6") or tipoOmDestino.equals("D1")) {
+				
+			}
+			else {
+				return false;
+			}
+		}
+		else if (tipoOmOrigen.equals("F5")) {
+			if (tipoOmDestino.equals("F4") or tipoOmDestino.equals("F1")
+			or tipoOmDestino.equals("D1")) {
+				
+			}
+			else {
+				return false;
+			}
+		}
+		else if (tipoOmOrigen.equals("F6")) {
+			if (tipoOmDestino.equals("F1") or tipoOmDestino.equals("D1")) {
+				
+			}
+			else {
+				return false;
+			}
+		}
+	}
+	return true;
+}
+
