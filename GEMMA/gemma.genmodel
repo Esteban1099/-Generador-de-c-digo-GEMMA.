@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/GEMMA/src" modelPluginID="GEMMA" modelName="Gemma"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="8.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>gemma.ecore</foreignModel>
+  <genPackages prefix="Gemma" disposableProviderFactory="true" ecorePackage="gemma.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="gemma.ecore#//TipoOm">
+      <genEnumLiterals ecoreEnumLiteral="gemma.ecore#//TipoOm/A1"/>
+      <genEnumLiterals ecoreEnumLiteral="gemma.ecore#//TipoOm/A2"/>
+      <genEnumLiterals ecoreEnumLiteral="gemma.ecore#//TipoOm/A3"/>
+      <genEnumLiterals ecoreEnumLiteral="gemma.ecore#//TipoOm/A4"/>
+      <genEnumLiterals ecoreEnumLiteral="gemma.ecore#//TipoOm/A5"/>
+      <genEnumLiterals ecoreEnumLiteral="gemma.ecore#//TipoOm/A6"/>
+      <genEnumLiterals ecoreEnumLiteral="gemma.ecore#//TipoOm/A7"/>
+      <genEnumLiterals ecoreEnumLiteral="gemma.ecore#//TipoOm/F1"/>
+      <genEnumLiterals ecoreEnumLiteral="gemma.ecore#//TipoOm/F2"/>
+      <genEnumLiterals ecoreEnumLiteral="gemma.ecore#//TipoOm/F3"/>
+      <genEnumLiterals ecoreEnumLiteral="gemma.ecore#//TipoOm/F4"/>
+      <genEnumLiterals ecoreEnumLiteral="gemma.ecore#//TipoOm/F5"/>
+      <genEnumLiterals ecoreEnumLiteral="gemma.ecore#//TipoOm/F6"/>
+      <genEnumLiterals ecoreEnumLiteral="gemma.ecore#//TipoOm/D1"/>
+      <genEnumLiterals ecoreEnumLiteral="gemma.ecore#//TipoOm/D2"/>
+      <genEnumLiterals ecoreEnumLiteral="gemma.ecore#//TipoOm/D3"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="gemma.ecore#//TipoMacroOm">
+      <genEnumLiterals ecoreEnumLiteral="gemma.ecore#//TipoMacroOm/A"/>
+      <genEnumLiterals ecoreEnumLiteral="gemma.ecore#//TipoMacroOm/F"/>
+      <genEnumLiterals ecoreEnumLiteral="gemma.ecore#//TipoMacroOm/D"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="gemma.ecore#//TipoVariable">
+      <genEnumLiterals ecoreEnumLiteral="gemma.ecore#//TipoVariable/global"/>
+      <genEnumLiterals ecoreEnumLiteral="gemma.ecore#//TipoVariable/privada"/>
+    </genEnums>
+    <genClasses ecoreClass="gemma.ecore#//Gemma">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gemma.ecore#//Gemma/macroOms"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gemma.ecore#//Gemma/transiciones"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gemma.ecore#//Gemma/variables"/>
+    </genClasses>
+    <genClasses ecoreClass="gemma.ecore#//MacroOm">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gemma.ecore#//MacroOm/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gemma.ecore#//MacroOm/tipo"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gemma.ecore#//MacroOm/oms"/>
+    </genClasses>
+    <genClasses ecoreClass="gemma.ecore#//Om">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gemma.ecore#//Om/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gemma.ecore#//Om/tipo"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gemma.ecore#//Om/esOmRaiz"/>
+    </genClasses>
+    <genClasses ecoreClass="gemma.ecore#//TrasicionEntreOmOm">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gemma.ecore#//TrasicionEntreOmOm/origen"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gemma.ecore#//TrasicionEntreOmOm/destino"/>
+    </genClasses>
+    <genClasses ecoreClass="gemma.ecore#//TransicionEntreMacroOmOm">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gemma.ecore#//TransicionEntreMacroOmOm/origen"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gemma.ecore#//TransicionEntreMacroOmOm/destino"/>
+    </genClasses>
+    <genClasses ecoreClass="gemma.ecore#//ExpresionBinaria">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gemma.ecore#//ExpresionBinaria/expresionIzquierda"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gemma.ecore#//ExpresionBinaria/expresionDerecha"/>
+    </genClasses>
+    <genClasses ecoreClass="gemma.ecore#//ElementoExpresion"/>
+    <genClasses ecoreClass="gemma.ecore#//Variable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gemma.ecore#//Variable/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gemma.ecore#//Variable/tipo"/>
+    </genClasses>
+    <genClasses ecoreClass="gemma.ecore#//Transicion">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gemma.ecore#//Transicion/expresionBinaria"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gemma.ecore#//Transicion/name"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

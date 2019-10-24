@@ -1,0 +1,291 @@
+[%
+var om = Om.all.select(om|om.tipo.name == "F1").first();
+var tipoOm = om.tipo.name;
+%]
+PROGRAM [%= tipoOm %]
+
+VAR
+	[%= tipoOm %]_DONE : BOOL := FALSE;	
+[%
+var variables: Set;
+var varSolas: Set;
+for (tr in Transicion.all) { 
+	if (tr.isTypeOf(TrasicionEntreOmOm)){
+		if(tr.origen.name == om.name){
+			var expBinaria = tr.expresionBinaria;
+			var termino = false;
+			var expI;
+			var expD;
+			while (termino == false) {
+				expI = expBinaria.expresionIzquierda;
+				expD = expBinaria.expresionDerecha;
+				if(expD == null){
+					termino = true;
+					if (expI.tipo.name == "privada" and (variables.isEmpty() or variables.select(v|v.name == expI.name).first() == null)) {
+						if("-".isSubstringOf(expI.name) == false){
+						variables.add(expI);
+							%]
+	[%= expI.name %] : BOOL := FALSE;								
+							[%
+						}
+						else {
+							variables.add(expI);
+							var cadenaExpresiones = expI.name.split("-");
+							for (ca in cadenaExpresiones) { 
+								if (varSolas.isEmpty() or varSolas.select(vs|vs == ca).first() == null){
+									varSolas.add(ca);
+									%]
+	[%= ca %] : BOOL := FALSE;								
+									[%
+								}
+							}
+						}
+					}
+				}
+				else if (expD.isTypeOf(Variable)){
+					termino = true;
+					if (expI.tipo.name == "privada" and (variables.isEmpty() or variables.select(v|v.name == expI.name).first() == null)){
+						if("-".isSubstringOf(expI.name) == false){
+						variables.add(expI);
+							%]
+	[%= expI.name %] : BOOL := FALSE;								
+							[%
+						}
+						else {
+							variables.add(expI);
+							var cadenaExpresiones = expI.name.split("-");
+							for (ca in cadenaExpresiones) { 
+								if (varSolas.isEmpty() or varSolas.select(vs|vs == ca).first() == null){
+									varSolas.add(ca);
+									%]
+	[%= ca %] : BOOL := FALSE;								
+									[%
+								}
+							}
+						}
+					}
+					if (expD.tipo.name == "privada" and (variables.isEmpty() or variables.select(v|v.name == expD.name).first() == null)){
+						if("-".isSubstringOf(expD.name) == false){
+						variables.add(expD);
+							%]
+	[%= expD.name %] : BOOL := FALSE;								
+							[%
+						}
+						else {
+							variables.add(expD);
+							var cadenaExpresiones = expD.name.split("-");
+							for (ca in cadenaExpresiones) { 
+								if (varSolas.isEmpty() or varSolas.select(vs|vs == ca).first() == null){
+									varSolas.add(ca);
+									%]
+	[%= ca %] : BOOL := FALSE;								
+									[%
+								}
+							}
+						}
+					}
+				}
+				else {
+					if (expI.tipo.name == "privada" and (variables.isEmpty() or variables.select(v|v.name == expI.name).first() == null)) {
+						if("-".isSubstringOf(expI.name) == false){
+						variables.add(expI);
+							%]
+	[%= expI.name %] : BOOL := FALSE;								
+							[%
+						}
+						else {
+							variables.add(expI);
+							var cadenaExpresiones = expI.name.split("-");
+							for (ca in cadenaExpresiones) { 
+								if (varSolas.isEmpty() or varSolas.select(vs|vs == ca).first() == null){
+									varSolas.add(ca);
+									%]
+	[%= ca %] : BOOL := FALSE;								
+									[%
+								}
+							}
+						}
+					}
+					expBinaria = expD;
+				}
+			}
+		}
+	}
+}
+%]
+END_VAR
+
+// TO-DO: Estructura de control paRa cambiar el valor de [%= tipoOm %]_DONE a true (Modificar la condicion)
+IF [%= tipoOm %]_DONE THEN
+	[%= tipoOm %]_DONE := TRUE;
+END_IF
+
+
+[%
+
+for (tr in Transicion.all) { 
+	if (tr.isTypeOf(TrasicionEntreOmOm)){
+		if(tr.origen.name == om.name){
+		%]
+IF [%= tipoOm %]_DONE AND [%
+			var expBinaria = tr.expresionBinaria;
+			var termino = false;
+			var expI;
+			var expD;
+			while (termino == false) {
+				expI = expBinaria.expresionIzquierda;
+				expD = expBinaria.expresionDerecha;
+				if(expD == null){
+					termino = true;
+					if (expI.tipo.name == "privada") {
+						if("-".isSubstringOf(expI.name) == false){
+						variables.add(expI.name);
+						%][%= expI.name %] THEN
+						[%
+						}
+						else {
+						%]
+						(
+						[%
+							var cadenaExpresiones = expI.name.split("-");
+							var tamañoCadena = cadenaExpresiones.size();
+							var i = 0;
+							for (ca in cadenaExpresiones) { 
+									variables.add(ca);
+									if(i >= (tamañoCadena -1)){
+										%]
+											[%= ca %]
+										[%
+									}
+									else{
+										%]
+											[%= ca %] OR
+										[%
+									}
+									i = i + 1;
+							}
+							%]
+						) THEN
+							[%
+						}
+					}
+				}
+				else if (expD.isTypeOf(Variable)){
+					termino = true;
+					if (expI.tipo.name == "privada"){
+						if("-".isSubstringOf(expI.name) == false){
+						variables.add(expI.name);
+						%]
+						[%= expI.name %] AND
+						[%
+						}
+						else {
+						%]
+						(
+						[%
+							var cadenaExpresiones = expI.name.split("-");
+							var tamañoCadena = cadenaExpresiones.size();
+							var i = 0;
+							for (ca in cadenaExpresiones) { 
+									variables.add(ca);
+									if(i >= (tamañoCadena -1)){
+										%]
+											[%= ca %]
+										[%
+									}
+									else{
+										%]
+											[%= ca %] OR
+										[%
+									}
+									i = i + 1;
+							}
+							%]
+						) AND
+							[%
+						}
+					}
+					if (expD.tipo.name == "privada"){
+						if("-".isSubstringOf(expD.name) == false){
+						variables.add(expD.name);
+						%]
+						[%= expD.name %] THEN
+						[%
+						}
+						else {
+						%]
+						(
+						[%
+							var cadenaExpresiones = expD.name.split("-");
+							var tamañoCadena = cadenaExpresiones.size();
+							var i = 0;
+							for (ca in cadenaExpresiones) { 
+									variables.add(ca);
+									if(i >= (tamañoCadena -1)){
+										%]
+											[%= ca %]
+										[%
+									}
+									else{
+										%]
+											[%= ca %] OR
+										[%
+									}
+									i = i + 1;
+							}
+							%]
+						) THEN
+							[%
+						}
+					}
+				}
+				else {
+					if (expI.tipo.name == "privada") {
+						if("-".isSubstringOf(expI.name) == false){
+						variables.add(expI.name);
+						%]
+						[%= expI.name %] THEN
+						[%
+						}
+						else {
+						%]
+						(
+						[%
+							var cadenaExpresiones = expI.name.split("-");
+							var tamañoCadena = cadenaExpresiones.size();
+							var i = 0;
+							for (ca in cadenaExpresiones) { 
+									variables.add(ca);
+									if(i >= (tamañoCadena -1)){
+										%]
+											[%= ca %]
+										[%
+									}
+									else{
+										%]
+											[%= ca %] OR
+										[%
+									}
+									i = i + 1;
+							}
+							%]
+						) THEN
+							[%
+						}
+					}
+				
+					expBinaria = expD;
+				}
+			}
+			%]
+			
+GVL.[%= tr.name %] := TRUE;
+		
+END_IF
+			
+			[%
+		}
+		
+	}
+}
+%]
