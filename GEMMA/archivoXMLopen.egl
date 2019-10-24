@@ -74,7 +74,7 @@
             </data>
 [%
 var tipoOm;
-for (om in Om) { 
+for (om in Om.all) { 
 tipoOm = om.tipo.name;
 	var nombreId = tipoOm;
 	var numeros = Sequence{"0","1","2","3","4","5","6","7","8","9"};
@@ -206,7 +206,7 @@ tipoOm = om.tipo.name;
             <Object Name="GEMMA" ObjectId="af9f1806-7619-4073-8f8b-54467a73a361" />
 [%
 var tipoOm;
-for (om in Om) { 
+for (om in Om.all) { 
 tipoOm = om.tipo.name;
 	var nombreId = tipoOm;
 	var numeros = Sequence{"0","1","2","3","4","5","6","7","8","9"};
