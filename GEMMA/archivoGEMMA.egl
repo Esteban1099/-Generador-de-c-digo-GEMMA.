@@ -1,0 +1,456 @@
+[%
+var flagEntry = true;
+var nameFlagEntry = "FlagEntry";
+var nameSate = "State";
+var state = 0;
+var tipoOm;
+var esOmInicial;
+for (om in Om.all) { 
+	tipoOm = om.tipo.name;
+	esOmInicial = om.esOmRaiz;
+	if(esOmInicial){
+		if(tipoOm == "A1"){
+			state = 1;
+		}
+		else if(tipoOm == "A2"){
+			state = 2;
+		}
+		else if(tipoOm == "A3"){
+			state = 3;
+		}
+		else if(tipoOm == "A4"){
+			state = 4;
+		}
+		else if(tipoOm == "A5"){
+			state = 5;
+		}
+		else if(tipoOm == "A6"){
+			state = 6;
+		}
+		else if(tipoOm == "A7"){
+			state = 7;
+		}
+		else if(tipoOm == "F1"){
+			state = 11;
+		}
+		else if(tipoOm == "F2"){
+			state = 12;
+		}
+		else if(tipoOm == "F3"){
+			state = 13;
+		}
+		else if(tipoOm == "F4"){
+			state = 14;
+		}
+		else if(tipoOm == "F5"){
+			state = 15;
+		}
+		else if(tipoOm == "F6"){
+			state = 16;
+		}
+		else if(tipoOm == "D1"){
+			state = 21;
+		}
+		else if(tipoOm == "D2"){
+			state = 22;
+		}
+		else{
+			sate = 23;
+		}
+		break;
+	}
+}
+%]
+VAR
+	[%= nameSate %]:UINT:=[%= state %];
+	[%= nameFlagEntry %]:BOOL:=[%= flagEntry %];
+
+END_VAR
+
+
+CASE [%= nameSate %] OF:
+[%
+var numOm = 0;
+var variables: Set; 
+	for (om in Om.all) {
+	tipoOm = om.tipo.name;
+		if(tipoOm == "A1"){
+			numOm = 1;
+		}
+		else if(tipoOm == "A2"){
+			numOm = 2;
+		}
+		else if(tipoOm == "A3"){
+			numOm = 3;
+		}
+		else if(tipoOm == "A4"){
+			numOm = 4;
+		}
+		else if(tipoOm == "A5"){
+			numOm = 5;
+		}
+		else if(tipoOm == "A6"){
+			numOm = 6;
+		}
+		else if(tipoOm == "A7"){
+			numOm = 7;
+		}
+		else if(tipoOm == "F1"){
+			numOm = 11;
+		}
+		else if(tipoOm == "F2"){
+			numOm = 12;
+		}
+		else if(tipoOm == "F3"){
+			numOm = 13;
+		}
+		else if(tipoOm == "F4"){
+			numOm = 14;
+		}
+		else if(tipoOm == "F5"){
+			numOm = 15;
+		}
+		else if(tipoOm == "F6"){
+			numOm = 16;
+		}
+		else if(tipoOm == "D1"){
+			numOm = 21;
+		}
+		else if(tipoOm == "D2"){
+			numOm = 22;
+		}
+		else{
+			numOm = 23;
+		}
+		%]
+	[%= numOm %]://[%= tipoOm %]
+		//Entry behavior
+		IF [%= nameFlagEntry %]	THEN
+			GVL.[%= tipoOm %]_GEMMA := TRUE;
+			[%= nameFlagEntry %] := FALSE;
+			[%
+				flagEntry = false;
+			%]
+		END_IF
+		
+		//Do behavior
+		[%= tipoOm %]();
+		[%
+//validar si existen multiples transiciones.
+var trMultiples = false;
+var numExpPrivada = 0;
+var numExpGlobal = 0;
+for (tr in Transicion.all) { 
+	if (tr.isTypeOf(TrasicionEntreOmOm)){
+		if(tr.origen.name == om.name){
+			var expBinaria = tr.expresionBinaria;
+			var expI = expBinaria.expresionIzquierda;
+			if (expI.tipo.name == "global"){
+				numExpGlobal = numExpGlobal + 1;
+			}
+			else{
+				numExpPrivada = numExpPrivada + 1;
+			}
+		}
+	}	
+}
+if(numExpPrivada > 0 and numExpGlobal > 0){
+	trMultiples = true;
+}			
+var esGlobal = false;
+var contadorGlobal = 0;
+for (tr in Transicion.all) { 
+	if (tr.isTypeOf(TrasicionEntreOmOm)){
+		if(tr.origen.name == om.name){
+			var expBinaria = tr.expresionBinaria;
+			var termino = false;
+			var expI = expBinaria.expresionIzquierda;
+			var expD;
+			if (expI.tipo.name == "global"){
+				esGlobal = true;
+			%]
+		//Transitions	
+		GVL.[%= tr.name %]:= 	
+			[%	
+			while (termino == false) {
+				expI = expBinaria.expresionIzquierda;
+				expD = expBinaria.expresionDerecha;
+				if(expD == null){
+					termino = true;
+					if (expI.tipo.name == "global") {
+						if("-".isSubstringOf(expI.name) == false){
+						variables.add(expI.name);
+						%]
+						[%= expI.name %];
+						[%
+						}
+						else {
+						%]
+						(
+						[%
+							var cadenaExpresiones = expI.name.split("-");
+							var tamañoCadena = cadenaExpresiones.size();
+							var i = 0;
+							for (ca in cadenaExpresiones) { 
+									variables.add(ca);
+									if(i >= (tamañoCadena -1)){
+										%]
+											[%= ca %]
+										[%
+									}
+									else{
+										%]
+											[%= ca %] OR
+										[%
+									}
+									i = i + 1;
+							}
+							%]
+						);
+							[%
+						}
+					}
+				}
+				else if (expD.isTypeOf(Variable)){
+					termino = true;
+					if (expI.tipo.name == "global"){
+						if("-".isSubstringOf(expI.name) == false){
+						variables.add(expI.name);
+						%]
+						[%= expI.name %] AND
+						[%
+						}
+						else {
+						%]
+						(
+						[%
+							var cadenaExpresiones = expI.name.split("-");
+							var tamañoCadena = cadenaExpresiones.size();
+							var i = 0;
+							for (ca in cadenaExpresiones) { 
+									variables.add(ca);
+									if(i >= (tamañoCadena -1)){
+										%]
+											[%= ca %]
+										[%
+									}
+									else{
+										%]
+											[%= ca %] OR
+										[%
+									}
+									i = i + 1;
+							}
+							%]
+						) AND
+							[%
+						}
+					}
+					if (expD.tipo.name == "global"){
+						if("-".isSubstringOf(expD.name) == false){
+						variables.add(expD.name);
+						%]
+						[%= expD.name %];
+						[%
+						}
+						else {
+						%]
+						(
+						[%
+							var cadenaExpresiones = expD.name.split("-");
+							var tamañoCadena = cadenaExpresiones.size();
+							var i = 0;
+							for (ca in cadenaExpresiones) { 
+									variables.add(ca);
+									if(i >= (tamañoCadena -1)){
+										%]
+											[%= ca %]
+										[%
+									}
+									else{
+										%]
+											[%= ca %] OR
+										[%
+									}
+									i = i + 1;
+							}
+							%]
+						);
+							[%
+						}
+					}
+				}
+				else {
+					if (expI.tipo.name == "global") {
+						if("-".isSubstringOf(expI.name) == false){
+						variables.add(expI.name);
+						%]
+						[%= expI.name %] AND
+						[%
+						}
+						else {
+						%]
+						(
+						[%
+							var cadenaExpresiones = expI.name.split("-");
+							var tamañoCadena = cadenaExpresiones.size();
+							var i = 0;
+							for (ca in cadenaExpresiones) { 
+									variables.add(ca);
+									if(i >= (tamañoCadena -1)){
+										%]
+											[%= ca %]
+										[%
+									}
+									else{
+										%]
+											[%= ca %] OR
+										[%
+									}
+									i = i + 1;
+							}
+							%]
+						) AND
+							[%
+						}
+					}
+				
+					expBinaria = expD;
+				}
+			}
+			}
+			if(trMultiples){
+			%]
+			//Exit common behavior
+			IF 
+			[%
+				var contador = 0;
+				var setTr = Transicion.all.select(tr|tr.origen.name == om.name);
+				var sizeTr = setTr.size();
+				for (tr in Transicion.all) { 
+					if (tr.isTypeOf(TrasicionEntreOmOm)){
+						if(tr.origen.name == om.name){
+							if(contador >= sizeTr-1){
+								%]
+							GVL.[%= tr.name %]
+								[%
+							}
+							else{
+								%]
+							GVL.[%= tr.name %] OR
+								[%
+							}
+							contador = contador + 1;
+						}
+					}
+					else{
+					
+					}	
+				}
+				contador = 0;
+			%]
+			THEN
+			[%= om.tipo.name %]:=FALSE;
+			[%= nameFlagEntry %] := TRUE;
+			[%
+				flagEntry = true;
+			%]
+			END_IF
+			// Exit specific behavior		
+			[%
+				if(contadorGlobal == 0){
+					if(esGlobal){
+						%]
+			IF GVL.[%= tr.name %] THEN
+				GVL.[%= tr.name %]:= FALSE;
+				[%= nameSate %]:= [%= numOm %];				
+						[%
+					}
+					else{
+						%]
+			IF GVL.[%= tr.name %] THEN
+				GVL.[%= tr.name %]:= FALSE;
+				[%= nameSate %]:= [%= numOm %];
+				[%= tr.destino.tipo.name %].reset:=TRUE;					
+						[%			
+					}
+				}
+				else if(contadorGlobal >= sizeTr-1){
+					if(esGlobal){
+						%]
+			ELSIF GVL.[%= tr.name %] THEN
+				GVL.[%= tr.name %]:= FALSE;
+				[%= nameSate %]:= [%= numOm %];
+			END_IF								
+						[%	
+					}
+					else{
+						%]
+			ELSIF GVL.[%= tr.name %] THEN
+				GVL.[%= tr.name %]:= FALSE;
+				[%= nameSate %]:= [%= numOm %];
+				[%= tr.destino.tipo.name %].reset:=TRUE;
+			END_IF					
+						[%
+					}
+				}
+				else{
+					if(esGlobal){
+						%]
+			ELSIF GVL.[%= tr.name %] THEN
+				GVL.[%= tr.name %]:= FALSE;
+				[%= nameSate %]:= [%= numOm %];			
+						[%
+					}
+					else{
+						%]
+			ELSIF GVL.[%= tr.name %] THEN
+				GVL.[%= tr.name %]:= FALSE;
+				[%= nameSate %]:= [%= numOm %];
+				[%= tr.destino.tipo.name %].reset:=TRUE;			
+						[%
+					}
+				}		
+			}
+			else{
+				if(esGlobal){
+					%]
+			//Exit behavior		
+			IF GVL.[%= tr.name %] THEN
+				[%= om.tipo.name %]:=FALSE;
+				[%= nameFlagEntry %] := TRUE;
+			[%
+				flagEntry = true;
+			%]
+				GVL.[%= tr.name %]:= FALSE;
+				[%= nameSate %]:= [%= numOm %];
+			END_IF
+					
+					[%
+				}
+				else{
+					%]
+			//Exit behavior		
+			IF GVL.[%= tr.name %] THEN
+				[%= om.tipo.name %]:=FALSE;
+				[%= nameFlagEntry %] := TRUE;
+			[%
+				flagEntry = true;
+			%]
+				GVL.[%= tr.name %]:= FALSE;
+				[%= nameSate %]:= [%= numOm %];
+				[%= tr.destino.tipo.name %].reset:=TRUE;
+			END_IF					
+					[%
+				}
+			
+			}
+			contadorGlobal = contadorGlobal + 1;
+		}
+	}
+	else{
+	}
+}
+}
+%]
+END_CASE

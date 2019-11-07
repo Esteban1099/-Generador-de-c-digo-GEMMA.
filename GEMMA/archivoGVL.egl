@@ -25,6 +25,15 @@ for (om in Om.all) {
 }
 %]
 
+[%
+// aca busco todas las variables de hardware en el GEMMA.
+for (vh in VariableHardware.all) { 
+	nameVh = vh.name;
+	%]
+[%= nameVh %]_GEMMA : BOOL := FALSE;
+	[% 
+}
+%]
 
 [%
 // aca busco todas las transiciones posibles en el GEMMA.

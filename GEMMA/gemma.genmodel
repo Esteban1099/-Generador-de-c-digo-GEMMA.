@@ -36,6 +36,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gemma.ecore#//Gemma/macroOms"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gemma.ecore#//Gemma/transiciones"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gemma.ecore#//Gemma/variables"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gemma.ecore#//Gemma/variablesHardware"/>
     </genClasses>
     <genClasses ecoreClass="gemma.ecore#//MacroOm">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gemma.ecore#//MacroOm/name"/>
@@ -67,6 +68,9 @@
     <genClasses ecoreClass="gemma.ecore#//Transicion">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gemma.ecore#//Transicion/expresionBinaria"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gemma.ecore#//Transicion/name"/>
+    </genClasses>
+    <genClasses ecoreClass="gemma.ecore#//VariableHardware">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gemma.ecore#//VariableHardware/name"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

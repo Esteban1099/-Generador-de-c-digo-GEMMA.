@@ -1,5 +1,5 @@
 [%
-var om = Om.all.select(om|om.tipo.name == "F1").first();
+var om = Om.all.select(om|om.tipo.name == "F2").first();
 var tipoOm = om.tipo.name;
 %]
 PROGRAM [%= tipoOm %]
@@ -244,7 +244,7 @@ IF [%= tipoOm %]_DONE AND [%
 						if("-".isSubstringOf(expI.name) == false){
 						variables.add(expI.name);
 						%]
-						[%= expI.name %] THEN
+						[%= expI.name %] AND
 						[%
 						}
 						else {
@@ -269,7 +269,7 @@ IF [%= tipoOm %]_DONE AND [%
 									i = i + 1;
 							}
 							%]
-						) THEN
+						) AND
 							[%
 						}
 					}

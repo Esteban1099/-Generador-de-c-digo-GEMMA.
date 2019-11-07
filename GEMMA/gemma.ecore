@@ -8,6 +8,8 @@
         upperBound="-1" eType="#//Transicion" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="variables" upperBound="-1"
         eType="#//Variable"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variablesHardware" upperBound="-1"
+        eType="#//VariableHardware" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MacroOm">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -73,6 +75,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="Transicion">
     <eStructuralFeatures xsi:type="ecore:EReference" name="expresionBinaria" lowerBound="1"
         eType="#//ExpresionBinaria" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VariableHardware">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>
