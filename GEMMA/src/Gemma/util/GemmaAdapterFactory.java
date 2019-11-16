@@ -96,12 +96,32 @@ public class GemmaAdapterFactory extends AdapterFactoryImpl {
 				return createElementoExpresionAdapter();
 			}
 			@Override
-			public Adapter caseVariable(Variable object) {
-				return createVariableAdapter();
+			public Adapter caseVariableOm(VariableOm object) {
+				return createVariableOmAdapter();
 			}
 			@Override
 			public Adapter caseTransicion(Transicion object) {
 				return createTransicionAdapter();
+			}
+			@Override
+			public Adapter caseVariableGemma(VariableGemma object) {
+				return createVariableGemmaAdapter();
+			}
+			@Override
+			public Adapter caseRefVariableGemma(RefVariableGemma object) {
+				return createRefVariableGemmaAdapter();
+			}
+			@Override
+			public Adapter caseExpresionNot(ExpresionNot object) {
+				return createExpresionNotAdapter();
+			}
+			@Override
+			public Adapter caseRefVariableOm(RefVariableOm object) {
+				return createRefVariableOmAdapter();
+			}
+			@Override
+			public Adapter caseExpresionConjunta(ExpresionConjunta object) {
+				return createExpresionConjuntaAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -222,16 +242,16 @@ public class GemmaAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link Gemma.Variable <em>Variable</em>}'.
+	 * Creates a new adapter for an object of class '{@link Gemma.VariableOm <em>Variable Om</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see Gemma.Variable
+	 * @see Gemma.VariableOm
 	 * @generated
 	 */
-	public Adapter createVariableAdapter() {
+	public Adapter createVariableOmAdapter() {
 		return null;
 	}
 
@@ -246,6 +266,76 @@ public class GemmaAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTransicionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gemma.VariableGemma <em>Variable Gemma</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gemma.VariableGemma
+	 * @generated
+	 */
+	public Adapter createVariableGemmaAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gemma.RefVariableGemma <em>Ref Variable Gemma</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gemma.RefVariableGemma
+	 * @generated
+	 */
+	public Adapter createRefVariableGemmaAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gemma.ExpresionNot <em>Expresion Not</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gemma.ExpresionNot
+	 * @generated
+	 */
+	public Adapter createExpresionNotAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gemma.RefVariableOm <em>Ref Variable Om</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gemma.RefVariableOm
+	 * @generated
+	 */
+	public Adapter createRefVariableOmAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Gemma.ExpresionConjunta <em>Expresion Conjunta</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Gemma.ExpresionConjunta
+	 * @generated
+	 */
+	public Adapter createExpresionConjuntaAdapter() {
 		return null;
 	}
 

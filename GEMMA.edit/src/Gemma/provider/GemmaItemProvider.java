@@ -16,8 +16,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -62,31 +60,8 @@ public class GemmaItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addVariablesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Variables feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addVariablesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Gemma_variables_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Gemma_variables_feature", "_UI_Gemma_type"),
-				 GemmaPackage.Literals.GEMMA__VARIABLES,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
 	}
 
 	/**
@@ -103,6 +78,7 @@ public class GemmaItemProvider
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(GemmaPackage.Literals.GEMMA__MACRO_OMS);
 			childrenFeatures.add(GemmaPackage.Literals.GEMMA__TRANSICIONES);
+			childrenFeatures.add(GemmaPackage.Literals.GEMMA__VARIABLES_GEMMA);
 		}
 		return childrenFeatures;
 	}
@@ -157,6 +133,7 @@ public class GemmaItemProvider
 		switch (notification.getFeatureID(Gemma.class)) {
 			case GemmaPackage.GEMMA__MACRO_OMS:
 			case GemmaPackage.GEMMA__TRANSICIONES:
+			case GemmaPackage.GEMMA__VARIABLES_GEMMA:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -193,6 +170,11 @@ public class GemmaItemProvider
 			(createChildParameter
 				(GemmaPackage.Literals.GEMMA__TRANSICIONES,
 				 GemmaFactory.eINSTANCE.createTransicionEntreMacroOmOm()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GemmaPackage.Literals.GEMMA__VARIABLES_GEMMA,
+				 GemmaFactory.eINSTANCE.createVariableGemma()));
 	}
 
 	/**

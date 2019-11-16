@@ -5,13 +5,23 @@ package Gemma.impl;
 import Gemma.GemmaPackage;
 import Gemma.Om;
 import Gemma.TipoOm;
+import Gemma.VariableOm;
+
+import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,6 +34,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link Gemma.impl.OmImpl#getName <em>Name</em>}</li>
  *   <li>{@link Gemma.impl.OmImpl#getTipo <em>Tipo</em>}</li>
  *   <li>{@link Gemma.impl.OmImpl#isEsOmRaiz <em>Es Om Raiz</em>}</li>
+ *   <li>{@link Gemma.impl.OmImpl#getVariablesOm <em>Variables Om</em>}</li>
+ *   <li>{@link Gemma.impl.OmImpl#isEsVisible <em>Es Visible</em>}</li>
  * </ul>
  *
  * @generated
@@ -88,6 +100,36 @@ public class OmImpl extends MinimalEObjectImpl.Container implements Om {
 	 * @ordered
 	 */
 	protected boolean esOmRaiz = ES_OM_RAIZ_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getVariablesOm() <em>Variables Om</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getVariablesOm()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<VariableOm> variablesOm;
+
+	/**
+	 * The default value of the '{@link #isEsVisible() <em>Es Visible</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isEsVisible()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean ES_VISIBLE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isEsVisible() <em>Es Visible</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isEsVisible()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean esVisible = ES_VISIBLE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -176,6 +218,53 @@ public class OmImpl extends MinimalEObjectImpl.Container implements Om {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<VariableOm> getVariablesOm() {
+		if (variablesOm == null) {
+			variablesOm = new EObjectContainmentEList<VariableOm>(VariableOm.class, this, GemmaPackage.OM__VARIABLES_OM);
+		}
+		return variablesOm;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isEsVisible() {
+		return esVisible;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEsVisible(boolean newEsVisible) {
+		boolean oldEsVisible = esVisible;
+		esVisible = newEsVisible;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GemmaPackage.OM__ES_VISIBLE, oldEsVisible, esVisible));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case GemmaPackage.OM__VARIABLES_OM:
+				return ((InternalEList<?>)getVariablesOm()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -185,6 +274,10 @@ public class OmImpl extends MinimalEObjectImpl.Container implements Om {
 				return getTipo();
 			case GemmaPackage.OM__ES_OM_RAIZ:
 				return isEsOmRaiz();
+			case GemmaPackage.OM__VARIABLES_OM:
+				return getVariablesOm();
+			case GemmaPackage.OM__ES_VISIBLE:
+				return isEsVisible();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -194,6 +287,7 @@ public class OmImpl extends MinimalEObjectImpl.Container implements Om {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -205,6 +299,13 @@ public class OmImpl extends MinimalEObjectImpl.Container implements Om {
 				return;
 			case GemmaPackage.OM__ES_OM_RAIZ:
 				setEsOmRaiz((Boolean)newValue);
+				return;
+			case GemmaPackage.OM__VARIABLES_OM:
+				getVariablesOm().clear();
+				getVariablesOm().addAll((Collection<? extends VariableOm>)newValue);
+				return;
+			case GemmaPackage.OM__ES_VISIBLE:
+				setEsVisible((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -227,6 +328,12 @@ public class OmImpl extends MinimalEObjectImpl.Container implements Om {
 			case GemmaPackage.OM__ES_OM_RAIZ:
 				setEsOmRaiz(ES_OM_RAIZ_EDEFAULT);
 				return;
+			case GemmaPackage.OM__VARIABLES_OM:
+				getVariablesOm().clear();
+				return;
+			case GemmaPackage.OM__ES_VISIBLE:
+				setEsVisible(ES_VISIBLE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -245,6 +352,10 @@ public class OmImpl extends MinimalEObjectImpl.Container implements Om {
 				return tipo != TIPO_EDEFAULT;
 			case GemmaPackage.OM__ES_OM_RAIZ:
 				return esOmRaiz != ES_OM_RAIZ_EDEFAULT;
+			case GemmaPackage.OM__VARIABLES_OM:
+				return variablesOm != null && !variablesOm.isEmpty();
+			case GemmaPackage.OM__ES_VISIBLE:
+				return esVisible != ES_VISIBLE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -265,6 +376,8 @@ public class OmImpl extends MinimalEObjectImpl.Container implements Om {
 		result.append(tipo);
 		result.append(", esOmRaiz: ");
 		result.append(esOmRaiz);
+		result.append(", esVisible: ");
+		result.append(esVisible);
 		result.append(')');
 		return result.toString();
 	}

@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link Gemma.Gemma#getMacroOms <em>Macro Oms</em>}</li>
  *   <li>{@link Gemma.Gemma#getTransiciones <em>Transiciones</em>}</li>
- *   <li>{@link Gemma.Gemma#getVariables <em>Variables</em>}</li>
+ *   <li>{@link Gemma.Gemma#getVariablesGemma <em>Variables Gemma</em>}</li>
  * </ul>
  *
  * @see Gemma.GemmaPackage#getGemma()
@@ -58,19 +58,19 @@ public interface Gemma extends EObject {
 	EList<Transicion> getTransiciones();
 
 	/**
-	 * Returns the value of the '<em><b>Variables</b></em>' reference list.
-	 * The list contents are of type {@link Gemma.Variable}.
+	 * Returns the value of the '<em><b>Variables Gemma</b></em>' containment reference list.
+	 * The list contents are of type {@link Gemma.VariableGemma}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Variables</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Variables Gemma</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Variables</em>' reference list.
-	 * @see Gemma.GemmaPackage#getGemma_Variables()
-	 * @model
+	 * @return the value of the '<em>Variables Gemma</em>' containment reference list.
+	 * @see Gemma.GemmaPackage#getGemma_VariablesGemma()
+	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Variable> getVariables();
+	EList<VariableGemma> getVariablesGemma();
 
 } // Gemma

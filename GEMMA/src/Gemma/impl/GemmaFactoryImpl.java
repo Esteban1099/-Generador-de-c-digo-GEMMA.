@@ -64,8 +64,13 @@ public class GemmaFactoryImpl extends EFactoryImpl implements GemmaFactory {
 			case GemmaPackage.TRANSICION_ENTRE_MACRO_OM_OM: return createTransicionEntreMacroOmOm();
 			case GemmaPackage.EXPRESION_BINARIA: return createExpresionBinaria();
 			case GemmaPackage.ELEMENTO_EXPRESION: return createElementoExpresion();
-			case GemmaPackage.VARIABLE: return createVariable();
+			case GemmaPackage.VARIABLE_OM: return createVariableOm();
 			case GemmaPackage.TRANSICION: return createTransicion();
+			case GemmaPackage.VARIABLE_GEMMA: return createVariableGemma();
+			case GemmaPackage.REF_VARIABLE_GEMMA: return createRefVariableGemma();
+			case GemmaPackage.EXPRESION_NOT: return createExpresionNot();
+			case GemmaPackage.REF_VARIABLE_OM: return createRefVariableOm();
+			case GemmaPackage.EXPRESION_CONJUNTA: return createExpresionConjunta();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -83,8 +88,8 @@ public class GemmaFactoryImpl extends EFactoryImpl implements GemmaFactory {
 				return createTipoOmFromString(eDataType, initialValue);
 			case GemmaPackage.TIPO_MACRO_OM:
 				return createTipoMacroOmFromString(eDataType, initialValue);
-			case GemmaPackage.TIPO_VARIABLE:
-				return createTipoVariableFromString(eDataType, initialValue);
+			case GemmaPackage.TIPO_OPERADOR:
+				return createTipoOperadorFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -102,8 +107,8 @@ public class GemmaFactoryImpl extends EFactoryImpl implements GemmaFactory {
 				return convertTipoOmToString(eDataType, instanceValue);
 			case GemmaPackage.TIPO_MACRO_OM:
 				return convertTipoMacroOmToString(eDataType, instanceValue);
-			case GemmaPackage.TIPO_VARIABLE:
-				return convertTipoVariableToString(eDataType, instanceValue);
+			case GemmaPackage.TIPO_OPERADOR:
+				return convertTipoOperadorToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -184,9 +189,9 @@ public class GemmaFactoryImpl extends EFactoryImpl implements GemmaFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Variable createVariable() {
-		VariableImpl variable = new VariableImpl();
-		return variable;
+	public VariableOm createVariableOm() {
+		VariableOmImpl variableOm = new VariableOmImpl();
+		return variableOm;
 	}
 
 	/**
@@ -197,6 +202,56 @@ public class GemmaFactoryImpl extends EFactoryImpl implements GemmaFactory {
 	public Transicion createTransicion() {
 		TransicionImpl transicion = new TransicionImpl();
 		return transicion;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public VariableGemma createVariableGemma() {
+		VariableGemmaImpl variableGemma = new VariableGemmaImpl();
+		return variableGemma;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RefVariableGemma createRefVariableGemma() {
+		RefVariableGemmaImpl refVariableGemma = new RefVariableGemmaImpl();
+		return refVariableGemma;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ExpresionNot createExpresionNot() {
+		ExpresionNotImpl expresionNot = new ExpresionNotImpl();
+		return expresionNot;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RefVariableOm createRefVariableOm() {
+		RefVariableOmImpl refVariableOm = new RefVariableOmImpl();
+		return refVariableOm;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ExpresionConjunta createExpresionConjunta() {
+		ExpresionConjuntaImpl expresionConjunta = new ExpresionConjuntaImpl();
+		return expresionConjunta;
 	}
 
 	/**
@@ -244,8 +299,8 @@ public class GemmaFactoryImpl extends EFactoryImpl implements GemmaFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TipoVariable createTipoVariableFromString(EDataType eDataType, String initialValue) {
-		TipoVariable result = TipoVariable.get(initialValue);
+	public TipoOperador createTipoOperadorFromString(EDataType eDataType, String initialValue) {
+		TipoOperador result = TipoOperador.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
@@ -255,7 +310,7 @@ public class GemmaFactoryImpl extends EFactoryImpl implements GemmaFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertTipoVariableToString(EDataType eDataType, Object instanceValue) {
+	public String convertTipoOperadorToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

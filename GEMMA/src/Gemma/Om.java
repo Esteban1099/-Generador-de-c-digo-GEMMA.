@@ -2,6 +2,8 @@
  */
 package Gemma;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -16,6 +18,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link Gemma.Om#getName <em>Name</em>}</li>
  *   <li>{@link Gemma.Om#getTipo <em>Tipo</em>}</li>
  *   <li>{@link Gemma.Om#isEsOmRaiz <em>Es Om Raiz</em>}</li>
+ *   <li>{@link Gemma.Om#getVariablesOm <em>Variables Om</em>}</li>
+ *   <li>{@link Gemma.Om#isEsVisible <em>Es Visible</em>}</li>
  * </ul>
  *
  * @see Gemma.GemmaPackage#getOm()
@@ -103,5 +107,47 @@ public interface Om extends EObject {
 	 * @generated
 	 */
 	void setEsOmRaiz(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Variables Om</b></em>' containment reference list.
+	 * The list contents are of type {@link Gemma.VariableOm}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Variables Om</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Variables Om</em>' containment reference list.
+	 * @see Gemma.GemmaPackage#getOm_VariablesOm()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<VariableOm> getVariablesOm();
+
+	/**
+	 * Returns the value of the '<em><b>Es Visible</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Es Visible</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Es Visible</em>' attribute.
+	 * @see #setEsVisible(boolean)
+	 * @see Gemma.GemmaPackage#getOm_EsVisible()
+	 * @model
+	 * @generated
+	 */
+	boolean isEsVisible();
+
+	/**
+	 * Sets the value of the '{@link Gemma.Om#isEsVisible <em>Es Visible</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Es Visible</em>' attribute.
+	 * @see #isEsVisible()
+	 * @generated
+	 */
+	void setEsVisible(boolean value);
 
 } // Om

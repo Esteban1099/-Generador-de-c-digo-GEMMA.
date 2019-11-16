@@ -5,7 +5,6 @@ package Gemma;
 import org.eclipse.emf.ecore.EFactory;
 
 import Gemma.impl.GemmaFactoryImpl;
-import Gemma.impl.GemmaPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -88,13 +87,13 @@ public interface GemmaFactory extends EFactory {
 	ElementoExpresion createElementoExpresion();
 
 	/**
-	 * Returns a new object of class '<em>Variable</em>'.
+	 * Returns a new object of class '<em>Variable Om</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Variable</em>'.
+	 * @return a new object of class '<em>Variable Om</em>'.
 	 * @generated
 	 */
-	Variable createVariable();
+	VariableOm createVariableOm();
 
 	/**
 	 * Returns a new object of class '<em>Transicion</em>'.
@@ -104,6 +103,51 @@ public interface GemmaFactory extends EFactory {
 	 * @generated
 	 */
 	Transicion createTransicion();
+
+	/**
+	 * Returns a new object of class '<em>Variable Gemma</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Variable Gemma</em>'.
+	 * @generated
+	 */
+	VariableGemma createVariableGemma();
+
+	/**
+	 * Returns a new object of class '<em>Ref Variable Gemma</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ref Variable Gemma</em>'.
+	 * @generated
+	 */
+	RefVariableGemma createRefVariableGemma();
+
+	/**
+	 * Returns a new object of class '<em>Expresion Not</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Expresion Not</em>'.
+	 * @generated
+	 */
+	ExpresionNot createExpresionNot();
+
+	/**
+	 * Returns a new object of class '<em>Ref Variable Om</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ref Variable Om</em>'.
+	 * @generated
+	 */
+	RefVariableOm createRefVariableOm();
+
+	/**
+	 * Returns a new object of class '<em>Expresion Conjunta</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Expresion Conjunta</em>'.
+	 * @generated
+	 */
+	ExpresionConjunta createExpresionConjunta();
 
 	/**
 	 * Returns the package supported by this factory.

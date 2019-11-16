@@ -6,7 +6,7 @@ import Gemma.Gemma;
 import Gemma.GemmaPackage;
 import Gemma.MacroOm;
 import Gemma.Transicion;
-import Gemma.Variable;
+import Gemma.VariableGemma;
 
 import java.util.Collection;
 
@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -33,7 +32,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link Gemma.impl.GemmaImpl#getMacroOms <em>Macro Oms</em>}</li>
  *   <li>{@link Gemma.impl.GemmaImpl#getTransiciones <em>Transiciones</em>}</li>
- *   <li>{@link Gemma.impl.GemmaImpl#getVariables <em>Variables</em>}</li>
+ *   <li>{@link Gemma.impl.GemmaImpl#getVariablesGemma <em>Variables Gemma</em>}</li>
  * </ul>
  *
  * @generated
@@ -60,14 +59,14 @@ public class GemmaImpl extends MinimalEObjectImpl.Container implements Gemma {
 	protected EList<Transicion> transiciones;
 
 	/**
-	 * The cached value of the '{@link #getVariables() <em>Variables</em>}' reference list.
+	 * The cached value of the '{@link #getVariablesGemma() <em>Variables Gemma</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getVariables()
+	 * @see #getVariablesGemma()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Variable> variables;
+	protected EList<VariableGemma> variablesGemma;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -117,11 +116,11 @@ public class GemmaImpl extends MinimalEObjectImpl.Container implements Gemma {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Variable> getVariables() {
-		if (variables == null) {
-			variables = new EObjectResolvingEList<Variable>(Variable.class, this, GemmaPackage.GEMMA__VARIABLES);
+	public EList<VariableGemma> getVariablesGemma() {
+		if (variablesGemma == null) {
+			variablesGemma = new EObjectContainmentEList<VariableGemma>(VariableGemma.class, this, GemmaPackage.GEMMA__VARIABLES_GEMMA);
 		}
-		return variables;
+		return variablesGemma;
 	}
 
 	/**
@@ -136,6 +135,8 @@ public class GemmaImpl extends MinimalEObjectImpl.Container implements Gemma {
 				return ((InternalEList<?>)getMacroOms()).basicRemove(otherEnd, msgs);
 			case GemmaPackage.GEMMA__TRANSICIONES:
 				return ((InternalEList<?>)getTransiciones()).basicRemove(otherEnd, msgs);
+			case GemmaPackage.GEMMA__VARIABLES_GEMMA:
+				return ((InternalEList<?>)getVariablesGemma()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -152,8 +153,8 @@ public class GemmaImpl extends MinimalEObjectImpl.Container implements Gemma {
 				return getMacroOms();
 			case GemmaPackage.GEMMA__TRANSICIONES:
 				return getTransiciones();
-			case GemmaPackage.GEMMA__VARIABLES:
-				return getVariables();
+			case GemmaPackage.GEMMA__VARIABLES_GEMMA:
+				return getVariablesGemma();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -175,9 +176,9 @@ public class GemmaImpl extends MinimalEObjectImpl.Container implements Gemma {
 				getTransiciones().clear();
 				getTransiciones().addAll((Collection<? extends Transicion>)newValue);
 				return;
-			case GemmaPackage.GEMMA__VARIABLES:
-				getVariables().clear();
-				getVariables().addAll((Collection<? extends Variable>)newValue);
+			case GemmaPackage.GEMMA__VARIABLES_GEMMA:
+				getVariablesGemma().clear();
+				getVariablesGemma().addAll((Collection<? extends VariableGemma>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -197,8 +198,8 @@ public class GemmaImpl extends MinimalEObjectImpl.Container implements Gemma {
 			case GemmaPackage.GEMMA__TRANSICIONES:
 				getTransiciones().clear();
 				return;
-			case GemmaPackage.GEMMA__VARIABLES:
-				getVariables().clear();
+			case GemmaPackage.GEMMA__VARIABLES_GEMMA:
+				getVariablesGemma().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -216,8 +217,8 @@ public class GemmaImpl extends MinimalEObjectImpl.Container implements Gemma {
 				return macroOms != null && !macroOms.isEmpty();
 			case GemmaPackage.GEMMA__TRANSICIONES:
 				return transiciones != null && !transiciones.isEmpty();
-			case GemmaPackage.GEMMA__VARIABLES:
-				return variables != null && !variables.isEmpty();
+			case GemmaPackage.GEMMA__VARIABLES_GEMMA:
+				return variablesGemma != null && !variablesGemma.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

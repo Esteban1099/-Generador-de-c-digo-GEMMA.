@@ -5,6 +5,7 @@ package Gemma.impl;
 import Gemma.ElementoExpresion;
 import Gemma.ExpresionBinaria;
 import Gemma.GemmaPackage;
+import Gemma.TipoOperador;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -24,6 +25,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <ul>
  *   <li>{@link Gemma.impl.ExpresionBinariaImpl#getExpresionIzquierda <em>Expresion Izquierda</em>}</li>
  *   <li>{@link Gemma.impl.ExpresionBinariaImpl#getExpresionDerecha <em>Expresion Derecha</em>}</li>
+ *   <li>{@link Gemma.impl.ExpresionBinariaImpl#getOperador <em>Operador</em>}</li>
  * </ul>
  *
  * @generated
@@ -48,6 +50,26 @@ public class ExpresionBinariaImpl extends ElementoExpresionImpl implements Expre
 	 * @ordered
 	 */
 	protected ElementoExpresion expresionDerecha;
+
+	/**
+	 * The default value of the '{@link #getOperador() <em>Operador</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOperador()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final TipoOperador OPERADOR_EDEFAULT = TipoOperador.AND;
+
+	/**
+	 * The cached value of the '{@link #getOperador() <em>Operador</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOperador()
+	 * @generated
+	 * @ordered
+	 */
+	protected TipoOperador operador = OPERADOR_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -159,6 +181,27 @@ public class ExpresionBinariaImpl extends ElementoExpresionImpl implements Expre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public TipoOperador getOperador() {
+		return operador;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOperador(TipoOperador newOperador) {
+		TipoOperador oldOperador = operador;
+		operador = newOperador == null ? OPERADOR_EDEFAULT : newOperador;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GemmaPackage.EXPRESION_BINARIA__OPERADOR, oldOperador, operador));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -182,6 +225,8 @@ public class ExpresionBinariaImpl extends ElementoExpresionImpl implements Expre
 				return getExpresionIzquierda();
 			case GemmaPackage.EXPRESION_BINARIA__EXPRESION_DERECHA:
 				return getExpresionDerecha();
+			case GemmaPackage.EXPRESION_BINARIA__OPERADOR:
+				return getOperador();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -199,6 +244,9 @@ public class ExpresionBinariaImpl extends ElementoExpresionImpl implements Expre
 				return;
 			case GemmaPackage.EXPRESION_BINARIA__EXPRESION_DERECHA:
 				setExpresionDerecha((ElementoExpresion)newValue);
+				return;
+			case GemmaPackage.EXPRESION_BINARIA__OPERADOR:
+				setOperador((TipoOperador)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -218,6 +266,9 @@ public class ExpresionBinariaImpl extends ElementoExpresionImpl implements Expre
 			case GemmaPackage.EXPRESION_BINARIA__EXPRESION_DERECHA:
 				setExpresionDerecha((ElementoExpresion)null);
 				return;
+			case GemmaPackage.EXPRESION_BINARIA__OPERADOR:
+				setOperador(OPERADOR_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -234,8 +285,26 @@ public class ExpresionBinariaImpl extends ElementoExpresionImpl implements Expre
 				return expresionIzquierda != null;
 			case GemmaPackage.EXPRESION_BINARIA__EXPRESION_DERECHA:
 				return expresionDerecha != null;
+			case GemmaPackage.EXPRESION_BINARIA__OPERADOR:
+				return operador != OPERADOR_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (operador: ");
+		result.append(operador);
+		result.append(')');
+		return result.toString();
 	}
 
 } //ExpresionBinariaImpl

@@ -2,7 +2,7 @@
  */
 package Gemma.impl;
 
-import Gemma.ExpresionBinaria;
+import Gemma.ElementoExpresion;
 import Gemma.GemmaPackage;
 import Gemma.Transicion;
 
@@ -23,23 +23,13 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link Gemma.impl.TransicionImpl#getExpresionBinaria <em>Expresion Binaria</em>}</li>
  *   <li>{@link Gemma.impl.TransicionImpl#getName <em>Name</em>}</li>
+ *   <li>{@link Gemma.impl.TransicionImpl#getElementoExpresion <em>Elemento Expresion</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class TransicionImpl extends MinimalEObjectImpl.Container implements Transicion {
-	/**
-	 * The cached value of the '{@link #getExpresionBinaria() <em>Expresion Binaria</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getExpresionBinaria()
-	 * @generated
-	 * @ordered
-	 */
-	protected ExpresionBinaria expresionBinaria;
-
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -61,6 +51,16 @@ public class TransicionImpl extends MinimalEObjectImpl.Container implements Tran
 	protected String name = NAME_EDEFAULT;
 
 	/**
+	 * The cached value of the '{@link #getElementoExpresion() <em>Elemento Expresion</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getElementoExpresion()
+	 * @generated
+	 * @ordered
+	 */
+	protected ElementoExpresion elementoExpresion;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -77,49 +77,6 @@ public class TransicionImpl extends MinimalEObjectImpl.Container implements Tran
 	@Override
 	protected EClass eStaticClass() {
 		return GemmaPackage.Literals.TRANSICION;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ExpresionBinaria getExpresionBinaria() {
-		return expresionBinaria;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetExpresionBinaria(ExpresionBinaria newExpresionBinaria, NotificationChain msgs) {
-		ExpresionBinaria oldExpresionBinaria = expresionBinaria;
-		expresionBinaria = newExpresionBinaria;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GemmaPackage.TRANSICION__EXPRESION_BINARIA, oldExpresionBinaria, newExpresionBinaria);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setExpresionBinaria(ExpresionBinaria newExpresionBinaria) {
-		if (newExpresionBinaria != expresionBinaria) {
-			NotificationChain msgs = null;
-			if (expresionBinaria != null)
-				msgs = ((InternalEObject)expresionBinaria).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GemmaPackage.TRANSICION__EXPRESION_BINARIA, null, msgs);
-			if (newExpresionBinaria != null)
-				msgs = ((InternalEObject)newExpresionBinaria).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GemmaPackage.TRANSICION__EXPRESION_BINARIA, null, msgs);
-			msgs = basicSetExpresionBinaria(newExpresionBinaria, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GemmaPackage.TRANSICION__EXPRESION_BINARIA, newExpresionBinaria, newExpresionBinaria));
 	}
 
 	/**
@@ -148,11 +105,54 @@ public class TransicionImpl extends MinimalEObjectImpl.Container implements Tran
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ElementoExpresion getElementoExpresion() {
+		return elementoExpresion;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetElementoExpresion(ElementoExpresion newElementoExpresion, NotificationChain msgs) {
+		ElementoExpresion oldElementoExpresion = elementoExpresion;
+		elementoExpresion = newElementoExpresion;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GemmaPackage.TRANSICION__ELEMENTO_EXPRESION, oldElementoExpresion, newElementoExpresion);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setElementoExpresion(ElementoExpresion newElementoExpresion) {
+		if (newElementoExpresion != elementoExpresion) {
+			NotificationChain msgs = null;
+			if (elementoExpresion != null)
+				msgs = ((InternalEObject)elementoExpresion).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GemmaPackage.TRANSICION__ELEMENTO_EXPRESION, null, msgs);
+			if (newElementoExpresion != null)
+				msgs = ((InternalEObject)newElementoExpresion).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GemmaPackage.TRANSICION__ELEMENTO_EXPRESION, null, msgs);
+			msgs = basicSetElementoExpresion(newElementoExpresion, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GemmaPackage.TRANSICION__ELEMENTO_EXPRESION, newElementoExpresion, newElementoExpresion));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case GemmaPackage.TRANSICION__EXPRESION_BINARIA:
-				return basicSetExpresionBinaria(null, msgs);
+			case GemmaPackage.TRANSICION__ELEMENTO_EXPRESION:
+				return basicSetElementoExpresion(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -165,10 +165,10 @@ public class TransicionImpl extends MinimalEObjectImpl.Container implements Tran
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case GemmaPackage.TRANSICION__EXPRESION_BINARIA:
-				return getExpresionBinaria();
 			case GemmaPackage.TRANSICION__NAME:
 				return getName();
+			case GemmaPackage.TRANSICION__ELEMENTO_EXPRESION:
+				return getElementoExpresion();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -181,11 +181,11 @@ public class TransicionImpl extends MinimalEObjectImpl.Container implements Tran
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case GemmaPackage.TRANSICION__EXPRESION_BINARIA:
-				setExpresionBinaria((ExpresionBinaria)newValue);
-				return;
 			case GemmaPackage.TRANSICION__NAME:
 				setName((String)newValue);
+				return;
+			case GemmaPackage.TRANSICION__ELEMENTO_EXPRESION:
+				setElementoExpresion((ElementoExpresion)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -199,11 +199,11 @@ public class TransicionImpl extends MinimalEObjectImpl.Container implements Tran
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case GemmaPackage.TRANSICION__EXPRESION_BINARIA:
-				setExpresionBinaria((ExpresionBinaria)null);
-				return;
 			case GemmaPackage.TRANSICION__NAME:
 				setName(NAME_EDEFAULT);
+				return;
+			case GemmaPackage.TRANSICION__ELEMENTO_EXPRESION:
+				setElementoExpresion((ElementoExpresion)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -217,10 +217,10 @@ public class TransicionImpl extends MinimalEObjectImpl.Container implements Tran
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case GemmaPackage.TRANSICION__EXPRESION_BINARIA:
-				return expresionBinaria != null;
 			case GemmaPackage.TRANSICION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case GemmaPackage.TRANSICION__ELEMENTO_EXPRESION:
+				return elementoExpresion != null;
 		}
 		return super.eIsSet(featureID);
 	}

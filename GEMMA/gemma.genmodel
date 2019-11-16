@@ -28,15 +28,14 @@
       <genEnumLiterals ecoreEnumLiteral="gemma.ecore#//TipoMacroOm/F"/>
       <genEnumLiterals ecoreEnumLiteral="gemma.ecore#//TipoMacroOm/D"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="gemma.ecore#//TipoVariable">
-      <genEnumLiterals ecoreEnumLiteral="gemma.ecore#//TipoVariable/global"/>
-      <genEnumLiterals ecoreEnumLiteral="gemma.ecore#//TipoVariable/privada"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="gemma.ecore#//TipoOperador">
+      <genEnumLiterals ecoreEnumLiteral="gemma.ecore#//TipoOperador/AND"/>
+      <genEnumLiterals ecoreEnumLiteral="gemma.ecore#//TipoOperador/OR"/>
     </genEnums>
     <genClasses ecoreClass="gemma.ecore#//Gemma">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gemma.ecore#//Gemma/macroOms"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gemma.ecore#//Gemma/transiciones"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gemma.ecore#//Gemma/variables"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gemma.ecore#//Gemma/variablesHardware"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gemma.ecore#//Gemma/variablesGemma"/>
     </genClasses>
     <genClasses ecoreClass="gemma.ecore#//MacroOm">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gemma.ecore#//MacroOm/name"/>
@@ -47,6 +46,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gemma.ecore#//Om/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gemma.ecore#//Om/tipo"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gemma.ecore#//Om/esOmRaiz"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gemma.ecore#//Om/variablesOm"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gemma.ecore#//Om/esVisible"/>
     </genClasses>
     <genClasses ecoreClass="gemma.ecore#//TrasicionEntreOmOm">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gemma.ecore#//TrasicionEntreOmOm/origen"/>
@@ -59,18 +60,30 @@
     <genClasses ecoreClass="gemma.ecore#//ExpresionBinaria">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gemma.ecore#//ExpresionBinaria/expresionIzquierda"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gemma.ecore#//ExpresionBinaria/expresionDerecha"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gemma.ecore#//ExpresionBinaria/operador"/>
     </genClasses>
     <genClasses ecoreClass="gemma.ecore#//ElementoExpresion"/>
-    <genClasses ecoreClass="gemma.ecore#//Variable">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gemma.ecore#//Variable/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gemma.ecore#//Variable/tipo"/>
+    <genClasses ecoreClass="gemma.ecore#//VariableOm">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gemma.ecore#//VariableOm/name"/>
     </genClasses>
     <genClasses ecoreClass="gemma.ecore#//Transicion">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gemma.ecore#//Transicion/expresionBinaria"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gemma.ecore#//Transicion/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gemma.ecore#//Transicion/elementoExpresion"/>
     </genClasses>
-    <genClasses ecoreClass="gemma.ecore#//VariableHardware">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gemma.ecore#//VariableHardware/name"/>
+    <genClasses ecoreClass="gemma.ecore#//VariableGemma">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gemma.ecore#//VariableGemma/name"/>
+    </genClasses>
+    <genClasses ecoreClass="gemma.ecore#//RefVariableGemma">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gemma.ecore#//RefVariableGemma/variableGemma"/>
+    </genClasses>
+    <genClasses ecoreClass="gemma.ecore#//ExpresionNot">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gemma.ecore#//ExpresionNot/elementoExpresion"/>
+    </genClasses>
+    <genClasses ecoreClass="gemma.ecore#//RefVariableOm">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gemma.ecore#//RefVariableOm/variableOm"/>
+    </genClasses>
+    <genClasses ecoreClass="gemma.ecore#//ExpresionConjunta">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gemma.ecore#//ExpresionConjunta/elementoExpresion"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

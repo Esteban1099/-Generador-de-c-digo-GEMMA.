@@ -3,30 +3,29 @@
 package Gemma.impl;
 
 import Gemma.GemmaPackage;
-import Gemma.TipoVariable;
-import Gemma.Variable;
+import Gemma.VariableGemma;
 
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Variable</b></em>'.
+ * An implementation of the model object '<em><b>Variable Gemma</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link Gemma.impl.VariableImpl#getName <em>Name</em>}</li>
- *   <li>{@link Gemma.impl.VariableImpl#getTipo <em>Tipo</em>}</li>
+ *   <li>{@link Gemma.impl.VariableGemmaImpl#getName <em>Name</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class VariableImpl extends ElementoExpresionImpl implements Variable {
+public class VariableGemmaImpl extends MinimalEObjectImpl.Container implements VariableGemma {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -48,31 +47,11 @@ public class VariableImpl extends ElementoExpresionImpl implements Variable {
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getTipo() <em>Tipo</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTipo()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final TipoVariable TIPO_EDEFAULT = TipoVariable.GLOBAL;
-
-	/**
-	 * The cached value of the '{@link #getTipo() <em>Tipo</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTipo()
-	 * @generated
-	 * @ordered
-	 */
-	protected TipoVariable tipo = TIPO_EDEFAULT;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected VariableImpl() {
+	protected VariableGemmaImpl() {
 		super();
 	}
 
@@ -83,7 +62,7 @@ public class VariableImpl extends ElementoExpresionImpl implements Variable {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return GemmaPackage.Literals.VARIABLE;
+		return GemmaPackage.Literals.VARIABLE_GEMMA;
 	}
 
 	/**
@@ -104,28 +83,7 @@ public class VariableImpl extends ElementoExpresionImpl implements Variable {
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GemmaPackage.VARIABLE__NAME, oldName, name));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TipoVariable getTipo() {
-		return tipo;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTipo(TipoVariable newTipo) {
-		TipoVariable oldTipo = tipo;
-		tipo = newTipo == null ? TIPO_EDEFAULT : newTipo;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GemmaPackage.VARIABLE__TIPO, oldTipo, tipo));
+			eNotify(new ENotificationImpl(this, Notification.SET, GemmaPackage.VARIABLE_GEMMA__NAME, oldName, name));
 	}
 
 	/**
@@ -136,10 +94,8 @@ public class VariableImpl extends ElementoExpresionImpl implements Variable {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case GemmaPackage.VARIABLE__NAME:
+			case GemmaPackage.VARIABLE_GEMMA__NAME:
 				return getName();
-			case GemmaPackage.VARIABLE__TIPO:
-				return getTipo();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -152,11 +108,8 @@ public class VariableImpl extends ElementoExpresionImpl implements Variable {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case GemmaPackage.VARIABLE__NAME:
+			case GemmaPackage.VARIABLE_GEMMA__NAME:
 				setName((String)newValue);
-				return;
-			case GemmaPackage.VARIABLE__TIPO:
-				setTipo((TipoVariable)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -170,11 +123,8 @@ public class VariableImpl extends ElementoExpresionImpl implements Variable {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case GemmaPackage.VARIABLE__NAME:
+			case GemmaPackage.VARIABLE_GEMMA__NAME:
 				setName(NAME_EDEFAULT);
-				return;
-			case GemmaPackage.VARIABLE__TIPO:
-				setTipo(TIPO_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -188,10 +138,8 @@ public class VariableImpl extends ElementoExpresionImpl implements Variable {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case GemmaPackage.VARIABLE__NAME:
+			case GemmaPackage.VARIABLE_GEMMA__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case GemmaPackage.VARIABLE__TIPO:
-				return tipo != TIPO_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -208,10 +156,8 @@ public class VariableImpl extends ElementoExpresionImpl implements Variable {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: ");
 		result.append(name);
-		result.append(", tipo: ");
-		result.append(tipo);
 		result.append(')');
 		return result.toString();
 	}
 
-} //VariableImpl
+} //VariableGemmaImpl

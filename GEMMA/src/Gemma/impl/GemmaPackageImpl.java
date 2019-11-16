@@ -4,18 +4,23 @@ package Gemma.impl;
 
 import Gemma.ElementoExpresion;
 import Gemma.ExpresionBinaria;
+import Gemma.ExpresionConjunta;
+import Gemma.ExpresionNot;
 import Gemma.Gemma;
 import Gemma.GemmaFactory;
 import Gemma.GemmaPackage;
 import Gemma.MacroOm;
 import Gemma.Om;
+import Gemma.RefVariableGemma;
+import Gemma.RefVariableOm;
 import Gemma.TipoMacroOm;
 import Gemma.TipoOm;
-import Gemma.TipoVariable;
+import Gemma.TipoOperador;
 import Gemma.Transicion;
 import Gemma.TransicionEntreMacroOmOm;
 import Gemma.TrasicionEntreOmOm;
-import Gemma.Variable;
+import Gemma.VariableGemma;
+import Gemma.VariableOm;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -86,7 +91,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass variableEClass = null;
+	private EClass variableOmEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -94,6 +99,41 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * @generated
 	 */
 	private EClass transicionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass variableGemmaEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass refVariableGemmaEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass expresionNotEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass refVariableOmEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass expresionConjuntaEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -114,7 +154,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EEnum tipoVariableEEnum = null;
+	private EEnum tipoOperadorEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -209,7 +249,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getGemma_Variables() {
+	public EReference getGemma_VariablesGemma() {
 		return (EReference)gemmaEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -283,6 +323,24 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 */
 	public EAttribute getOm_EsOmRaiz() {
 		return (EAttribute)omEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOm_VariablesOm() {
+		return (EReference)omEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getOm_EsVisible() {
+		return (EAttribute)omEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -371,6 +429,15 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getExpresionBinaria_Operador() {
+		return (EAttribute)expresionBinariaEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getElementoExpresion() {
 		return elementoExpresionEClass;
 	}
@@ -380,8 +447,8 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getVariable() {
-		return variableEClass;
+	public EClass getVariableOm() {
+		return variableOmEClass;
 	}
 
 	/**
@@ -389,17 +456,8 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getVariable_Name() {
-		return (EAttribute)variableEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getVariable_Tipo() {
-		return (EAttribute)variableEClass.getEStructuralFeatures().get(1);
+	public EAttribute getVariableOm_Name() {
+		return (EAttribute)variableOmEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -416,8 +474,8 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTransicion_ExpresionBinaria() {
-		return (EReference)transicionEClass.getEStructuralFeatures().get(0);
+	public EAttribute getTransicion_Name() {
+		return (EAttribute)transicionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -425,8 +483,98 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTransicion_Name() {
-		return (EAttribute)transicionEClass.getEStructuralFeatures().get(1);
+	public EReference getTransicion_ElementoExpresion() {
+		return (EReference)transicionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getVariableGemma() {
+		return variableGemmaEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getVariableGemma_Name() {
+		return (EAttribute)variableGemmaEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getRefVariableGemma() {
+		return refVariableGemmaEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRefVariableGemma_VariableGemma() {
+		return (EReference)refVariableGemmaEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getExpresionNot() {
+		return expresionNotEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getExpresionNot_ElementoExpresion() {
+		return (EReference)expresionNotEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getRefVariableOm() {
+		return refVariableOmEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRefVariableOm_VariableOm() {
+		return (EReference)refVariableOmEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getExpresionConjunta() {
+		return expresionConjuntaEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getExpresionConjunta_ElementoExpresion() {
+		return (EReference)expresionConjuntaEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -452,8 +600,8 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getTipoVariable() {
-		return tipoVariableEEnum;
+	public EEnum getTipoOperador() {
+		return tipoOperadorEEnum;
 	}
 
 	/**
@@ -487,7 +635,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 		gemmaEClass = createEClass(GEMMA);
 		createEReference(gemmaEClass, GEMMA__MACRO_OMS);
 		createEReference(gemmaEClass, GEMMA__TRANSICIONES);
-		createEReference(gemmaEClass, GEMMA__VARIABLES);
+		createEReference(gemmaEClass, GEMMA__VARIABLES_GEMMA);
 
 		macroOmEClass = createEClass(MACRO_OM);
 		createEAttribute(macroOmEClass, MACRO_OM__NAME);
@@ -498,6 +646,8 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 		createEAttribute(omEClass, OM__NAME);
 		createEAttribute(omEClass, OM__TIPO);
 		createEAttribute(omEClass, OM__ES_OM_RAIZ);
+		createEReference(omEClass, OM__VARIABLES_OM);
+		createEAttribute(omEClass, OM__ES_VISIBLE);
 
 		trasicionEntreOmOmEClass = createEClass(TRASICION_ENTRE_OM_OM);
 		createEReference(trasicionEntreOmOmEClass, TRASICION_ENTRE_OM_OM__ORIGEN);
@@ -510,21 +660,36 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 		expresionBinariaEClass = createEClass(EXPRESION_BINARIA);
 		createEReference(expresionBinariaEClass, EXPRESION_BINARIA__EXPRESION_IZQUIERDA);
 		createEReference(expresionBinariaEClass, EXPRESION_BINARIA__EXPRESION_DERECHA);
+		createEAttribute(expresionBinariaEClass, EXPRESION_BINARIA__OPERADOR);
 
 		elementoExpresionEClass = createEClass(ELEMENTO_EXPRESION);
 
-		variableEClass = createEClass(VARIABLE);
-		createEAttribute(variableEClass, VARIABLE__NAME);
-		createEAttribute(variableEClass, VARIABLE__TIPO);
+		variableOmEClass = createEClass(VARIABLE_OM);
+		createEAttribute(variableOmEClass, VARIABLE_OM__NAME);
 
 		transicionEClass = createEClass(TRANSICION);
-		createEReference(transicionEClass, TRANSICION__EXPRESION_BINARIA);
 		createEAttribute(transicionEClass, TRANSICION__NAME);
+		createEReference(transicionEClass, TRANSICION__ELEMENTO_EXPRESION);
+
+		variableGemmaEClass = createEClass(VARIABLE_GEMMA);
+		createEAttribute(variableGemmaEClass, VARIABLE_GEMMA__NAME);
+
+		refVariableGemmaEClass = createEClass(REF_VARIABLE_GEMMA);
+		createEReference(refVariableGemmaEClass, REF_VARIABLE_GEMMA__VARIABLE_GEMMA);
+
+		expresionNotEClass = createEClass(EXPRESION_NOT);
+		createEReference(expresionNotEClass, EXPRESION_NOT__ELEMENTO_EXPRESION);
+
+		refVariableOmEClass = createEClass(REF_VARIABLE_OM);
+		createEReference(refVariableOmEClass, REF_VARIABLE_OM__VARIABLE_OM);
+
+		expresionConjuntaEClass = createEClass(EXPRESION_CONJUNTA);
+		createEReference(expresionConjuntaEClass, EXPRESION_CONJUNTA__ELEMENTO_EXPRESION);
 
 		// Create enums
 		tipoOmEEnum = createEEnum(TIPO_OM);
 		tipoMacroOmEEnum = createEEnum(TIPO_MACRO_OM);
-		tipoVariableEEnum = createEEnum(TIPO_VARIABLE);
+		tipoOperadorEEnum = createEEnum(TIPO_OPERADOR);
 	}
 
 	/**
@@ -558,13 +723,16 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 		trasicionEntreOmOmEClass.getESuperTypes().add(this.getTransicion());
 		transicionEntreMacroOmOmEClass.getESuperTypes().add(this.getTransicion());
 		expresionBinariaEClass.getESuperTypes().add(this.getElementoExpresion());
-		variableEClass.getESuperTypes().add(this.getElementoExpresion());
+		refVariableGemmaEClass.getESuperTypes().add(this.getElementoExpresion());
+		expresionNotEClass.getESuperTypes().add(this.getElementoExpresion());
+		refVariableOmEClass.getESuperTypes().add(this.getElementoExpresion());
+		expresionConjuntaEClass.getESuperTypes().add(this.getElementoExpresion());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(gemmaEClass, Gemma.class, "Gemma", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getGemma_MacroOms(), this.getMacroOm(), null, "macroOms", null, 1, -1, Gemma.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGemma_Transiciones(), this.getTransicion(), null, "transiciones", null, 1, -1, Gemma.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getGemma_Variables(), this.getVariable(), null, "variables", null, 0, -1, Gemma.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGemma_VariablesGemma(), this.getVariableGemma(), null, "variablesGemma", null, 0, -1, Gemma.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(macroOmEClass, MacroOm.class, "MacroOm", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getMacroOm_Name(), ecorePackage.getEString(), "name", null, 0, 1, MacroOm.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -575,6 +743,8 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 		initEAttribute(getOm_Name(), ecorePackage.getEString(), "name", null, 0, 1, Om.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getOm_Tipo(), this.getTipoOm(), "tipo", null, 0, 1, Om.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getOm_EsOmRaiz(), ecorePackage.getEBoolean(), "esOmRaiz", null, 0, 1, Om.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getOm_VariablesOm(), this.getVariableOm(), null, "variablesOm", null, 0, -1, Om.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getOm_EsVisible(), ecorePackage.getEBoolean(), "esVisible", null, 0, 1, Om.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(trasicionEntreOmOmEClass, TrasicionEntreOmOm.class, "TrasicionEntreOmOm", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTrasicionEntreOmOm_Origen(), this.getOm(), null, "origen", null, 1, 1, TrasicionEntreOmOm.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -587,16 +757,31 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 		initEClass(expresionBinariaEClass, ExpresionBinaria.class, "ExpresionBinaria", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getExpresionBinaria_ExpresionIzquierda(), this.getElementoExpresion(), null, "expresionIzquierda", null, 0, 1, ExpresionBinaria.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExpresionBinaria_ExpresionDerecha(), this.getElementoExpresion(), null, "expresionDerecha", null, 0, 1, ExpresionBinaria.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getExpresionBinaria_Operador(), this.getTipoOperador(), "operador", null, 0, 1, ExpresionBinaria.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(elementoExpresionEClass, ElementoExpresion.class, "ElementoExpresion", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(variableEClass, Variable.class, "Variable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getVariable_Name(), ecorePackage.getEString(), "name", null, 0, 1, Variable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getVariable_Tipo(), this.getTipoVariable(), "tipo", null, 0, 1, Variable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(variableOmEClass, VariableOm.class, "VariableOm", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getVariableOm_Name(), ecorePackage.getEString(), "name", null, 0, 1, VariableOm.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(transicionEClass, Transicion.class, "Transicion", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTransicion_ExpresionBinaria(), this.getExpresionBinaria(), null, "expresionBinaria", null, 1, 1, Transicion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTransicion_Name(), ecorePackage.getEString(), "name", null, 0, 1, Transicion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTransicion_ElementoExpresion(), this.getElementoExpresion(), null, "elementoExpresion", null, 1, 1, Transicion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(variableGemmaEClass, VariableGemma.class, "VariableGemma", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getVariableGemma_Name(), ecorePackage.getEString(), "name", null, 0, 1, VariableGemma.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(refVariableGemmaEClass, RefVariableGemma.class, "RefVariableGemma", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getRefVariableGemma_VariableGemma(), this.getVariableGemma(), null, "variableGemma", null, 1, 1, RefVariableGemma.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(expresionNotEClass, ExpresionNot.class, "ExpresionNot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getExpresionNot_ElementoExpresion(), this.getElementoExpresion(), null, "elementoExpresion", null, 1, 1, ExpresionNot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(refVariableOmEClass, RefVariableOm.class, "RefVariableOm", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getRefVariableOm_VariableOm(), this.getVariableOm(), null, "variableOm", null, 1, 1, RefVariableOm.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(expresionConjuntaEClass, ExpresionConjunta.class, "ExpresionConjunta", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getExpresionConjunta_ElementoExpresion(), this.getElementoExpresion(), null, "elementoExpresion", null, 1, 1, ExpresionConjunta.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(tipoOmEEnum, TipoOm.class, "TipoOm");
@@ -622,9 +807,9 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 		addEEnumLiteral(tipoMacroOmEEnum, TipoMacroOm.F);
 		addEEnumLiteral(tipoMacroOmEEnum, TipoMacroOm.D);
 
-		initEEnum(tipoVariableEEnum, TipoVariable.class, "TipoVariable");
-		addEEnumLiteral(tipoVariableEEnum, TipoVariable.GLOBAL);
-		addEEnumLiteral(tipoVariableEEnum, TipoVariable.PRIVADA);
+		initEEnum(tipoOperadorEEnum, TipoOperador.class, "TipoOperador");
+		addEEnumLiteral(tipoOperadorEEnum, TipoOperador.AND);
+		addEEnumLiteral(tipoOperadorEEnum, TipoOperador.OR);
 
 		// Create resource
 		createResource(eNS_URI);

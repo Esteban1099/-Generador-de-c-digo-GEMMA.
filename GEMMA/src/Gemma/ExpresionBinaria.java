@@ -14,6 +14,7 @@ package Gemma;
  * <ul>
  *   <li>{@link Gemma.ExpresionBinaria#getExpresionIzquierda <em>Expresion Izquierda</em>}</li>
  *   <li>{@link Gemma.ExpresionBinaria#getExpresionDerecha <em>Expresion Derecha</em>}</li>
+ *   <li>{@link Gemma.ExpresionBinaria#getOperador <em>Operador</em>}</li>
  * </ul>
  *
  * @see Gemma.GemmaPackage#getExpresionBinaria()
@@ -72,5 +73,34 @@ public interface ExpresionBinaria extends ElementoExpresion {
 	 * @generated
 	 */
 	void setExpresionDerecha(ElementoExpresion value);
+
+	/**
+	 * Returns the value of the '<em><b>Operador</b></em>' attribute.
+	 * The literals are from the enumeration {@link Gemma.TipoOperador}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Operador</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Operador</em>' attribute.
+	 * @see Gemma.TipoOperador
+	 * @see #setOperador(TipoOperador)
+	 * @see Gemma.GemmaPackage#getExpresionBinaria_Operador()
+	 * @model
+	 * @generated
+	 */
+	TipoOperador getOperador();
+
+	/**
+	 * Sets the value of the '{@link Gemma.ExpresionBinaria#getOperador <em>Operador</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Operador</em>' attribute.
+	 * @see Gemma.TipoOperador
+	 * @see #getOperador()
+	 * @generated
+	 */
+	void setOperador(TipoOperador value);
 
 } // ExpresionBinaria

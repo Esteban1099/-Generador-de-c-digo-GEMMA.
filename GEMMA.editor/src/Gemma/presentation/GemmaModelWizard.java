@@ -71,8 +71,6 @@ import org.eclipse.ui.part.ISetSelectionTarget;
 import Gemma.GemmaFactory;
 import Gemma.GemmaPackage;
 import Gemma.provider.GemmaEditPlugin;
-
-
 import org.eclipse.core.runtime.Path;
 
 import org.eclipse.jface.viewers.ISelection;

@@ -102,7 +102,7 @@ public class TransicionItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(GemmaPackage.Literals.TRANSICION__EXPRESION_BINARIA);
+			childrenFeatures.add(GemmaPackage.Literals.TRANSICION__ELEMENTO_EXPRESION);
 		}
 		return childrenFeatures;
 	}
@@ -161,7 +161,7 @@ public class TransicionItemProvider
 			case GemmaPackage.TRANSICION__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case GemmaPackage.TRANSICION__EXPRESION_BINARIA:
+			case GemmaPackage.TRANSICION__ELEMENTO_EXPRESION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -181,8 +181,33 @@ public class TransicionItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(GemmaPackage.Literals.TRANSICION__EXPRESION_BINARIA,
+				(GemmaPackage.Literals.TRANSICION__ELEMENTO_EXPRESION,
+				 GemmaFactory.eINSTANCE.createElementoExpresion()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GemmaPackage.Literals.TRANSICION__ELEMENTO_EXPRESION,
 				 GemmaFactory.eINSTANCE.createExpresionBinaria()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GemmaPackage.Literals.TRANSICION__ELEMENTO_EXPRESION,
+				 GemmaFactory.eINSTANCE.createRefVariableGemma()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GemmaPackage.Literals.TRANSICION__ELEMENTO_EXPRESION,
+				 GemmaFactory.eINSTANCE.createExpresionNot()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GemmaPackage.Literals.TRANSICION__ELEMENTO_EXPRESION,
+				 GemmaFactory.eINSTANCE.createRefVariableOm()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GemmaPackage.Literals.TRANSICION__ELEMENTO_EXPRESION,
+				 GemmaFactory.eINSTANCE.createExpresionConjunta()));
 	}
 
 	/**

@@ -26,11 +26,12 @@ for (om in Om.all) {
 %]
 
 [%
-// aca busco todas las variables de hardware en el GEMMA.
-for (vh in VariableHardware.all) { 
-	nameVh = vh.name;
+var nameVg;
+// aca busco todas las variables del GEMMA.
+for (vg in VariableGemma.all) { 
+	nameVg = vg.name;
 	%]
-[%= nameVh %]_GEMMA : BOOL := FALSE;
+[%= nameVg %]_GEMMA : BOOL := FALSE;
 	[% 
 }
 %]

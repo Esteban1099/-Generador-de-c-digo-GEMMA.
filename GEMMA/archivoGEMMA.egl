@@ -1,4 +1,6 @@
+PROGRAM GEMMA
 [%
+
 var flagEntry = true;
 var nameFlagEntry = "FlagEntry";
 var nameSate = "State";
@@ -68,7 +70,7 @@ VAR
 END_VAR
 
 
-CASE [%= nameSate %] OF:
+CASE [%= nameSate %] OF
 [%
 var numOm = 0;
 var variables: Set; 
@@ -135,28 +137,9 @@ var variables: Set;
 		
 		//Do behavior
 		[%= tipoOm %]();
-		[%
+		[%		
 //validar si existen multiples transiciones.
-var trMultiples = false;
-var numExpPrivada = 0;
-var numExpGlobal = 0;
-for (tr in Transicion.all) { 
-	if (tr.isTypeOf(TrasicionEntreOmOm)){
-		if(tr.origen.name == om.name){
-			var expBinaria = tr.expresionBinaria;
-			var expI = expBinaria.expresionIzquierda;
-			if (expI.tipo.name == "global"){
-				numExpGlobal = numExpGlobal + 1;
-			}
-			else{
-				numExpPrivada = numExpPrivada + 1;
-			}
-		}
-	}	
-}
-if(numExpPrivada > 0 and numExpGlobal > 0){
-	trMultiples = true;
-}			
+
 var esGlobal = false;
 var contadorGlobal = 0;
 for (tr in Transicion.all) { 

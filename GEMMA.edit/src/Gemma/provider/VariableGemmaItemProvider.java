@@ -4,7 +4,7 @@ package Gemma.provider;
 
 
 import Gemma.GemmaPackage;
-import Gemma.Variable;
+import Gemma.VariableGemma;
 
 import java.util.Collection;
 import java.util.List;
@@ -12,25 +12,40 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.IItemPropertySource;
+import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
+import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link Gemma.Variable} object.
+ * This is the item provider adapter for a {@link Gemma.VariableGemma} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class VariableItemProvider extends ElementoExpresionItemProvider {
+public class VariableGemmaItemProvider 
+	extends ItemProviderAdapter
+	implements
+		IEditingDomainItemProvider,
+		IStructuredItemContentProvider,
+		ITreeItemContentProvider,
+		IItemLabelProvider,
+		IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VariableItemProvider(AdapterFactory adapterFactory) {
+	public VariableGemmaItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -46,7 +61,6 @@ public class VariableItemProvider extends ElementoExpresionItemProvider {
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
-			addTipoPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -62,9 +76,9 @@ public class VariableItemProvider extends ElementoExpresionItemProvider {
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Variable_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Variable_name_feature", "_UI_Variable_type"),
-				 GemmaPackage.Literals.VARIABLE__NAME,
+				 getString("_UI_VariableGemma_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_VariableGemma_name_feature", "_UI_VariableGemma_type"),
+				 GemmaPackage.Literals.VARIABLE_GEMMA__NAME,
 				 true,
 				 false,
 				 false,
@@ -74,36 +88,14 @@ public class VariableItemProvider extends ElementoExpresionItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Tipo feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addTipoPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Variable_tipo_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Variable_tipo_feature", "_UI_Variable_type"),
-				 GemmaPackage.Literals.VARIABLE__TIPO,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This returns Variable.gif.
+	 * This returns VariableGemma.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Variable"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/VariableGemma"));
 	}
 
 	/**
@@ -114,10 +106,10 @@ public class VariableItemProvider extends ElementoExpresionItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Variable)object).getName();
+		String label = ((VariableGemma)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Variable_type") :
-			getString("_UI_Variable_type") + " " + label;
+			getString("_UI_VariableGemma_type") :
+			getString("_UI_VariableGemma_type") + " " + label;
 	}
 	
 
@@ -132,9 +124,8 @@ public class VariableItemProvider extends ElementoExpresionItemProvider {
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Variable.class)) {
-			case GemmaPackage.VARIABLE__NAME:
-			case GemmaPackage.VARIABLE__TIPO:
+		switch (notification.getFeatureID(VariableGemma.class)) {
+			case GemmaPackage.VARIABLE_GEMMA__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
@@ -151,6 +142,17 @@ public class VariableItemProvider extends ElementoExpresionItemProvider {
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return GemmaEditPlugin.INSTANCE;
 	}
 
 }

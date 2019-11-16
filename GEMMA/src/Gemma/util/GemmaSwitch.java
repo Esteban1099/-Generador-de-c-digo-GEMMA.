@@ -111,16 +111,49 @@ public class GemmaSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GemmaPackage.VARIABLE: {
-				Variable variable = (Variable)theEObject;
-				T result = caseVariable(variable);
-				if (result == null) result = caseElementoExpresion(variable);
+			case GemmaPackage.VARIABLE_OM: {
+				VariableOm variableOm = (VariableOm)theEObject;
+				T result = caseVariableOm(variableOm);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case GemmaPackage.TRANSICION: {
 				Transicion transicion = (Transicion)theEObject;
 				T result = caseTransicion(transicion);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GemmaPackage.VARIABLE_GEMMA: {
+				VariableGemma variableGemma = (VariableGemma)theEObject;
+				T result = caseVariableGemma(variableGemma);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GemmaPackage.REF_VARIABLE_GEMMA: {
+				RefVariableGemma refVariableGemma = (RefVariableGemma)theEObject;
+				T result = caseRefVariableGemma(refVariableGemma);
+				if (result == null) result = caseElementoExpresion(refVariableGemma);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GemmaPackage.EXPRESION_NOT: {
+				ExpresionNot expresionNot = (ExpresionNot)theEObject;
+				T result = caseExpresionNot(expresionNot);
+				if (result == null) result = caseElementoExpresion(expresionNot);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GemmaPackage.REF_VARIABLE_OM: {
+				RefVariableOm refVariableOm = (RefVariableOm)theEObject;
+				T result = caseRefVariableOm(refVariableOm);
+				if (result == null) result = caseElementoExpresion(refVariableOm);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GemmaPackage.EXPRESION_CONJUNTA: {
+				ExpresionConjunta expresionConjunta = (ExpresionConjunta)theEObject;
+				T result = caseExpresionConjunta(expresionConjunta);
+				if (result == null) result = caseElementoExpresion(expresionConjunta);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -234,17 +267,17 @@ public class GemmaSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Variable</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Variable Om</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Variable</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Variable Om</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseVariable(Variable object) {
+	public T caseVariableOm(VariableOm object) {
 		return null;
 	}
 
@@ -260,6 +293,81 @@ public class GemmaSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTransicion(Transicion object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Variable Gemma</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Variable Gemma</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseVariableGemma(VariableGemma object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ref Variable Gemma</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ref Variable Gemma</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRefVariableGemma(RefVariableGemma object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Expresion Not</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Expresion Not</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExpresionNot(ExpresionNot object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ref Variable Om</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ref Variable Om</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRefVariableOm(RefVariableOm object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Expresion Conjunta</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Expresion Conjunta</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExpresionConjunta(ExpresionConjunta object) {
 		return null;
 	}
 

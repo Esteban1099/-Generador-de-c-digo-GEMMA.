@@ -6,10 +6,8 @@
         upperBound="-1" eType="#//MacroOm" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="transiciones" lowerBound="1"
         upperBound="-1" eType="#//Transicion" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="variables" upperBound="-1"
-        eType="#//Variable"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="variablesHardware" upperBound="-1"
-        eType="#//VariableHardware" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variablesGemma" upperBound="-1"
+        eType="#//VariableGemma" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MacroOm">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -21,6 +19,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="tipo" eType="#//TipoOm"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="esOmRaiz" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variablesOm" upperBound="-1"
+        eType="#//VariableOm" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="esVisible" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="TipoOm">
     <eLiterals name="A1"/>
@@ -62,22 +63,38 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expresionDerecha" eType="#//ElementoExpresion"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operador" eType="#//TipoOperador"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ElementoExpresion"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Variable" eSuperTypes="#//ElementoExpresion">
+  <eClassifiers xsi:type="ecore:EClass" name="VariableOm">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tipo" eType="#//TipoVariable"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="TipoVariable">
-    <eLiterals name="global"/>
-    <eLiterals name="privada" value="1"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Transicion">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="expresionBinaria" lowerBound="1"
-        eType="#//ExpresionBinaria" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elementoExpresion" lowerBound="1"
+        eType="#//ElementoExpresion" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VariableGemma">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="VariableHardware">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RefVariableGemma" eSuperTypes="#//ElementoExpresion">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variableGemma" lowerBound="1"
+        eType="#//VariableGemma"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExpresionNot" eSuperTypes="#//ElementoExpresion">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elementoExpresion" lowerBound="1"
+        eType="#//ElementoExpresion" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TipoOperador">
+    <eLiterals name="AND"/>
+    <eLiterals name="OR" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RefVariableOm" eSuperTypes="#//ElementoExpresion">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variableOm" lowerBound="1"
+        eType="#//VariableOm"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExpresionConjunta" eSuperTypes="#//ElementoExpresion">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elementoExpresion" lowerBound="1"
+        eType="#//ElementoExpresion" containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

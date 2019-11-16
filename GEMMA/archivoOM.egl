@@ -1,291 +1,125 @@
 [%
-var om = Om.all.select(om|om.tipo.name == "F2").first();
+var om = Om.all.select(om|om.tipo.name == "F1").first();
 var tipoOm = om.tipo.name;
 %]
 PROGRAM [%= tipoOm %]
 
-VAR
-	[%= tipoOm %]_DONE : BOOL := FALSE;	
 [%
-var variables: Set;
-var varSolas: Set;
-for (tr in Transicion.all) { 
-	if (tr.isTypeOf(TrasicionEntreOmOm)){
-		if(tr.origen.name == om.name){
-			var expBinaria = tr.expresionBinaria;
-			var termino = false;
-			var expI;
-			var expD;
-			while (termino == false) {
-				expI = expBinaria.expresionIzquierda;
-				expD = expBinaria.expresionDerecha;
-				if(expD == null){
-					termino = true;
-					if (expI.tipo.name == "privada" and (variables.isEmpty() or variables.select(v|v.name == expI.name).first() == null)) {
-						if("-".isSubstringOf(expI.name) == false){
-						variables.add(expI);
-							%]
-	[%= expI.name %] : BOOL := FALSE;								
-							[%
-						}
-						else {
-							variables.add(expI);
-							var cadenaExpresiones = expI.name.split("-");
-							for (ca in cadenaExpresiones) { 
-								if (varSolas.isEmpty() or varSolas.select(vs|vs == ca).first() == null){
-									varSolas.add(ca);
-									%]
-	[%= ca %] : BOOL := FALSE;								
-									[%
-								}
-							}
-						}
-					}
-				}
-				else if (expD.isTypeOf(Variable)){
-					termino = true;
-					if (expI.tipo.name == "privada" and (variables.isEmpty() or variables.select(v|v.name == expI.name).first() == null)){
-						if("-".isSubstringOf(expI.name) == false){
-						variables.add(expI);
-							%]
-	[%= expI.name %] : BOOL := FALSE;								
-							[%
-						}
-						else {
-							variables.add(expI);
-							var cadenaExpresiones = expI.name.split("-");
-							for (ca in cadenaExpresiones) { 
-								if (varSolas.isEmpty() or varSolas.select(vs|vs == ca).first() == null){
-									varSolas.add(ca);
-									%]
-	[%= ca %] : BOOL := FALSE;								
-									[%
-								}
-							}
-						}
-					}
-					if (expD.tipo.name == "privada" and (variables.isEmpty() or variables.select(v|v.name == expD.name).first() == null)){
-						if("-".isSubstringOf(expD.name) == false){
-						variables.add(expD);
-							%]
-	[%= expD.name %] : BOOL := FALSE;								
-							[%
-						}
-						else {
-							variables.add(expD);
-							var cadenaExpresiones = expD.name.split("-");
-							for (ca in cadenaExpresiones) { 
-								if (varSolas.isEmpty() or varSolas.select(vs|vs == ca).first() == null){
-									varSolas.add(ca);
-									%]
-	[%= ca %] : BOOL := FALSE;								
-									[%
-								}
-							}
-						}
-					}
-				}
-				else {
-					if (expI.tipo.name == "privada" and (variables.isEmpty() or variables.select(v|v.name == expI.name).first() == null)) {
-						if("-".isSubstringOf(expI.name) == false){
-						variables.add(expI);
-							%]
-	[%= expI.name %] : BOOL := FALSE;								
-							[%
-						}
-						else {
-							variables.add(expI);
-							var cadenaExpresiones = expI.name.split("-");
-							for (ca in cadenaExpresiones) { 
-								if (varSolas.isEmpty() or varSolas.select(vs|vs == ca).first() == null){
-									varSolas.add(ca);
-									%]
-	[%= ca %] : BOOL := FALSE;								
-									[%
-								}
-							}
-						}
-					}
-					expBinaria = expD;
-				}
-			}
-		}
+//Validar si tiene transiciones reset.
+if(om.variablesOm.size() > 0){
+	%]
+VAR
+	
+ Reset : BOOL := FALSE;	
+	[%
+
+	//Crear las variables del om.
+	for (vr in om.variablesOm) { 
+		%]
+ [%= vr.name %] : BOOL := FALSE;
+		[%
 	}
-}
 %]
+
 END_VAR
 
-// TO-DO: Estructura de control paRa cambiar el valor de [%= tipoOm %]_DONE a true (Modificar la condicion)
-IF [%= tipoOm %]_DONE THEN
-	[%= tipoOm %]_DONE := TRUE;
+[%
+}
+//Estructura de control para cambiar el reset.
+if(om.variablesOm.size() > 0){
+	%]
+// TO-DO: Estructura de control para cambiar el valor del reset (Modificar la condicion)
+IF Reset THEN
+	// Fill the reset behavior
+	Reset:=FALSE;
 END_IF
+	[%
+}
+%]
+
+// Insert the OM logic
+
 
 
 [%
-
+//Validar las transiciones normales para asignar el valor de las transiciones a su expresion condicional.
+var elementoExpresion;
+var termino = false;
+var expresionGuardada = "";
+var eleIzq;
+var eleDer;
 for (tr in Transicion.all) { 
+	//Si la transicion es entre om a om
 	if (tr.isTypeOf(TrasicionEntreOmOm)){
+		//Validar si mi om es el origen de la transicion.
 		if(tr.origen.name == om.name){
-		%]
-IF [%= tipoOm %]_DONE AND [%
-			var expBinaria = tr.expresionBinaria;
-			var termino = false;
-			var expI;
-			var expD;
-			while (termino == false) {
-				expI = expBinaria.expresionIzquierda;
-				expD = expBinaria.expresionDerecha;
-				if(expD == null){
+			elementoExpresion = tr.elementoExpresion;
+			//Ahora validar los 4 posibles caminos que puede tomar un elemento expresion.
+			while(termino == false){
+				//1) ser una referencia a una variable Gemma.
+				if(elementoExpresion.isTypeOf(RefVariableGemma)){
 					termino = true;
-					if (expI.tipo.name == "privada") {
-						if("-".isSubstringOf(expI.name) == false){
-						variables.add(expI.name);
-						%][%= expI.name %] THEN
-						[%
-						}
-						else {
-						%]
-						(
-						[%
-							var cadenaExpresiones = expI.name.split("-");
-							var tamañoCadena = cadenaExpresiones.size();
-							var i = 0;
-							for (ca in cadenaExpresiones) { 
-									variables.add(ca);
-									if(i >= (tamañoCadena -1)){
-										%]
-											[%= ca %]
-										[%
-									}
-									else{
-										%]
-											[%= ca %] OR
-										[%
-									}
-									i = i + 1;
-							}
-							%]
-						) THEN
-							[%
-						}
-					}
+					//No se hace nada dado que es una variable del Gemma.
 				}
-				else if (expD.isTypeOf(Variable)){
+				//2) ser una referencia a una variable Om.
+				else if(elementoExpresion.isTypeOf(RefVariableOm)){
 					termino = true;
-					if (expI.tipo.name == "privada"){
-						if("-".isSubstringOf(expI.name) == false){
-						variables.add(expI.name);
-						%]
-						[%= expI.name %] AND
-						[%
-						}
-						else {
-						%]
-						(
-						[%
-							var cadenaExpresiones = expI.name.split("-");
-							var tamañoCadena = cadenaExpresiones.size();
-							var i = 0;
-							for (ca in cadenaExpresiones) { 
-									variables.add(ca);
-									if(i >= (tamañoCadena -1)){
-										%]
-											[%= ca %]
-										[%
-									}
-									else{
-										%]
-											[%= ca %] OR
-										[%
-									}
-									i = i + 1;
-							}
-							%]
-						) AND
-							[%
-						}
-					}
-					if (expD.tipo.name == "privada"){
-						if("-".isSubstringOf(expD.name) == false){
-						variables.add(expD.name);
-						%]
-						[%= expD.name %] THEN
-						[%
-						}
-						else {
-						%]
-						(
-						[%
-							var cadenaExpresiones = expD.name.split("-");
-							var tamañoCadena = cadenaExpresiones.size();
-							var i = 0;
-							for (ca in cadenaExpresiones) { 
-									variables.add(ca);
-									if(i >= (tamañoCadena -1)){
-										%]
-											[%= ca %]
-										[%
-									}
-									else{
-										%]
-											[%= ca %] OR
-										[%
-									}
-									i = i + 1;
-							}
-							%]
-						) THEN
-							[%
-						}
-					}
+					//se asigna el valor de la condición a la transición.
+					%]
+GVL.[%= tr.name %] := [%= expresionGuardada %][%= elementoExpresion.variableOm.name %];					
+					[%					
 				}
-				else {
-					if (expI.tipo.name == "privada") {
-						if("-".isSubstringOf(expI.name) == false){
-						variables.add(expI.name);
-						%]
-						[%= expI.name %] AND
-						[%
+				//3) ser una referencia a una expresion not.
+				else if(elementoExpresion.isTypeOf(ExpresionNot)){
+					expresionGuardada = expresionGuardada + "NOT ";
+					elementoExpresion = elementoExpresion.elementoExpresion;
+				}
+				//3) ser una referencia a una expresion binaria.
+				else{
+					eleIzq = elementoExpresion.expresionIzquierda;
+					eleDer = elementoExpresion.expresionDerecha;
+					//Validar el elemento de la izquierda
+					
+					//1) Que el elemento de la izquierda sea not.
+					if(eleIzq.isTypeOf(ExpresionNot)){
+						//Validar si el elemento que guarda la expresion not es una variable Om.
+						if(eleIzq.elementoExpresion.isTypeOf(RefVariableOm)){
+							expresionGuardada = expresionGuardada + "NOT "+ eleIzq.elementoExpresion.variableOm.name;
 						}
-						else {
-						%]
-						(
-						[%
-							var cadenaExpresiones = expI.name.split("-");
-							var tamañoCadena = cadenaExpresiones.size();
-							var i = 0;
-							for (ca in cadenaExpresiones) { 
-									variables.add(ca);
-									if(i >= (tamañoCadena -1)){
-										%]
-											[%= ca %]
-										[%
-									}
-									else{
-										%]
-											[%= ca %] OR
-										[%
-									}
-									i = i + 1;
-							}
-							%]
-						) AND
-							[%
+						//Validar si el elemento que guarda la expresion not es una variable Om.
+						else{
+							termino = true;
+							expresionGuardada = expresionGuardada + "NOT ";
+							//No se hace nada dado que es una variable del Gemma.
 						}
 					}
-				
-					expBinaria = expD;
+					//2) Que el elemento de la izquierda sea una referencia a una variable Gemma.
+					else if(eleIzq.isTypeOf(RefVariableGemma)){
+						termino = true;
+						//No se hace nada dado que es una variable del Gemma.
+					}
+					//3) Que el elemento de la izquierda sea una referencia a una variable Om.
+					else{
+						expresionGuardada = expresionGuardada + eleIzq.variableOm.name;
+					}
+					
+					//Agregar el operador.
+					expresionGuardada = expresionGuardada + " " + elementoExpresion.operador.name + " ";
+
+					
+					elementoExpresion = eleDer;
 				}
 			}
-			%]
-			
-GVL.[%= tr.name %] := TRUE;
-		
-END_IF
-			
-			[%
+			//Volver a termino false para la otra transicion.
+			termino = false;
+			expresionGuardada = "";
 		}
-		
+	}
+	//Si la transicion es entre macro a om
+	else{
 	}
 }
+
 %]
+
+

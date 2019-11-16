@@ -7,6 +7,7 @@ import Gemma.ExpresionBinaria;
 import Gemma.GemmaFactory;
 import Gemma.GemmaPackage;
 
+import Gemma.TipoOperador;
 import java.util.Collection;
 import java.util.List;
 
@@ -15,7 +16,9 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
@@ -46,8 +49,31 @@ public class ExpresionBinariaItemProvider extends ElementoExpresionItemProvider 
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addOperadorPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Operador feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addOperadorPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ExpresionBinaria_operador_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ExpresionBinaria_operador_feature", "_UI_ExpresionBinaria_type"),
+				 GemmaPackage.Literals.EXPRESION_BINARIA__OPERADOR,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -100,7 +126,11 @@ public class ExpresionBinariaItemProvider extends ElementoExpresionItemProvider 
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_ExpresionBinaria_type");
+		TipoOperador labelValue = ((ExpresionBinaria)object).getOperador();
+		String label = labelValue == null ? null : labelValue.toString();
+		return label == null || label.length() == 0 ?
+			getString("_UI_ExpresionBinaria_type") :
+			getString("_UI_ExpresionBinaria_type") + " " + label;
 	}
 	
 
@@ -116,6 +146,9 @@ public class ExpresionBinariaItemProvider extends ElementoExpresionItemProvider 
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ExpresionBinaria.class)) {
+			case GemmaPackage.EXPRESION_BINARIA__OPERADOR:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 			case GemmaPackage.EXPRESION_BINARIA__EXPRESION_IZQUIERDA:
 			case GemmaPackage.EXPRESION_BINARIA__EXPRESION_DERECHA:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -148,7 +181,22 @@ public class ExpresionBinariaItemProvider extends ElementoExpresionItemProvider 
 		newChildDescriptors.add
 			(createChildParameter
 				(GemmaPackage.Literals.EXPRESION_BINARIA__EXPRESION_IZQUIERDA,
-				 GemmaFactory.eINSTANCE.createVariable()));
+				 GemmaFactory.eINSTANCE.createRefVariableGemma()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GemmaPackage.Literals.EXPRESION_BINARIA__EXPRESION_IZQUIERDA,
+				 GemmaFactory.eINSTANCE.createExpresionNot()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GemmaPackage.Literals.EXPRESION_BINARIA__EXPRESION_IZQUIERDA,
+				 GemmaFactory.eINSTANCE.createRefVariableOm()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GemmaPackage.Literals.EXPRESION_BINARIA__EXPRESION_IZQUIERDA,
+				 GemmaFactory.eINSTANCE.createExpresionConjunta()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -163,7 +211,22 @@ public class ExpresionBinariaItemProvider extends ElementoExpresionItemProvider 
 		newChildDescriptors.add
 			(createChildParameter
 				(GemmaPackage.Literals.EXPRESION_BINARIA__EXPRESION_DERECHA,
-				 GemmaFactory.eINSTANCE.createVariable()));
+				 GemmaFactory.eINSTANCE.createRefVariableGemma()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GemmaPackage.Literals.EXPRESION_BINARIA__EXPRESION_DERECHA,
+				 GemmaFactory.eINSTANCE.createExpresionNot()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GemmaPackage.Literals.EXPRESION_BINARIA__EXPRESION_DERECHA,
+				 GemmaFactory.eINSTANCE.createRefVariableOm()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(GemmaPackage.Literals.EXPRESION_BINARIA__EXPRESION_DERECHA,
+				 GemmaFactory.eINSTANCE.createExpresionConjunta()));
 	}
 
 	/**

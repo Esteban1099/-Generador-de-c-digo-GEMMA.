@@ -88,13 +88,13 @@ public interface GemmaPackage extends EPackage {
 	int GEMMA__TRANSICIONES = 1;
 
 	/**
-	 * The feature id for the '<em><b>Variables</b></em>' reference list.
+	 * The feature id for the '<em><b>Variables Gemma</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEMMA__VARIABLES = 2;
+	int GEMMA__VARIABLES_GEMMA = 2;
 
 	/**
 	 * The number of structural features of the '<em>Gemma</em>' class.
@@ -207,13 +207,31 @@ public interface GemmaPackage extends EPackage {
 	int OM__ES_OM_RAIZ = 2;
 
 	/**
+	 * The feature id for the '<em><b>Variables Om</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OM__VARIABLES_OM = 3;
+
+	/**
+	 * The feature id for the '<em><b>Es Visible</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OM__ES_VISIBLE = 4;
+
+	/**
 	 * The number of structural features of the '<em>Om</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OM_FEATURE_COUNT = 3;
+	int OM_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Om</em>' class.
@@ -235,22 +253,22 @@ public interface GemmaPackage extends EPackage {
 	int TRANSICION = 8;
 
 	/**
-	 * The feature id for the '<em><b>Expresion Binaria</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSICION__EXPRESION_BINARIA = 0;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSICION__NAME = 1;
+	int TRANSICION__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Elemento Expresion</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSICION__ELEMENTO_EXPRESION = 1;
 
 	/**
 	 * The number of structural features of the '<em>Transicion</em>' class.
@@ -281,15 +299,6 @@ public interface GemmaPackage extends EPackage {
 	int TRASICION_ENTRE_OM_OM = 3;
 
 	/**
-	 * The feature id for the '<em><b>Expresion Binaria</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRASICION_ENTRE_OM_OM__EXPRESION_BINARIA = TRANSICION__EXPRESION_BINARIA;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -297,6 +306,15 @@ public interface GemmaPackage extends EPackage {
 	 * @ordered
 	 */
 	int TRASICION_ENTRE_OM_OM__NAME = TRANSICION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Elemento Expresion</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRASICION_ENTRE_OM_OM__ELEMENTO_EXPRESION = TRANSICION__ELEMENTO_EXPRESION;
 
 	/**
 	 * The feature id for the '<em><b>Origen</b></em>' reference.
@@ -345,15 +363,6 @@ public interface GemmaPackage extends EPackage {
 	int TRANSICION_ENTRE_MACRO_OM_OM = 4;
 
 	/**
-	 * The feature id for the '<em><b>Expresion Binaria</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSICION_ENTRE_MACRO_OM_OM__EXPRESION_BINARIA = TRANSICION__EXPRESION_BINARIA;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -361,6 +370,15 @@ public interface GemmaPackage extends EPackage {
 	 * @ordered
 	 */
 	int TRANSICION_ENTRE_MACRO_OM_OM__NAME = TRANSICION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Elemento Expresion</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSICION_ENTRE_MACRO_OM_OM__ELEMENTO_EXPRESION = TRANSICION__ELEMENTO_EXPRESION;
 
 	/**
 	 * The feature id for the '<em><b>Origen</b></em>' reference.
@@ -455,13 +473,22 @@ public interface GemmaPackage extends EPackage {
 	int EXPRESION_BINARIA__EXPRESION_DERECHA = ELEMENTO_EXPRESION_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Operador</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESION_BINARIA__OPERADOR = ELEMENTO_EXPRESION_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Expresion Binaria</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESION_BINARIA_FEATURE_COUNT = ELEMENTO_EXPRESION_FEATURE_COUNT + 2;
+	int EXPRESION_BINARIA_FEATURE_COUNT = ELEMENTO_EXPRESION_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Expresion Binaria</em>' class.
@@ -473,14 +500,14 @@ public interface GemmaPackage extends EPackage {
 	int EXPRESION_BINARIA_OPERATION_COUNT = ELEMENTO_EXPRESION_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link Gemma.impl.VariableImpl <em>Variable</em>}' class.
+	 * The meta object id for the '{@link Gemma.impl.VariableOmImpl <em>Variable Om</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Gemma.impl.VariableImpl
-	 * @see Gemma.impl.GemmaPackageImpl#getVariable()
+	 * @see Gemma.impl.VariableOmImpl
+	 * @see Gemma.impl.GemmaPackageImpl#getVariableOm()
 	 * @generated
 	 */
-	int VARIABLE = 7;
+	int VARIABLE_OM = 7;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -489,34 +516,210 @@ public interface GemmaPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE__NAME = ELEMENTO_EXPRESION_FEATURE_COUNT + 0;
+	int VARIABLE_OM__NAME = 0;
 
 	/**
-	 * The feature id for the '<em><b>Tipo</b></em>' attribute.
+	 * The number of structural features of the '<em>Variable Om</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE__TIPO = ELEMENTO_EXPRESION_FEATURE_COUNT + 1;
+	int VARIABLE_OM_FEATURE_COUNT = 1;
 
 	/**
-	 * The number of structural features of the '<em>Variable</em>' class.
+	 * The number of operations of the '<em>Variable Om</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_FEATURE_COUNT = ELEMENTO_EXPRESION_FEATURE_COUNT + 2;
+	int VARIABLE_OM_OPERATION_COUNT = 0;
 
 	/**
-	 * The number of operations of the '<em>Variable</em>' class.
+	 * The meta object id for the '{@link Gemma.impl.VariableGemmaImpl <em>Variable Gemma</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gemma.impl.VariableGemmaImpl
+	 * @see Gemma.impl.GemmaPackageImpl#getVariableGemma()
+	 * @generated
+	 */
+	int VARIABLE_GEMMA = 9;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_OPERATION_COUNT = ELEMENTO_EXPRESION_OPERATION_COUNT + 0;
+	int VARIABLE_GEMMA__NAME = 0;
+
+	/**
+	 * The number of structural features of the '<em>Variable Gemma</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_GEMMA_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Variable Gemma</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_GEMMA_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link Gemma.impl.RefVariableGemmaImpl <em>Ref Variable Gemma</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gemma.impl.RefVariableGemmaImpl
+	 * @see Gemma.impl.GemmaPackageImpl#getRefVariableGemma()
+	 * @generated
+	 */
+	int REF_VARIABLE_GEMMA = 10;
+
+	/**
+	 * The feature id for the '<em><b>Variable Gemma</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REF_VARIABLE_GEMMA__VARIABLE_GEMMA = ELEMENTO_EXPRESION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Ref Variable Gemma</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REF_VARIABLE_GEMMA_FEATURE_COUNT = ELEMENTO_EXPRESION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Ref Variable Gemma</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REF_VARIABLE_GEMMA_OPERATION_COUNT = ELEMENTO_EXPRESION_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link Gemma.impl.ExpresionNotImpl <em>Expresion Not</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gemma.impl.ExpresionNotImpl
+	 * @see Gemma.impl.GemmaPackageImpl#getExpresionNot()
+	 * @generated
+	 */
+	int EXPRESION_NOT = 11;
+
+	/**
+	 * The feature id for the '<em><b>Elemento Expresion</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESION_NOT__ELEMENTO_EXPRESION = ELEMENTO_EXPRESION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Expresion Not</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESION_NOT_FEATURE_COUNT = ELEMENTO_EXPRESION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Expresion Not</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESION_NOT_OPERATION_COUNT = ELEMENTO_EXPRESION_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link Gemma.impl.RefVariableOmImpl <em>Ref Variable Om</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gemma.impl.RefVariableOmImpl
+	 * @see Gemma.impl.GemmaPackageImpl#getRefVariableOm()
+	 * @generated
+	 */
+	int REF_VARIABLE_OM = 12;
+
+	/**
+	 * The feature id for the '<em><b>Variable Om</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REF_VARIABLE_OM__VARIABLE_OM = ELEMENTO_EXPRESION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Ref Variable Om</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REF_VARIABLE_OM_FEATURE_COUNT = ELEMENTO_EXPRESION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Ref Variable Om</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REF_VARIABLE_OM_OPERATION_COUNT = ELEMENTO_EXPRESION_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link Gemma.impl.ExpresionConjuntaImpl <em>Expresion Conjunta</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gemma.impl.ExpresionConjuntaImpl
+	 * @see Gemma.impl.GemmaPackageImpl#getExpresionConjunta()
+	 * @generated
+	 */
+	int EXPRESION_CONJUNTA = 13;
+
+	/**
+	 * The feature id for the '<em><b>Elemento Expresion</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESION_CONJUNTA__ELEMENTO_EXPRESION = ELEMENTO_EXPRESION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Expresion Conjunta</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESION_CONJUNTA_FEATURE_COUNT = ELEMENTO_EXPRESION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Expresion Conjunta</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESION_CONJUNTA_OPERATION_COUNT = ELEMENTO_EXPRESION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link Gemma.TipoOm <em>Tipo Om</em>}' enum.
@@ -526,7 +729,7 @@ public interface GemmaPackage extends EPackage {
 	 * @see Gemma.impl.GemmaPackageImpl#getTipoOm()
 	 * @generated
 	 */
-	int TIPO_OM = 9;
+	int TIPO_OM = 14;
 
 	/**
 	 * The meta object id for the '{@link Gemma.TipoMacroOm <em>Tipo Macro Om</em>}' enum.
@@ -536,17 +739,17 @@ public interface GemmaPackage extends EPackage {
 	 * @see Gemma.impl.GemmaPackageImpl#getTipoMacroOm()
 	 * @generated
 	 */
-	int TIPO_MACRO_OM = 10;
+	int TIPO_MACRO_OM = 15;
 
 	/**
-	 * The meta object id for the '{@link Gemma.TipoVariable <em>Tipo Variable</em>}' enum.
+	 * The meta object id for the '{@link Gemma.TipoOperador <em>Tipo Operador</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Gemma.TipoVariable
-	 * @see Gemma.impl.GemmaPackageImpl#getTipoVariable()
+	 * @see Gemma.TipoOperador
+	 * @see Gemma.impl.GemmaPackageImpl#getTipoOperador()
 	 * @generated
 	 */
-	int TIPO_VARIABLE = 11;
+	int TIPO_OPERADOR = 16;
 
 
 	/**
@@ -582,15 +785,15 @@ public interface GemmaPackage extends EPackage {
 	EReference getGemma_Transiciones();
 
 	/**
-	 * Returns the meta object for the reference list '{@link Gemma.Gemma#getVariables <em>Variables</em>}'.
+	 * Returns the meta object for the containment reference list '{@link Gemma.Gemma#getVariablesGemma <em>Variables Gemma</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Variables</em>'.
-	 * @see Gemma.Gemma#getVariables()
+	 * @return the meta object for the containment reference list '<em>Variables Gemma</em>'.
+	 * @see Gemma.Gemma#getVariablesGemma()
 	 * @see #getGemma()
 	 * @generated
 	 */
-	EReference getGemma_Variables();
+	EReference getGemma_VariablesGemma();
 
 	/**
 	 * Returns the meta object for class '{@link Gemma.MacroOm <em>Macro Om</em>}'.
@@ -677,6 +880,28 @@ public interface GemmaPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getOm_EsOmRaiz();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Gemma.Om#getVariablesOm <em>Variables Om</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Variables Om</em>'.
+	 * @see Gemma.Om#getVariablesOm()
+	 * @see #getOm()
+	 * @generated
+	 */
+	EReference getOm_VariablesOm();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gemma.Om#isEsVisible <em>Es Visible</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Es Visible</em>'.
+	 * @see Gemma.Om#isEsVisible()
+	 * @see #getOm()
+	 * @generated
+	 */
+	EAttribute getOm_EsVisible();
 
 	/**
 	 * Returns the meta object for class '{@link Gemma.TrasicionEntreOmOm <em>Trasicion Entre Om Om</em>}'.
@@ -775,6 +1000,17 @@ public interface GemmaPackage extends EPackage {
 	EReference getExpresionBinaria_ExpresionDerecha();
 
 	/**
+	 * Returns the meta object for the attribute '{@link Gemma.ExpresionBinaria#getOperador <em>Operador</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Operador</em>'.
+	 * @see Gemma.ExpresionBinaria#getOperador()
+	 * @see #getExpresionBinaria()
+	 * @generated
+	 */
+	EAttribute getExpresionBinaria_Operador();
+
+	/**
 	 * Returns the meta object for class '{@link Gemma.ElementoExpresion <em>Elemento Expresion</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -785,36 +1021,25 @@ public interface GemmaPackage extends EPackage {
 	EClass getElementoExpresion();
 
 	/**
-	 * Returns the meta object for class '{@link Gemma.Variable <em>Variable</em>}'.
+	 * Returns the meta object for class '{@link Gemma.VariableOm <em>Variable Om</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Variable</em>'.
-	 * @see Gemma.Variable
+	 * @return the meta object for class '<em>Variable Om</em>'.
+	 * @see Gemma.VariableOm
 	 * @generated
 	 */
-	EClass getVariable();
+	EClass getVariableOm();
 
 	/**
-	 * Returns the meta object for the attribute '{@link Gemma.Variable#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link Gemma.VariableOm#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see Gemma.Variable#getName()
-	 * @see #getVariable()
+	 * @see Gemma.VariableOm#getName()
+	 * @see #getVariableOm()
 	 * @generated
 	 */
-	EAttribute getVariable_Name();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Gemma.Variable#getTipo <em>Tipo</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Tipo</em>'.
-	 * @see Gemma.Variable#getTipo()
-	 * @see #getVariable()
-	 * @generated
-	 */
-	EAttribute getVariable_Tipo();
+	EAttribute getVariableOm_Name();
 
 	/**
 	 * Returns the meta object for class '{@link Gemma.Transicion <em>Transicion</em>}'.
@@ -827,17 +1052,6 @@ public interface GemmaPackage extends EPackage {
 	EClass getTransicion();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link Gemma.Transicion#getExpresionBinaria <em>Expresion Binaria</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Expresion Binaria</em>'.
-	 * @see Gemma.Transicion#getExpresionBinaria()
-	 * @see #getTransicion()
-	 * @generated
-	 */
-	EReference getTransicion_ExpresionBinaria();
-
-	/**
 	 * Returns the meta object for the attribute '{@link Gemma.Transicion#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -847,6 +1061,122 @@ public interface GemmaPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getTransicion_Name();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link Gemma.Transicion#getElementoExpresion <em>Elemento Expresion</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Elemento Expresion</em>'.
+	 * @see Gemma.Transicion#getElementoExpresion()
+	 * @see #getTransicion()
+	 * @generated
+	 */
+	EReference getTransicion_ElementoExpresion();
+
+	/**
+	 * Returns the meta object for class '{@link Gemma.VariableGemma <em>Variable Gemma</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Variable Gemma</em>'.
+	 * @see Gemma.VariableGemma
+	 * @generated
+	 */
+	EClass getVariableGemma();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Gemma.VariableGemma#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see Gemma.VariableGemma#getName()
+	 * @see #getVariableGemma()
+	 * @generated
+	 */
+	EAttribute getVariableGemma_Name();
+
+	/**
+	 * Returns the meta object for class '{@link Gemma.RefVariableGemma <em>Ref Variable Gemma</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Ref Variable Gemma</em>'.
+	 * @see Gemma.RefVariableGemma
+	 * @generated
+	 */
+	EClass getRefVariableGemma();
+
+	/**
+	 * Returns the meta object for the reference '{@link Gemma.RefVariableGemma#getVariableGemma <em>Variable Gemma</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Variable Gemma</em>'.
+	 * @see Gemma.RefVariableGemma#getVariableGemma()
+	 * @see #getRefVariableGemma()
+	 * @generated
+	 */
+	EReference getRefVariableGemma_VariableGemma();
+
+	/**
+	 * Returns the meta object for class '{@link Gemma.ExpresionNot <em>Expresion Not</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Expresion Not</em>'.
+	 * @see Gemma.ExpresionNot
+	 * @generated
+	 */
+	EClass getExpresionNot();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link Gemma.ExpresionNot#getElementoExpresion <em>Elemento Expresion</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Elemento Expresion</em>'.
+	 * @see Gemma.ExpresionNot#getElementoExpresion()
+	 * @see #getExpresionNot()
+	 * @generated
+	 */
+	EReference getExpresionNot_ElementoExpresion();
+
+	/**
+	 * Returns the meta object for class '{@link Gemma.RefVariableOm <em>Ref Variable Om</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Ref Variable Om</em>'.
+	 * @see Gemma.RefVariableOm
+	 * @generated
+	 */
+	EClass getRefVariableOm();
+
+	/**
+	 * Returns the meta object for the reference '{@link Gemma.RefVariableOm#getVariableOm <em>Variable Om</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Variable Om</em>'.
+	 * @see Gemma.RefVariableOm#getVariableOm()
+	 * @see #getRefVariableOm()
+	 * @generated
+	 */
+	EReference getRefVariableOm_VariableOm();
+
+	/**
+	 * Returns the meta object for class '{@link Gemma.ExpresionConjunta <em>Expresion Conjunta</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Expresion Conjunta</em>'.
+	 * @see Gemma.ExpresionConjunta
+	 * @generated
+	 */
+	EClass getExpresionConjunta();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link Gemma.ExpresionConjunta#getElementoExpresion <em>Elemento Expresion</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Elemento Expresion</em>'.
+	 * @see Gemma.ExpresionConjunta#getElementoExpresion()
+	 * @see #getExpresionConjunta()
+	 * @generated
+	 */
+	EReference getExpresionConjunta_ElementoExpresion();
 
 	/**
 	 * Returns the meta object for enum '{@link Gemma.TipoOm <em>Tipo Om</em>}'.
@@ -869,14 +1199,14 @@ public interface GemmaPackage extends EPackage {
 	EEnum getTipoMacroOm();
 
 	/**
-	 * Returns the meta object for enum '{@link Gemma.TipoVariable <em>Tipo Variable</em>}'.
+	 * Returns the meta object for enum '{@link Gemma.TipoOperador <em>Tipo Operador</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Tipo Variable</em>'.
-	 * @see Gemma.TipoVariable
+	 * @return the meta object for enum '<em>Tipo Operador</em>'.
+	 * @see Gemma.TipoOperador
 	 * @generated
 	 */
-	EEnum getTipoVariable();
+	EEnum getTipoOperador();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -928,12 +1258,12 @@ public interface GemmaPackage extends EPackage {
 		EReference GEMMA__TRANSICIONES = eINSTANCE.getGemma_Transiciones();
 
 		/**
-		 * The meta object literal for the '<em><b>Variables</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Variables Gemma</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference GEMMA__VARIABLES = eINSTANCE.getGemma_Variables();
+		EReference GEMMA__VARIABLES_GEMMA = eINSTANCE.getGemma_VariablesGemma();
 
 		/**
 		 * The meta object literal for the '{@link Gemma.impl.MacroOmImpl <em>Macro Om</em>}' class.
@@ -1002,6 +1332,22 @@ public interface GemmaPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute OM__ES_OM_RAIZ = eINSTANCE.getOm_EsOmRaiz();
+
+		/**
+		 * The meta object literal for the '<em><b>Variables Om</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OM__VARIABLES_OM = eINSTANCE.getOm_VariablesOm();
+
+		/**
+		 * The meta object literal for the '<em><b>Es Visible</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OM__ES_VISIBLE = eINSTANCE.getOm_EsVisible();
 
 		/**
 		 * The meta object literal for the '{@link Gemma.impl.TrasicionEntreOmOmImpl <em>Trasicion Entre Om Om</em>}' class.
@@ -1082,6 +1428,14 @@ public interface GemmaPackage extends EPackage {
 		EReference EXPRESION_BINARIA__EXPRESION_DERECHA = eINSTANCE.getExpresionBinaria_ExpresionDerecha();
 
 		/**
+		 * The meta object literal for the '<em><b>Operador</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXPRESION_BINARIA__OPERADOR = eINSTANCE.getExpresionBinaria_Operador();
+
+		/**
 		 * The meta object literal for the '{@link Gemma.impl.ElementoExpresionImpl <em>Elemento Expresion</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1092,14 +1446,14 @@ public interface GemmaPackage extends EPackage {
 		EClass ELEMENTO_EXPRESION = eINSTANCE.getElementoExpresion();
 
 		/**
-		 * The meta object literal for the '{@link Gemma.impl.VariableImpl <em>Variable</em>}' class.
+		 * The meta object literal for the '{@link Gemma.impl.VariableOmImpl <em>Variable Om</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see Gemma.impl.VariableImpl
-		 * @see Gemma.impl.GemmaPackageImpl#getVariable()
+		 * @see Gemma.impl.VariableOmImpl
+		 * @see Gemma.impl.GemmaPackageImpl#getVariableOm()
 		 * @generated
 		 */
-		EClass VARIABLE = eINSTANCE.getVariable();
+		EClass VARIABLE_OM = eINSTANCE.getVariableOm();
 
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -1107,15 +1461,7 @@ public interface GemmaPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute VARIABLE__NAME = eINSTANCE.getVariable_Name();
-
-		/**
-		 * The meta object literal for the '<em><b>Tipo</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute VARIABLE__TIPO = eINSTANCE.getVariable_Tipo();
+		EAttribute VARIABLE_OM__NAME = eINSTANCE.getVariableOm_Name();
 
 		/**
 		 * The meta object literal for the '{@link Gemma.impl.TransicionImpl <em>Transicion</em>}' class.
@@ -1128,12 +1474,30 @@ public interface GemmaPackage extends EPackage {
 		EClass TRANSICION = eINSTANCE.getTransicion();
 
 		/**
-		 * The meta object literal for the '<em><b>Expresion Binaria</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TRANSICION__EXPRESION_BINARIA = eINSTANCE.getTransicion_ExpresionBinaria();
+		EAttribute TRANSICION__NAME = eINSTANCE.getTransicion_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Elemento Expresion</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TRANSICION__ELEMENTO_EXPRESION = eINSTANCE.getTransicion_ElementoExpresion();
+
+		/**
+		 * The meta object literal for the '{@link Gemma.impl.VariableGemmaImpl <em>Variable Gemma</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gemma.impl.VariableGemmaImpl
+		 * @see Gemma.impl.GemmaPackageImpl#getVariableGemma()
+		 * @generated
+		 */
+		EClass VARIABLE_GEMMA = eINSTANCE.getVariableGemma();
 
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -1141,7 +1505,79 @@ public interface GemmaPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute TRANSICION__NAME = eINSTANCE.getTransicion_Name();
+		EAttribute VARIABLE_GEMMA__NAME = eINSTANCE.getVariableGemma_Name();
+
+		/**
+		 * The meta object literal for the '{@link Gemma.impl.RefVariableGemmaImpl <em>Ref Variable Gemma</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gemma.impl.RefVariableGemmaImpl
+		 * @see Gemma.impl.GemmaPackageImpl#getRefVariableGemma()
+		 * @generated
+		 */
+		EClass REF_VARIABLE_GEMMA = eINSTANCE.getRefVariableGemma();
+
+		/**
+		 * The meta object literal for the '<em><b>Variable Gemma</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REF_VARIABLE_GEMMA__VARIABLE_GEMMA = eINSTANCE.getRefVariableGemma_VariableGemma();
+
+		/**
+		 * The meta object literal for the '{@link Gemma.impl.ExpresionNotImpl <em>Expresion Not</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gemma.impl.ExpresionNotImpl
+		 * @see Gemma.impl.GemmaPackageImpl#getExpresionNot()
+		 * @generated
+		 */
+		EClass EXPRESION_NOT = eINSTANCE.getExpresionNot();
+
+		/**
+		 * The meta object literal for the '<em><b>Elemento Expresion</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXPRESION_NOT__ELEMENTO_EXPRESION = eINSTANCE.getExpresionNot_ElementoExpresion();
+
+		/**
+		 * The meta object literal for the '{@link Gemma.impl.RefVariableOmImpl <em>Ref Variable Om</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gemma.impl.RefVariableOmImpl
+		 * @see Gemma.impl.GemmaPackageImpl#getRefVariableOm()
+		 * @generated
+		 */
+		EClass REF_VARIABLE_OM = eINSTANCE.getRefVariableOm();
+
+		/**
+		 * The meta object literal for the '<em><b>Variable Om</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REF_VARIABLE_OM__VARIABLE_OM = eINSTANCE.getRefVariableOm_VariableOm();
+
+		/**
+		 * The meta object literal for the '{@link Gemma.impl.ExpresionConjuntaImpl <em>Expresion Conjunta</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gemma.impl.ExpresionConjuntaImpl
+		 * @see Gemma.impl.GemmaPackageImpl#getExpresionConjunta()
+		 * @generated
+		 */
+		EClass EXPRESION_CONJUNTA = eINSTANCE.getExpresionConjunta();
+
+		/**
+		 * The meta object literal for the '<em><b>Elemento Expresion</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXPRESION_CONJUNTA__ELEMENTO_EXPRESION = eINSTANCE.getExpresionConjunta_ElementoExpresion();
 
 		/**
 		 * The meta object literal for the '{@link Gemma.TipoOm <em>Tipo Om</em>}' enum.
@@ -1164,14 +1600,14 @@ public interface GemmaPackage extends EPackage {
 		EEnum TIPO_MACRO_OM = eINSTANCE.getTipoMacroOm();
 
 		/**
-		 * The meta object literal for the '{@link Gemma.TipoVariable <em>Tipo Variable</em>}' enum.
+		 * The meta object literal for the '{@link Gemma.TipoOperador <em>Tipo Operador</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see Gemma.TipoVariable
-		 * @see Gemma.impl.GemmaPackageImpl#getTipoVariable()
+		 * @see Gemma.TipoOperador
+		 * @see Gemma.impl.GemmaPackageImpl#getTipoOperador()
 		 * @generated
 		 */
-		EEnum TIPO_VARIABLE = eINSTANCE.getTipoVariable();
+		EEnum TIPO_OPERADOR = eINSTANCE.getTipoOperador();
 
 	}
 

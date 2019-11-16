@@ -13,8 +13,8 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link Gemma.Transicion#getExpresionBinaria <em>Expresion Binaria</em>}</li>
  *   <li>{@link Gemma.Transicion#getName <em>Name</em>}</li>
+ *   <li>{@link Gemma.Transicion#getElementoExpresion <em>Elemento Expresion</em>}</li>
  * </ul>
  *
  * @see Gemma.GemmaPackage#getTransicion()
@@ -22,32 +22,6 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface Transicion extends EObject {
-	/**
-	 * Returns the value of the '<em><b>Expresion Binaria</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Expresion Binaria</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Expresion Binaria</em>' containment reference.
-	 * @see #setExpresionBinaria(ExpresionBinaria)
-	 * @see Gemma.GemmaPackage#getTransicion_ExpresionBinaria()
-	 * @model containment="true" required="true"
-	 * @generated
-	 */
-	ExpresionBinaria getExpresionBinaria();
-
-	/**
-	 * Sets the value of the '{@link Gemma.Transicion#getExpresionBinaria <em>Expresion Binaria</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Expresion Binaria</em>' containment reference.
-	 * @see #getExpresionBinaria()
-	 * @generated
-	 */
-	void setExpresionBinaria(ExpresionBinaria value);
-
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -73,5 +47,31 @@ public interface Transicion extends EObject {
 	 * @generated
 	 */
 	void setName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Elemento Expresion</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Elemento Expresion</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Elemento Expresion</em>' containment reference.
+	 * @see #setElementoExpresion(ElementoExpresion)
+	 * @see Gemma.GemmaPackage#getTransicion_ElementoExpresion()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	ElementoExpresion getElementoExpresion();
+
+	/**
+	 * Sets the value of the '{@link Gemma.Transicion#getElementoExpresion <em>Elemento Expresion</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Elemento Expresion</em>' containment reference.
+	 * @see #getElementoExpresion()
+	 * @generated
+	 */
+	void setElementoExpresion(ElementoExpresion value);
 
 } // Transicion

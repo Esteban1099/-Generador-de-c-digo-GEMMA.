@@ -233,26 +233,26 @@ public class GemmaItemProviderAdapterFactory extends GemmaAdapterFactory impleme
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link Gemma.Variable} instances.
+	 * This keeps track of the one adapter used for all {@link Gemma.VariableOm} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected VariableItemProvider variableItemProvider;
+	protected VariableOmItemProvider variableOmItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link Gemma.Variable}.
+	 * This creates an adapter for a {@link Gemma.VariableOm}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createVariableAdapter() {
-		if (variableItemProvider == null) {
-			variableItemProvider = new VariableItemProvider(this);
+	public Adapter createVariableOmAdapter() {
+		if (variableOmItemProvider == null) {
+			variableOmItemProvider = new VariableOmItemProvider(this);
 		}
 
-		return variableItemProvider;
+		return variableOmItemProvider;
 	}
 
 	/**
@@ -277,6 +277,129 @@ public class GemmaItemProviderAdapterFactory extends GemmaAdapterFactory impleme
 
 		return transicionItemProvider;
 	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gemma.VariableGemma} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected VariableGemmaItemProvider variableGemmaItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gemma.VariableGemma}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createVariableGemmaAdapter() {
+		if (variableGemmaItemProvider == null) {
+			variableGemmaItemProvider = new VariableGemmaItemProvider(this);
+		}
+
+		return variableGemmaItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gemma.RefVariableGemma} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected RefVariableGemmaItemProvider refVariableGemmaItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gemma.RefVariableGemma}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createRefVariableGemmaAdapter() {
+		if (refVariableGemmaItemProvider == null) {
+			refVariableGemmaItemProvider = new RefVariableGemmaItemProvider(this);
+		}
+
+		return refVariableGemmaItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gemma.ExpresionNot} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ExpresionNotItemProvider expresionNotItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gemma.ExpresionNot}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createExpresionNotAdapter() {
+		if (expresionNotItemProvider == null) {
+			expresionNotItemProvider = new ExpresionNotItemProvider(this);
+		}
+
+		return expresionNotItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gemma.RefVariableOm} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected RefVariableOmItemProvider refVariableOmItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gemma.RefVariableOm}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createRefVariableOmAdapter() {
+		if (refVariableOmItemProvider == null) {
+			refVariableOmItemProvider = new RefVariableOmItemProvider(this);
+		}
+
+		return refVariableOmItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link Gemma.ExpresionConjunta} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ExpresionConjuntaItemProvider expresionConjuntaItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link Gemma.ExpresionConjunta}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createExpresionConjuntaAdapter() {
+		if (expresionConjuntaItemProvider == null) {
+			expresionConjuntaItemProvider = new ExpresionConjuntaItemProvider(this);
+		}
+
+		return expresionConjuntaItemProvider;
+	}
+
+	/**
+	 * This creates an adapter for a {@link Gemma.VariableHardware}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	
 
 	/**
 	 * This returns the root adapter factory that contains this factory.
@@ -384,8 +507,13 @@ public class GemmaItemProviderAdapterFactory extends GemmaAdapterFactory impleme
 		if (transicionEntreMacroOmOmItemProvider != null) transicionEntreMacroOmOmItemProvider.dispose();
 		if (expresionBinariaItemProvider != null) expresionBinariaItemProvider.dispose();
 		if (elementoExpresionItemProvider != null) elementoExpresionItemProvider.dispose();
-		if (variableItemProvider != null) variableItemProvider.dispose();
+		if (variableOmItemProvider != null) variableOmItemProvider.dispose();
 		if (transicionItemProvider != null) transicionItemProvider.dispose();
+		if (variableGemmaItemProvider != null) variableGemmaItemProvider.dispose();
+		if (refVariableGemmaItemProvider != null) refVariableGemmaItemProvider.dispose();
+		if (expresionNotItemProvider != null) expresionNotItemProvider.dispose();
+		if (refVariableOmItemProvider != null) refVariableOmItemProvider.dispose();
+		if (expresionConjuntaItemProvider != null) expresionConjuntaItemProvider.dispose();
 	}
 
 }
