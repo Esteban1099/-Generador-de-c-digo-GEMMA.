@@ -81,7 +81,7 @@ for (tr in Transicion.all) {
 }
 if(tieneReset){
 	%]
-VAR
+VAR_INPUT
 	
  Reset : BOOL := FALSE;	
 	[%
@@ -139,13 +139,13 @@ for (tr in Transicion.all) {
 						if(expConjunta = true){
 							expConjunta = false;
 						%]
-	GVL.[%= tr.name %] := [%= expresionGuardada %]"GVL."[%= elementoExpresion.variableGemma.name %] );					
+	GVL.[%= tr.name %] := [%= expresionGuardada %]GVL.[%= elementoExpresion.variableGemma.name %] );					
 						[%						
 						}
 						//Condiciones normales.
 						else{
 						%]
-	GVL.[%= tr.name %] := [%= expresionGuardada %]"GVL."[%= elementoExpresion.variableGemma.name %];					
+	GVL.[%= tr.name %] := [%= expresionGuardada %]GVL.[%= elementoExpresion.variableGemma.name %];					
 						[%						
 						}
 					}
@@ -248,13 +248,13 @@ GVL.[%= tr.name %] := [%= expresionGuardada %][%= elementoExpresion.variableOm.n
 						if(expConjunta = true){
 							expConjunta = false;
 						%]
-	GVL.[%= tr.name %] := [%= expresionGuardada %]"GVL."[%= elementoExpresion.variableGemma.name %] );					
+	GVL.[%= om.tipo.name+"_"+tr.destino.tipo.name+"_T" %] := [%= expresionGuardada %]GVL.[%= elementoExpresion.variableGemma.name %] );					
 						[%						
 						}
 						//Condiciones normales.
 						else{
 						%]
-	GVL.[%= tr.name %] := [%= expresionGuardada %]"GVL."[%= elementoExpresion.variableGemma.name %];					
+	GVL.[%= om.tipo.name+"_"+tr.destino.tipo.name+"_T" %] := [%= expresionGuardada %]GVL.[%= elementoExpresion.variableGemma.name %];					
 						[%						
 						}
 					}

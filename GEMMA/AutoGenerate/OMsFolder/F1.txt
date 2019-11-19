@@ -1,6 +1,6 @@
 PROGRAM F1
 
-VAR
+VAR_INPUT
 	
  Reset : BOOL := FALSE;	
 
@@ -11,9 +11,9 @@ END_VAR
 
 
 
-	GVL.F1_F5_T := "GVL."SemiAutomatic;					
-	GVL.F1_F3_T := "GVL."EmptyMachine;					
-	GVL.F1_A2_T := NOT "GVL."Stop;					
-	GVL.F1_D3_T := "GVL."ManualCapping;					
+	GVL.F1_F5_T := GVL.SemiAutomatic;					
+	GVL.F1_F3_T := GVL.EmptyMachine;					
+	GVL.F1_A2_T := NOT GVL.Stop;					
+	GVL.F1_D3_T := GVL.ManualCapping;					
 
 

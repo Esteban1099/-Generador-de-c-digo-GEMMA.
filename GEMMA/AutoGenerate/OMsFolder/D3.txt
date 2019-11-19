@@ -1,6 +1,6 @@
 PROGRAM D3
 
-VAR
+VAR_INPUT
 	
  Reset : BOOL := FALSE;	
 

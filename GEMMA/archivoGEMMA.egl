@@ -382,6 +382,7 @@ var variables: Set;
 							//2) Que el elemento de la izquierda sea una referencia a una variable Gemma.
 							else if(eleIzq.isTypeOf(RefVariableGemma)){
 								if(eleIzq.nivelDeEscritura.name == "gemma"){
+									
 									expresionGuardada = expresionGuardada +"GVL."+eleIzq.variableGemma.name;
 								}
 								else
@@ -424,13 +425,13 @@ var variables: Set;
 								if(expConjunta = true){
 									expConjunta = false;
 								%]
-			GVL.[%= tr.name %] := [%= expresionGuardada %]GVL.[%= elementoExpresion.variableGemma.name %] );					
+			GVL.[%= om.tipo.name+"_"+tr.destino.tipo.name+"_T" %] := [%= expresionGuardada %]GVL.[%= elementoExpresion.variableGemma.name %] );					
 								[%						
 								}
 								//Condiciones normales.
 								else{
 								%]
-			GVL.[%= tr.name %] := [%= expresionGuardada %]GVL.[%= elementoExpresion.variableGemma.name %];					
+			GVL.[%= om.tipo.name+"_"+tr.destino.tipo.name+"_T" %] := [%= expresionGuardada %]GVL.[%= elementoExpresion.variableGemma.name %];					
 								[%						
 								}
 							}	
@@ -799,8 +800,8 @@ var variables: Set;
 						if(esTransicionGemma){
 							//Solo tiene un elemento.				
 							if((numTrDelOm-1) == 0){
-			%] GVL.[%= tr.name %] THEN 
-			   GVL.[%= tr.name %]:= FALSE;
+			%] GVL.[%= om.tipo.name+"_"+tr.destino.tipo.name+"_T" %] THEN 
+			   GVL.[%= om.tipo.name+"_"+tr.destino.tipo.name+"_T" %]:= FALSE;
 			   [%= nameSate %]:= [%= numOm %];
 			END_IF
 			[%							
@@ -809,8 +810,8 @@ var variables: Set;
 							if(numTrActualDelOm >= (numTrDelOm-1)){
 								numTrActualDelOm = numTrActualDelOm + 1;
 			%]
-			ELSIF GVL.[%= tr.name %] THEN 
-				GVL.[%= tr.name %]:= FALSE;
+			ELSIF GVL.[%= om.tipo.name+"_"+tr.destino.tipo.name+"_T" %] THEN 
+				GVL.[%= om.tipo.name+"_"+tr.destino.tipo.name+"_T" %]:= FALSE;
 				[%= nameSate %]:= [%= numOm %];
 			END_IF
 			[%
@@ -818,8 +819,8 @@ var variables: Set;
 							//Me encuentro en la primera transicion del om.
 							else if(numTrActualDelOm == 0){
 								numTrActualDelOm = numTrActualDelOm + 1;
-			%] GVL.[%= tr.name %] THEN 
-			   GVL.[%= tr.name %]:= FALSE;
+			%] GVL.[%= om.tipo.name+"_"+tr.destino.tipo.name+"_T" %] THEN 
+			   GVL.[%= om.tipo.name+"_"+tr.destino.tipo.name+"_T" %]:= FALSE;
 			   [%= nameSate %]:= [%= numOm %];
 			[%
 							}
@@ -827,8 +828,8 @@ var variables: Set;
 							else{
 								numTrActualDelOm = numTrActualDelOm + 1;
 			%]
-			ELSIF GVL.[%= tr.name %] THEN 
-				GVL.[%= tr.name %]:= FALSE;
+			ELSIF GVL.[%= om.tipo.name+"_"+tr.destino.tipo.name+"_T" %] THEN 
+				GVL.[%= om.tipo.name+"_"+tr.destino.tipo.name+"_T" %]:= FALSE;
 				[%= nameSate %]:= [%= numOm %];
 			[%
 							}
@@ -837,8 +838,8 @@ var variables: Set;
 						else{
 							//Solo tiene un elemento.				
 							if((numTrDelOm-1) == 0){
-			%] GVL.[%= tr.name %] THEN 
-			   GVL.[%= tr.name %]:= FALSE;
+			%] GVL.[%= om.tipo.name+"_"+tr.destino.tipo.name+"_T" %] THEN 
+			   GVL.[%= om.tipo.name+"_"+tr.destino.tipo.name+"_T" %]:= FALSE;
 			   [%= nameSate %]:= [%= numOm %];
 			END_IF
 			[%							
@@ -847,8 +848,8 @@ var variables: Set;
 							if(numTrActualDelOm >= (numTrDelOm-1)){
 								numTrActualDelOm = numTrActualDelOm + 1;
 			%]
-			ELSIF GVL.[%= tr.name %] THEN 
-				GVL.[%= tr.name %]:= FALSE;
+			ELSIF GVL.[%= om.tipo.name+"_"+tr.destino.tipo.name+"_T" %] THEN 
+				GVL.[%= om.tipo.name+"_"+tr.destino.tipo.name+"_T" %]:= FALSE;
 				[%= nameSate %]:= [%= numOm %];
 				[%= tr.destino.tipo.name %].Reset:= TRUE;
 			END_IF
@@ -857,8 +858,8 @@ var variables: Set;
 							//Me encuentro en la primera transicion del om.
 							else if(numTrActualDelOm == 0){
 								numTrActualDelOm = numTrActualDelOm + 1;
-			%] GVL.[%= tr.name %] THEN 
-			   GVL.[%= tr.name %]:= FALSE;
+			%] GVL.[%= om.tipo.name+"_"+tr.destino.tipo.name+"_T" %] THEN 
+			   GVL.[%= om.tipo.name+"_"+tr.destino.tipo.name+"_T" %]:= FALSE;
 			   [%= nameSate %]:= [%= numOm %];
 			   [%= tr.destino.tipo.name %].Reset:= TRUE;
 			[%
@@ -867,8 +868,8 @@ var variables: Set;
 							else{
 								numTrActualDelOm = numTrActualDelOm + 1;
 			%]
-			ELSIF GVL.[%= tr.name %] THEN 
-				GVL.[%= tr.name %]:= FALSE;
+			ELSIF GVL.[%= om.tipo.name+"_"+tr.destino.tipo.name+"_T" %] THEN 
+				GVL.[%= om.tipo.name+"_"+tr.destino.tipo.name+"_T" %]:= FALSE;
 				[%= nameSate %]:= [%= numOm %];
 				[%= tr.destino.tipo.name %].Reset:= TRUE;
 			[%

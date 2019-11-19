@@ -1,6 +1,6 @@
 PROGRAM A2
 
-VAR
+VAR_INPUT
 	
  Reset : BOOL := FALSE;	
 

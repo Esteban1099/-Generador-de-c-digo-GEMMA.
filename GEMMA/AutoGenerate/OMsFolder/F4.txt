@@ -1,6 +1,6 @@
 PROGRAM F4
 
-VAR
+VAR_INPUT
 	
  Reset : BOOL := FALSE;	
 

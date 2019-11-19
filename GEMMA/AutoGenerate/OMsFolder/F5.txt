@@ -1,6 +1,6 @@
 PROGRAM F5
 
-VAR
+VAR_INPUT
 	
  Reset : BOOL := FALSE;	
 
@@ -11,7 +11,7 @@ END_VAR
 
 
 
-	GVL.F5_F4_T := GVL.Manual OR "GVL."StationTest;					
-	GVL.F5_F1_T := "GVL."Automatic;					
+	GVL.F5_F4_T := GVL.Manual OR GVL.StationTest;					
+	GVL.F5_F1_T := GVL.Automatic;					
 
 
