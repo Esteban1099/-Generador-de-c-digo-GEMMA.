@@ -1,0 +1,28 @@
+PROGRAM A1
+
+VAR
+	
+ Reset : BOOL := FALSE;	
+ Start : BOOL := FALSE;
+ StationTest : BOOL := FALSE;
+ Manual : BOOL := FALSE;
+ SemiAutomatic : BOOL := FALSE;
+ Automatic : BOOL := FALSE;
+
+END_VAR
+
+// TO-DO: Estructura de control para cambiar el valor del reset (Modificar la condicion)
+IF Reset THEN
+	// Fill the reset behavior
+	Reset:=FALSE;
+END_IF
+
+// Insert the OM logic
+
+
+
+GVL.A1_F2_T := Start AND Automatic;					
+GVL.A1_F5_T := Start AND SemiAutomatic;					
+GVL.A1_F4_T := Start AND ( StationTest OR Manual );					
+
+

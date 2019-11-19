@@ -1,0 +1,337 @@
+PROGRAM GEMMA
+
+VAR
+	State:UINT:=6;
+	FlagEntry:BOOL:=true;
+
+END_VAR
+
+
+CASE State OF
+		6://A6
+			//Entry behavior
+			IF FlagEntry	THEN
+				GVL.A6_GEMMA := TRUE;
+				FlagEntry := FALSE;
+			END_IF
+			
+			//Do behavior
+			A6();
+			//Transitions	
+			GVL.A6_A1_T := GVL.ManualCheck AND GVL.RestingPosition;					
+			
+			//Exit behavior
+			IF GVL.A6_A1_T THEN 
+               
+               			GVL.A6_GEMMA := FALSE;
+			   FlagEntry := TRUE;				
+			   GVL.A6_A1_T:= FALSE;
+			   State:= 6;
+			   
+			END_IF
+		1://A1
+			//Entry behavior
+			IF FlagEntry	THEN
+				GVL.A1_GEMMA := TRUE;
+				FlagEntry := FALSE;
+			END_IF
+			
+			//Do behavior
+			A1();
+			//Transitions	
+			GVL.A1_F2_T := GVL.Start AND GVL.Automatic;					
+			GVL.A1_F5_T := GVL.Start AND GVL.SemiAutomatic;					
+			GVL.A1_F4_T := GVL.Start AND ( GVL.StationTest OR GVL.Manual );					
+			
+			//Exit behavior
+			IF GVL.A1_F2_T THEN
+			
+               			GVL.A1_GEMMA := FALSE;
+			   FlagEntry := TRUE;			 
+			   GVL.A1_F2_T:= FALSE;
+			   State:= 1;
+			   
+			ELSIF GVL.A1_F5_T THEN
+			
+               			GVL.A1_GEMMA := FALSE;
+			   	FlagEntry := TRUE; 
+				GVL.A1_F5_T:= FALSE;
+				State:= 1;
+				
+			ELSIF GVL.A1_F4_T THEN 
+              	
+              			GVL.A1_GEMMA := FALSE;
+			   	FlagEntry := TRUE;
+				GVL.A1_F4_T:= FALSE;
+				State:= 1;
+				
+			END_IF
+		5://A5
+			//Entry behavior
+			IF FlagEntry	THEN
+				GVL.A5_GEMMA := TRUE;
+				FlagEntry := FALSE;
+			END_IF
+			
+			//Do behavior
+			A5();
+			//Transitions	
+			GVL.A5_A6_T := GVL.OperatorCheck;					
+			
+			//Exit behavior
+			IF GVL.A5_A6_T THEN 
+               
+               			GVL.A5_GEMMA := FALSE;
+			   FlagEntry := TRUE;				
+			   GVL.A5_A6_T:= FALSE;
+			   State:= 5;
+			   
+			END_IF
+		2://A2
+			//Entry behavior
+			IF FlagEntry	THEN
+				GVL.A2_GEMMA := TRUE;
+				FlagEntry := FALSE;
+			END_IF
+			
+			//Do behavior
+			A2();
+			//Transitions	
+			GVL.A2_A1_T := GVL.Stop AND GVL.RestingPosition;					
+			
+			//Exit behavior
+			IF GVL.A2_A1_T THEN 
+               
+               			GVL.A2_GEMMA := FALSE;
+			   FlagEntry := TRUE;				
+			   GVL.A2_A1_T:= FALSE;
+			   State:= 2;
+			   
+			END_IF
+		11://F1
+			//Entry behavior
+			IF FlagEntry	THEN
+				GVL.F1_GEMMA := TRUE;
+				FlagEntry := FALSE;
+			END_IF
+			
+			//Do behavior
+			F1();
+			//Transitions	
+			GVL.F1_D1_T := GVL.Alarm;					
+			GVL.F_D1_T := NOT GVL.EmergencyInterrupter;					
+			//Exit common behavior
+			
+			IF GVL.F1_F5_T OR  GVL.F1_F3_T OR  GVL.F1_A2_T OR  GVL.F1_D3_T OR  GVL.F1_D1_T OR  GVL.F1_D1_T THEN 			
+				GVL.F1_GEMMA := FALSE;
+				FlagEntry := TRUE;
+			END_IF
+			
+			// Exit specific behavior
+			
+			IF GVL.F1_F5_T THEN 
+			   GVL.F1_F5_T:= FALSE;
+			   State:= 11;
+			   F5.Reset:= TRUE;
+			ELSIF GVL.F1_F3_T THEN 
+				GVL.F1_F3_T:= FALSE;
+				State:= 11;
+				F3.Reset:= TRUE;
+			ELSIF GVL.F1_A2_T THEN 
+				GVL.F1_A2_T:= FALSE;
+				State:= 11;
+				A2.Reset:= TRUE;
+			ELSIF GVL.F1_D3_T THEN 
+				GVL.F1_D3_T:= FALSE;
+				State:= 11;
+				D3.Reset:= TRUE;
+			ELSIF GVL.F1_D1_T THEN 
+				GVL.F1_D1_T:= FALSE;
+				State:= 11;
+			ELSIF GVL.F_D1_T THEN 
+				GVL.F_D1_T:= FALSE;
+				State:= 11;
+			END_IF
+		12://F2
+			//Entry behavior
+			IF FlagEntry	THEN
+				GVL.F2_GEMMA := TRUE;
+				FlagEntry := FALSE;
+			END_IF
+			
+			//Do behavior
+			F2();
+			//Transitions	
+			GVL.F2_F1_T := GVL.CP1 AND GVL.CP2 AND GVL.CP3;					
+			GVL.F_D1_T := NOT GVL.EmergencyInterrupter;					
+			
+			//Exit behavior
+			IF GVL.F2_F1_T THEN
+			
+               			GVL.F2_GEMMA := FALSE;
+			   FlagEntry := TRUE;			 
+			   GVL.F2_F1_T:= FALSE;
+			   State:= 12;
+			   
+			ELSIF GVL.F2_D1_T THEN 
+              	
+              			GVL.F2_GEMMA := FALSE;
+			   	FlagEntry := TRUE;
+				GVL.F2_D1_T:= FALSE;
+				State:= 12;
+				
+			END_IF
+		13://F3
+			//Entry behavior
+			IF FlagEntry	THEN
+				GVL.F3_GEMMA := TRUE;
+				FlagEntry := FALSE;
+			END_IF
+			
+			//Do behavior
+			F3();
+			//Transitions	
+			GVL.F3_A1_T := NOT GVL.CP2 AND NOT GVL.CP3;					
+			GVL.F_D1_T := NOT GVL.EmergencyInterrupter;					
+			
+			//Exit behavior
+			IF GVL.F3_A1_T THEN
+			
+               			GVL.F3_GEMMA := FALSE;
+			   FlagEntry := TRUE;			 
+			   GVL.F3_A1_T:= FALSE;
+			   State:= 13;
+			   
+			ELSIF GVL.F3_D1_T THEN 
+              	
+              			GVL.F3_GEMMA := FALSE;
+			   	FlagEntry := TRUE;
+				GVL.F3_D1_T:= FALSE;
+				State:= 13;
+				
+			END_IF
+		14://F4
+			//Entry behavior
+			IF FlagEntry	THEN
+				GVL.F4_GEMMA := TRUE;
+				FlagEntry := FALSE;
+			END_IF
+			
+			//Do behavior
+			F4();
+			//Transitions	
+			GVL.F4_A6_T := GVL.Manual;					
+			GVL.F_D1_T := NOT GVL.EmergencyInterrupter;					
+			
+			//Exit behavior
+			IF GVL.F4_A6_T THEN
+			
+               			GVL.F4_GEMMA := FALSE;
+			   FlagEntry := TRUE;			 
+			   GVL.F4_A6_T:= FALSE;
+			   State:= 14;
+			   
+			ELSIF GVL.F4_D1_T THEN 
+              	
+              			GVL.F4_GEMMA := FALSE;
+			   	FlagEntry := TRUE;
+				GVL.F4_D1_T:= FALSE;
+				State:= 14;
+				
+			END_IF
+		15://F5
+			//Entry behavior
+			IF FlagEntry	THEN
+				GVL.F5_GEMMA := TRUE;
+				FlagEntry := FALSE;
+			END_IF
+			
+			//Do behavior
+			F5();
+			//Transitions	
+			GVL.F_D1_T := NOT GVL.EmergencyInterrupter;					
+			//Exit common behavior
+			
+			IF GVL.F5_F4_T OR  GVL.F5_F1_T OR  GVL.F5_D1_T THEN 			
+				GVL.F5_GEMMA := FALSE;
+				FlagEntry := TRUE;
+			END_IF
+			
+			// Exit specific behavior
+			
+			IF GVL.F5_F4_T THEN 
+			   GVL.F5_F4_T:= FALSE;
+			   State:= 15;
+			   F4.Reset:= TRUE;
+			ELSIF GVL.F5_F1_T THEN 
+				GVL.F5_F1_T:= FALSE;
+				State:= 15;
+				F1.Reset:= TRUE;
+			ELSIF GVL.F_D1_T THEN 
+				GVL.F_D1_T:= FALSE;
+				State:= 15;
+			END_IF
+		21://D1
+			//Entry behavior
+			IF FlagEntry	THEN
+				GVL.D1_GEMMA := TRUE;
+				FlagEntry := FALSE;
+			END_IF
+			
+			//Do behavior
+			D1();
+			//Transitions	
+			GVL.D1_A5_T := GVL.EmergencyInterrupter AND GVL.RestingPosition;					
+			
+			//Exit behavior
+			IF GVL.D1_A5_T THEN 
+               
+               			GVL.D1_GEMMA := FALSE;
+			   FlagEntry := TRUE;				
+			   GVL.D1_A5_T:= FALSE;
+			   State:= 21;
+			   
+			END_IF
+		22://D2
+			//Entry behavior
+			IF FlagEntry	THEN
+				GVL.D2_GEMMA := TRUE;
+				FlagEntry := FALSE;
+			END_IF
+			
+			//Do behavior
+			D2();
+			//Transitions	
+			GVL.D2_A5_T := GVL.CappingRepaired;					
+			
+			//Exit behavior
+			IF GVL.D2_A5_T THEN 
+               
+               			GVL.D2_GEMMA := FALSE;
+			   FlagEntry := TRUE;				
+			   GVL.D2_A5_T:= FALSE;
+			   State:= 22;
+			   
+			END_IF
+		23://D3
+			//Entry behavior
+			IF FlagEntry	THEN
+				GVL.D3_GEMMA := TRUE;
+				FlagEntry := FALSE;
+			END_IF
+			
+			//Do behavior
+			D3();
+			//Transitions	
+			GVL.D3_D2_T := NOT GVL.ManualCapping;					
+			
+			//Exit behavior
+			IF GVL.D3_D2_T THEN 
+               
+               			GVL.D3_GEMMA := FALSE;
+			   FlagEntry := TRUE;				
+			   GVL.D3_D2_T:= FALSE;
+			   State:= 23;
+			   
+			END_IF
+END_CASE

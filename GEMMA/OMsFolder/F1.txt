@@ -1,0 +1,22 @@
+PROGRAM F1
+
+VAR
+	
+ Reset : BOOL := FALSE;	
+ Alarm : BOOL := FALSE;
+
+END_VAR
+
+// TO-DO: Estructura de control para cambiar el valor del reset (Modificar la condicion)
+IF Reset THEN
+	// Fill the reset behavior
+	Reset:=FALSE;
+END_IF
+
+// Insert the OM logic
+
+
+
+GVL.F1_D1_T := Alarm;					
+
+

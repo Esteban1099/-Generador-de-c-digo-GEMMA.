@@ -1,12 +1,85 @@
 [%
-var om = Om.all.select(om|om.tipo.name == "F1").first();
+var om = Om.all.select(om|om.tipo.name == omT).first();
 var tipoOm = om.tipo.name;
 %]
 PROGRAM [%= tipoOm %]
 
 [%
 //Validar si tiene transiciones reset.
-if(om.variablesOm.size() > 0){
+var tieneReset = false;
+var elementoExpresion;
+var termino = false;
+var eleIzq;
+var eleDer;
+for (tr in Transicion.all) { 
+	//Si la transicion es entre om a om
+	if (tr.isTypeOf(TrasicionEntreOmOm)){
+		//Validar si mi om es el origen de la transicion.
+		if(tr.destino.name == om.name and om.esVisible == true){
+			elementoExpresion = tr.elementoExpresion;
+			//Ahora validar los 4 posibles caminos que puede tomar un elemento expresion.
+			while(termino == false){
+				//1) ser una referencia a una variable Gemma.
+				if(elementoExpresion.isTypeOf(RefVariableGemma)){
+					termino = true;
+					//Validar si se escribe una transicion en el om.
+					if(elementoExpresion.nivelDeEscritura.name == "om"){
+						tieneReset = true;
+					}
+				}
+				//2) ser una referencia a una variable Om.
+				else if(elementoExpresion.isTypeOf(RefVariableOm)){
+					termino = true;
+					
+				}
+				//3) ser una referencia a una expresion not.
+				else if(elementoExpresion.isTypeOf(ExpresionNot)){
+					elementoExpresion = elementoExpresion.elementoExpresion;
+				}
+				//3) ser una expresion conjunta.
+				else if(elementoExpresion.isTypeOf(ExpresionConjunta)){
+					elementoExpresion = elementoExpresion.elementoExpresion;
+				}
+				//4) ser una expresion binaria.
+				else{
+					eleIzq = elementoExpresion.expresionIzquierda;
+					eleDer = elementoExpresion.expresionDerecha;
+					//Validar el elemento de la izquierda
+					
+					//1) Que el elemento de la izquierda sea not.
+					if(eleIzq.isTypeOf(ExpresionNot)){
+						//Validar si el elemento que guarda la expresion not es una variable Om.
+						if(eleIzq.elementoExpresion.isTypeOf(RefVariableOm)){
+							termino = true;
+						}
+						//Validar si el elemento que guarda la expresion not es una variable Gemma.
+						else{
+							//Validar si se escribe una transicion en el om.
+							if(eleIzq.elementoExpresion.nivelDeEscritura.name == "om"){
+								tieneReset = true;
+							}
+						}
+					}
+					//2) Que el elemento de la izquierda sea una referencia a una variable Gemma.
+					else if(eleIzq.isTypeOf(RefVariableGemma)){
+						if(eleIzq.nivelDeEscritura.name == "om"){
+								tieneReset = true;
+						}
+					}
+					//3) Que el elemento de la izquierda sea una referencia a una variable Om.
+					else{
+						termino = true;
+					}
+					
+					elementoExpresion = eleDer;
+				}
+			}
+			//Volver a termino false para la otra transicion.
+			termino = false;
+		}
+	}
+}
+if(tieneReset){
 	%]
 VAR
 	
@@ -26,7 +99,7 @@ END_VAR
 [%
 }
 //Estructura de control para cambiar el reset.
-if(om.variablesOm.size() > 0){
+if(om.variablesOm.size() > 0 and om.esVisible == true){
 	%]
 // TO-DO: Estructura de control para cambiar el valor del reset (Modificar la condicion)
 IF Reset THEN
@@ -45,6 +118,7 @@ END_IF
 //Validar las transiciones normales para asignar el valor de las transiciones a su expresion condicional.
 var elementoExpresion;
 var termino = false;
+var expConjunta = false;
 var expresionGuardada = "";
 var eleIzq;
 var eleDer;
@@ -52,29 +126,62 @@ for (tr in Transicion.all) {
 	//Si la transicion es entre om a om
 	if (tr.isTypeOf(TrasicionEntreOmOm)){
 		//Validar si mi om es el origen de la transicion.
-		if(tr.origen.name == om.name){
+		if(tr.origen.name == om.name and om.esVisible == true){
 			elementoExpresion = tr.elementoExpresion;
 			//Ahora validar los 4 posibles caminos que puede tomar un elemento expresion.
 			while(termino == false){
 				//1) ser una referencia a una variable Gemma.
 				if(elementoExpresion.isTypeOf(RefVariableGemma)){
 					termino = true;
+					//Validar si se escribe una transicion en el om.
+					if(elementoExpresion.nivelDeEscritura.name == "om"){
+						//Validar si se viene de una expresion conjunta.
+						if(expConjunta = true){
+							expConjunta = false;
+						%]
+	GVL.[%= tr.name %] := [%= expresionGuardada %]"GVL."[%= elementoExpresion.variableGemma.name %] );					
+						[%						
+						}
+						//Condiciones normales.
+						else{
+						%]
+	GVL.[%= tr.name %] := [%= expresionGuardada %]"GVL."[%= elementoExpresion.variableGemma.name %];					
+						[%						
+						}
+					}
 					//No se hace nada dado que es una variable del Gemma.
 				}
 				//2) ser una referencia a una variable Om.
 				else if(elementoExpresion.isTypeOf(RefVariableOm)){
 					termino = true;
 					//se asigna el valor de la condición a la transición.
+					
+					//Validar si se viene de una expresion conjunta.
+					if(expConjunta = true){
+						expConjunta = false;
+					%]
+GVL.[%= tr.name %] := [%= expresionGuardada %][%= elementoExpresion.variableOm.name %] );					
+					[%						
+					}
+					//Condiciones normales.
+					else{
 					%]
 GVL.[%= tr.name %] := [%= expresionGuardada %][%= elementoExpresion.variableOm.name %];					
-					[%					
+					[%						
+					}
 				}
 				//3) ser una referencia a una expresion not.
 				else if(elementoExpresion.isTypeOf(ExpresionNot)){
 					expresionGuardada = expresionGuardada + "NOT ";
 					elementoExpresion = elementoExpresion.elementoExpresion;
 				}
-				//3) ser una referencia a una expresion binaria.
+				//3) ser una expresion conjunta.
+				else if(elementoExpresion.isTypeOf(ExpresionConjunta)){
+					expresionGuardada = expresionGuardada + "( ";
+					expConjunta = true;
+					elementoExpresion = elementoExpresion.elementoExpresion;
+				}
+				//4) ser una expresion binaria.
 				else{
 					eleIzq = elementoExpresion.expresionIzquierda;
 					eleDer = elementoExpresion.expresionDerecha;
@@ -86,17 +193,27 @@ GVL.[%= tr.name %] := [%= expresionGuardada %][%= elementoExpresion.variableOm.n
 						if(eleIzq.elementoExpresion.isTypeOf(RefVariableOm)){
 							expresionGuardada = expresionGuardada + "NOT "+ eleIzq.elementoExpresion.variableOm.name;
 						}
-						//Validar si el elemento que guarda la expresion not es una variable Om.
+						//Validar si el elemento que guarda la expresion not es una variable Gemma.
 						else{
-							termino = true;
+							
 							expresionGuardada = expresionGuardada + "NOT ";
+							if(eleIzq.elementoExpresion.nivelDeEscritura.name == "om"){
+								expresionGuardada = expresionGuardada + "NOT "+ "GVL."+eleIzq.elementoExpresion.variableGemma.name;
+							}
+							else{
+								termino = true;
+							}
 							//No se hace nada dado que es una variable del Gemma.
 						}
 					}
 					//2) Que el elemento de la izquierda sea una referencia a una variable Gemma.
 					else if(eleIzq.isTypeOf(RefVariableGemma)){
-						termino = true;
-						//No se hace nada dado que es una variable del Gemma.
+						if(eleIzq.nivelDeEscritura.name == "om"){
+								expresionGuardada = expresionGuardada +"GVL."+eleIzq.variableGemma.name;
+						}
+						else{
+							termino = true;
+						}
 					}
 					//3) Que el elemento de la izquierda sea una referencia a una variable Om.
 					else{
@@ -117,6 +234,112 @@ GVL.[%= tr.name %] := [%= expresionGuardada %][%= elementoExpresion.variableOm.n
 	}
 	//Si la transicion es entre macro a om
 	else{
+	
+		if(tr.origen.oms.select(pOm|pOm.name == om.name).first() == om and om.esVisible == true){
+			elementoExpresion = tr.elementoExpresion;
+			//Ahora validar los 4 posibles caminos que puede tomar un elemento expresion.
+			while(termino == false){
+				//1) ser una referencia a una variable Gemma.
+				if(elementoExpresion.isTypeOf(RefVariableGemma)){
+					termino = true;
+					//Validar si se escribe una transicion en el om.
+					if(elementoExpresion.nivelDeEscritura.name == "om"){
+						//Validar si se viene de una expresion conjunta.
+						if(expConjunta = true){
+							expConjunta = false;
+						%]
+	GVL.[%= tr.name %] := [%= expresionGuardada %]"GVL."[%= elementoExpresion.variableGemma.name %] );					
+						[%						
+						}
+						//Condiciones normales.
+						else{
+						%]
+	GVL.[%= tr.name %] := [%= expresionGuardada %]"GVL."[%= elementoExpresion.variableGemma.name %];					
+						[%						
+						}
+					}
+					//No se hace nada dado que es una variable del Gemma.
+				}
+				//2) ser una referencia a una variable Om.
+				else if(elementoExpresion.isTypeOf(RefVariableOm)){
+					termino = true;
+					//se asigna el valor de la condición a la transición.
+					
+					//Validar si se viene de una expresion conjunta.
+					if(expConjunta = true){
+						expConjunta = false;
+					%]
+GVL.[%= tr.name %] := [%= expresionGuardada %][%= elementoExpresion.variableOm.name %] );					
+					[%						
+					}
+					//Condiciones normales.
+					else{
+					%]
+GVL.[%= tr.name %] := [%= expresionGuardada %][%= elementoExpresion.variableOm.name %];					
+					[%						
+					}
+				}
+				//3) ser una referencia a una expresion not.
+				else if(elementoExpresion.isTypeOf(ExpresionNot)){
+					expresionGuardada = expresionGuardada + "NOT ";
+					elementoExpresion = elementoExpresion.elementoExpresion;
+				}
+				//3) ser una expresion conjunta.
+				else if(elementoExpresion.isTypeOf(ExpresionConjunta)){
+					expresionGuardada = expresionGuardada + "( ";
+					expConjunta = true;
+					elementoExpresion = elementoExpresion.elementoExpresion;
+				}
+				//4) ser una expresion binaria.
+				else{
+					eleIzq = elementoExpresion.expresionIzquierda;
+					eleDer = elementoExpresion.expresionDerecha;
+					//Validar el elemento de la izquierda
+					
+					//1) Que el elemento de la izquierda sea not.
+					if(eleIzq.isTypeOf(ExpresionNot)){
+						//Validar si el elemento que guarda la expresion not es una variable Om.
+						if(eleIzq.elementoExpresion.isTypeOf(RefVariableOm)){
+							expresionGuardada = expresionGuardada + "NOT "+ eleIzq.elementoExpresion.variableOm.name;
+						}
+						//Validar si el elemento que guarda la expresion not es una variable Gemma.
+						else{
+							
+							expresionGuardada = expresionGuardada + "NOT ";
+							if(eleIzq.elementoExpresion.nivelDeEscritura.name == "om"){
+								expresionGuardada = expresionGuardada + "NOT "+"GVL."+eleIzq.elementoExpresion.variableGemma.name;
+							}
+							else{
+								termino = true;
+							}
+							//No se hace nada dado que es una variable del Gemma.
+						}
+					}
+					//2) Que el elemento de la izquierda sea una referencia a una variable Gemma.
+					else if(eleIzq.isTypeOf(RefVariableGemma)){
+						if(eleIzq.nivelDeEscritura.name == "om"){
+								expresionGuardada = expresionGuardada+"GVL."+eleIzq.elementoExpresion.variableGemma.name;
+						}
+						else{
+							termino = true;
+						}
+					}
+					//3) Que el elemento de la izquierda sea una referencia a una variable Om.
+					else{
+						expresionGuardada = expresionGuardada + eleIzq.variableOm.name;
+					}
+					
+					//Agregar el operador.
+					expresionGuardada = expresionGuardada + " " + elementoExpresion.operador.name + " ";
+
+					
+					elementoExpresion = eleDer;
+				}
+			}
+			//Volver a termino false para la otra transicion.
+			termino = false;
+			expresionGuardada = "";
+		}
 	}
 }
 

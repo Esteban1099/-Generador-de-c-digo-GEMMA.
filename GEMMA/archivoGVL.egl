@@ -1,5 +1,3 @@
-//Este es el archivo GVL del generador de código GEMMA.
-
 {attribute 'qualified_only'}
 VAR_GLOBAL
 
@@ -9,19 +7,21 @@ var nameOm;
 var esOmInicial;
 var esOmInicialTexto;
 var tipoOm;
-for (om in Om.all) { 
-	nameOm = om.name;
-	esOmInicial = om.esOmRaiz;
-	if(esOmInicial){
-		esOmInicialTexto = "TRUE";
-	}
-	else{
-		esOmInicialTexto = "FALSE";
-	}
-	tipoOm = om.tipo.name;
+for (om in Om.all) {
+	if(om.esVisible == true){
+		nameOm = om.name;
+		esOmInicial = om.esOmRaiz;
+		if(esOmInicial){
+			esOmInicialTexto = "TRUE";
+		}
+		else{
+			esOmInicialTexto = "FALSE";
+		}
+		tipoOm = om.tipo.name;
 	%]
 [%= tipoOm %]_GEMMA : BOOL := [%= esOmInicialTexto %];
-	[%
+	[%	
+	}
 }
 %]
 
@@ -46,7 +46,7 @@ for (tr in Transicion.all) {
 		var macroOm = tr.origen;
 		var nameNewTr;
 		for (om in macroOm.oms) { 
-			if(Transicion.all.select(tra|tra.origen == om and tra.destino == tr.destino).size() == 0){
+			if(Transicion.all.select(tra|tra.origen == om and tra.destino == tr.destino).size() == 0 and om.esVisible ){
 			nameNewTr = nameNewTr + om.tipo.name;
 			nameNewTr = nameNewTr+"_";
 			nameNewTr = nameNewTr + tr.destino.tipo.name;
@@ -59,15 +59,17 @@ for (tr in Transicion.all) {
 		}
 	}
 	else {
+		if(tr.origen.esVisible){
 	%]
 [%= nameTr %] : BOOL := FALSE;
-	[%
+	[%		
+		}
 	}
 }
 %]
 
 
-// Acá puedes poner las demás variables globales que consideres necesarias en la programación de tus rutinas de control.
+// Fill with your own gloval variables.
 
 
 END_VAR

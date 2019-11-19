@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/GEMMA/src" modelPluginID="GEMMA" modelName="Gemma"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/GEMMA/src" modelPluginID="GEMMA" modelName="GemmaCreator"
     rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
     complianceLevel="8.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
   <foreignModel>gemma.ecore</foreignModel>
@@ -31,6 +31,10 @@
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="gemma.ecore#//TipoOperador">
       <genEnumLiterals ecoreEnumLiteral="gemma.ecore#//TipoOperador/AND"/>
       <genEnumLiterals ecoreEnumLiteral="gemma.ecore#//TipoOperador/OR"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="gemma.ecore#//NivelDeEscritura">
+      <genEnumLiterals ecoreEnumLiteral="gemma.ecore#//NivelDeEscritura/gemma"/>
+      <genEnumLiterals ecoreEnumLiteral="gemma.ecore#//NivelDeEscritura/om"/>
     </genEnums>
     <genClasses ecoreClass="gemma.ecore#//Gemma">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gemma.ecore#//Gemma/macroOms"/>
@@ -75,6 +79,7 @@
     </genClasses>
     <genClasses ecoreClass="gemma.ecore#//RefVariableGemma">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference gemma.ecore#//RefVariableGemma/variableGemma"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute gemma.ecore#//RefVariableGemma/nivelDeEscritura"/>
     </genClasses>
     <genClasses ecoreClass="gemma.ecore#//ExpresionNot">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference gemma.ecore#//ExpresionNot/elementoExpresion"/>

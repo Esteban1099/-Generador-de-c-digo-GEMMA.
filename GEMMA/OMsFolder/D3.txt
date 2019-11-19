@@ -1,0 +1,22 @@
+PROGRAM D3
+
+VAR
+	
+ Reset : BOOL := FALSE;	
+ ManualCapping : BOOL := FALSE;
+
+END_VAR
+
+// TO-DO: Estructura de control para cambiar el valor del reset (Modificar la condicion)
+IF Reset THEN
+	// Fill the reset behavior
+	Reset:=FALSE;
+END_IF
+
+// Insert the OM logic
+
+
+
+GVL.D3_D2_T := NOT ManualCapping;					
+
+

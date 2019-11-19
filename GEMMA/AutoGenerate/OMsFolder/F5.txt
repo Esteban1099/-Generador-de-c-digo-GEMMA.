@@ -1,0 +1,17 @@
+PROGRAM F5
+
+VAR
+	
+ Reset : BOOL := FALSE;	
+
+END_VAR
+
+
+// Insert the OM logic
+
+
+
+	GVL.F5_F4_T := GVL.Manual OR "GVL."StationTest;					
+	GVL.F5_F1_T := "GVL."Automatic;					
+
+

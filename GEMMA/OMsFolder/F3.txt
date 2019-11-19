@@ -1,0 +1,23 @@
+PROGRAM F3
+
+VAR
+	
+ Reset : BOOL := FALSE;	
+ CP2 : BOOL := FALSE;
+ CP3 : BOOL := FALSE;
+
+END_VAR
+
+// TO-DO: Estructura de control para cambiar el valor del reset (Modificar la condicion)
+IF Reset THEN
+	// Fill the reset behavior
+	Reset:=FALSE;
+END_IF
+
+// Insert the OM logic
+
+
+
+GVL.F3_A1_T := NOT CP2 AND NOT CP3;					
+
+

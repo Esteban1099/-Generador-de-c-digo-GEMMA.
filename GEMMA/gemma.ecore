@@ -80,6 +80,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="RefVariableGemma" eSuperTypes="#//ElementoExpresion">
     <eStructuralFeatures xsi:type="ecore:EReference" name="variableGemma" lowerBound="1"
         eType="#//VariableGemma"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nivelDeEscritura" eType="#//NivelDeEscritura"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExpresionNot" eSuperTypes="#//ElementoExpresion">
     <eStructuralFeatures xsi:type="ecore:EReference" name="elementoExpresion" lowerBound="1"
@@ -96,5 +97,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="ExpresionConjunta" eSuperTypes="#//ElementoExpresion">
     <eStructuralFeatures xsi:type="ecore:EReference" name="elementoExpresion" lowerBound="1"
         eType="#//ElementoExpresion" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="NivelDeEscritura">
+    <eLiterals name="gemma"/>
+    <eLiterals name="om" value="1"/>
   </eClassifiers>
 </ecore:EPackage>
