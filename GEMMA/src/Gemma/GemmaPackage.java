@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
 import Gemma.impl.GemmaPackageImpl;
 
 /**
@@ -592,13 +593,22 @@ public interface GemmaPackage extends EPackage {
 	int REF_VARIABLE_GEMMA__VARIABLE_GEMMA = ELEMENTO_EXPRESION_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Nivel De Escritura</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REF_VARIABLE_GEMMA__NIVEL_DE_ESCRITURA = ELEMENTO_EXPRESION_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Ref Variable Gemma</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REF_VARIABLE_GEMMA_FEATURE_COUNT = ELEMENTO_EXPRESION_FEATURE_COUNT + 1;
+	int REF_VARIABLE_GEMMA_FEATURE_COUNT = ELEMENTO_EXPRESION_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Ref Variable Gemma</em>' class.
@@ -749,6 +759,17 @@ public interface GemmaPackage extends EPackage {
 	 * @generated
 	 */
 	int TIPO_OPERADOR = 16;
+
+
+	/**
+	 * The meta object id for the '{@link Gemma.NivelDeEscritura <em>Nivel De Escritura</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Gemma.NivelDeEscritura
+	 * @see Gemma.impl.GemmaPackageImpl#getNivelDeEscritura()
+	 * @generated
+	 */
+	int NIVEL_DE_ESCRITURA = 17;
 
 
 	/**
@@ -1115,6 +1136,17 @@ public interface GemmaPackage extends EPackage {
 	EReference getRefVariableGemma_VariableGemma();
 
 	/**
+	 * Returns the meta object for the attribute '{@link Gemma.RefVariableGemma#getNivelDeEscritura <em>Nivel De Escritura</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Nivel De Escritura</em>'.
+	 * @see Gemma.RefVariableGemma#getNivelDeEscritura()
+	 * @see #getRefVariableGemma()
+	 * @generated
+	 */
+	EAttribute getRefVariableGemma_NivelDeEscritura();
+
+	/**
 	 * Returns the meta object for class '{@link Gemma.ExpresionNot <em>Expresion Not</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1206,6 +1238,16 @@ public interface GemmaPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getTipoOperador();
+
+	/**
+	 * Returns the meta object for enum '{@link Gemma.NivelDeEscritura <em>Nivel De Escritura</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Nivel De Escritura</em>'.
+	 * @see Gemma.NivelDeEscritura
+	 * @generated
+	 */
+	EEnum getNivelDeEscritura();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1525,6 +1567,14 @@ public interface GemmaPackage extends EPackage {
 		EReference REF_VARIABLE_GEMMA__VARIABLE_GEMMA = eINSTANCE.getRefVariableGemma_VariableGemma();
 
 		/**
+		 * The meta object literal for the '<em><b>Nivel De Escritura</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute REF_VARIABLE_GEMMA__NIVEL_DE_ESCRITURA = eINSTANCE.getRefVariableGemma_NivelDeEscritura();
+
+		/**
 		 * The meta object literal for the '{@link Gemma.impl.ExpresionNotImpl <em>Expresion Not</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1607,6 +1657,16 @@ public interface GemmaPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum TIPO_OPERADOR = eINSTANCE.getTipoOperador();
+
+		/**
+		 * The meta object literal for the '{@link Gemma.NivelDeEscritura <em>Nivel De Escritura</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Gemma.NivelDeEscritura
+		 * @see Gemma.impl.GemmaPackageImpl#getNivelDeEscritura()
+		 * @generated
+		 */
+		EEnum NIVEL_DE_ESCRITURA = eINSTANCE.getNivelDeEscritura();
 
 	}
 

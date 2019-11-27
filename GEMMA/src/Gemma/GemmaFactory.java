@@ -3,6 +3,7 @@
 package Gemma;
 
 import org.eclipse.emf.ecore.EFactory;
+
 import Gemma.impl.GemmaFactoryImpl;
 
 /**

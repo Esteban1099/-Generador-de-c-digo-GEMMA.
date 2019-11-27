@@ -13,6 +13,7 @@ package Gemma;
  * </p>
  * <ul>
  *   <li>{@link Gemma.RefVariableGemma#getVariableGemma <em>Variable Gemma</em>}</li>
+ *   <li>{@link Gemma.RefVariableGemma#getNivelDeEscritura <em>Nivel De Escritura</em>}</li>
  * </ul>
  *
  * @see Gemma.GemmaPackage#getRefVariableGemma()
@@ -45,5 +46,34 @@ public interface RefVariableGemma extends ElementoExpresion {
 	 * @generated
 	 */
 	void setVariableGemma(VariableGemma value);
+
+	/**
+	 * Returns the value of the '<em><b>Nivel De Escritura</b></em>' attribute.
+	 * The literals are from the enumeration {@link Gemma.NivelDeEscritura}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Nivel De Escritura</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Nivel De Escritura</em>' attribute.
+	 * @see Gemma.NivelDeEscritura
+	 * @see #setNivelDeEscritura(NivelDeEscritura)
+	 * @see Gemma.GemmaPackage#getRefVariableGemma_NivelDeEscritura()
+	 * @model
+	 * @generated
+	 */
+	NivelDeEscritura getNivelDeEscritura();
+
+	/**
+	 * Sets the value of the '{@link Gemma.RefVariableGemma#getNivelDeEscritura <em>Nivel De Escritura</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Nivel De Escritura</em>' attribute.
+	 * @see Gemma.NivelDeEscritura
+	 * @see #getNivelDeEscritura()
+	 * @generated
+	 */
+	void setNivelDeEscritura(NivelDeEscritura value);
 
 } // RefVariableGemma

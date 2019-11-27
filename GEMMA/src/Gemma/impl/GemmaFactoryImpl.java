@@ -90,6 +90,8 @@ public class GemmaFactoryImpl extends EFactoryImpl implements GemmaFactory {
 				return createTipoMacroOmFromString(eDataType, initialValue);
 			case GemmaPackage.TIPO_OPERADOR:
 				return createTipoOperadorFromString(eDataType, initialValue);
+			case GemmaPackage.NIVEL_DE_ESCRITURA:
+				return createNivelDeEscrituraFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -109,6 +111,8 @@ public class GemmaFactoryImpl extends EFactoryImpl implements GemmaFactory {
 				return convertTipoMacroOmToString(eDataType, instanceValue);
 			case GemmaPackage.TIPO_OPERADOR:
 				return convertTipoOperadorToString(eDataType, instanceValue);
+			case GemmaPackage.NIVEL_DE_ESCRITURA:
+				return convertNivelDeEscrituraToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -311,6 +315,26 @@ public class GemmaFactoryImpl extends EFactoryImpl implements GemmaFactory {
 	 * @generated
 	 */
 	public String convertTipoOperadorToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NivelDeEscritura createNivelDeEscrituraFromString(EDataType eDataType, String initialValue) {
+		NivelDeEscritura result = NivelDeEscritura.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertNivelDeEscrituraToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

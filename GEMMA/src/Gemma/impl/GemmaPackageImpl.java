@@ -10,6 +10,7 @@ import Gemma.Gemma;
 import Gemma.GemmaFactory;
 import Gemma.GemmaPackage;
 import Gemma.MacroOm;
+import Gemma.NivelDeEscritura;
 import Gemma.Om;
 import Gemma.RefVariableGemma;
 import Gemma.RefVariableOm;
@@ -155,6 +156,13 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * @generated
 	 */
 	private EEnum tipoOperadorEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum nivelDeEscrituraEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -528,6 +536,15 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getRefVariableGemma_NivelDeEscritura() {
+		return (EAttribute)refVariableGemmaEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getExpresionNot() {
 		return expresionNotEClass;
 	}
@@ -609,6 +626,15 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getNivelDeEscritura() {
+		return nivelDeEscrituraEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public GemmaFactory getGemmaFactory() {
 		return (GemmaFactory)getEFactoryInstance();
 	}
@@ -676,6 +702,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 
 		refVariableGemmaEClass = createEClass(REF_VARIABLE_GEMMA);
 		createEReference(refVariableGemmaEClass, REF_VARIABLE_GEMMA__VARIABLE_GEMMA);
+		createEAttribute(refVariableGemmaEClass, REF_VARIABLE_GEMMA__NIVEL_DE_ESCRITURA);
 
 		expresionNotEClass = createEClass(EXPRESION_NOT);
 		createEReference(expresionNotEClass, EXPRESION_NOT__ELEMENTO_EXPRESION);
@@ -690,6 +717,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 		tipoOmEEnum = createEEnum(TIPO_OM);
 		tipoMacroOmEEnum = createEEnum(TIPO_MACRO_OM);
 		tipoOperadorEEnum = createEEnum(TIPO_OPERADOR);
+		nivelDeEscrituraEEnum = createEEnum(NIVEL_DE_ESCRITURA);
 	}
 
 	/**
@@ -773,6 +801,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 
 		initEClass(refVariableGemmaEClass, RefVariableGemma.class, "RefVariableGemma", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRefVariableGemma_VariableGemma(), this.getVariableGemma(), null, "variableGemma", null, 1, 1, RefVariableGemma.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRefVariableGemma_NivelDeEscritura(), this.getNivelDeEscritura(), "nivelDeEscritura", null, 0, 1, RefVariableGemma.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(expresionNotEClass, ExpresionNot.class, "ExpresionNot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getExpresionNot_ElementoExpresion(), this.getElementoExpresion(), null, "elementoExpresion", null, 1, 1, ExpresionNot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -810,6 +839,10 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 		initEEnum(tipoOperadorEEnum, TipoOperador.class, "TipoOperador");
 		addEEnumLiteral(tipoOperadorEEnum, TipoOperador.AND);
 		addEEnumLiteral(tipoOperadorEEnum, TipoOperador.OR);
+
+		initEEnum(nivelDeEscrituraEEnum, NivelDeEscritura.class, "NivelDeEscritura");
+		addEEnumLiteral(nivelDeEscrituraEEnum, NivelDeEscritura.GEMMA);
+		addEEnumLiteral(nivelDeEscrituraEEnum, NivelDeEscritura.OM);
 
 		// Create resource
 		createResource(eNS_URI);
