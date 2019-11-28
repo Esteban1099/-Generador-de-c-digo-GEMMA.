@@ -13,7 +13,7 @@ var eleIzq;
 var eleDer;
 for (tr in Transicion.all) { 
 	//Si la transicion es entre om a om
-	if (tr.isTypeOf(TrasicionEntreOmOm)){
+	if (tr.isTypeOf(TrasicionEntreOmOm) and (tr.elementoExpresion).isDefined() == true){
 		//Validar si mi om es el origen de la transicion.
 		if(tr.destino.name == om.name and om.esVisible == true){
 			elementoExpresion = tr.elementoExpresion;
@@ -124,7 +124,7 @@ var eleIzq;
 var eleDer;
 for (tr in Transicion.all) { 
 	//Si la transicion es entre om a om
-	if (tr.isTypeOf(TrasicionEntreOmOm)){
+	if (tr.isTypeOf(TrasicionEntreOmOm) and (tr.elementoExpresion).isDefined() == true){
 		//Validar si mi om es el origen de la transicion.
 		if(tr.origen.name == om.name and om.esVisible == true){
 			elementoExpresion = tr.elementoExpresion;
@@ -235,7 +235,7 @@ GVL.[%= tr.name %] := [%= expresionGuardada %][%= elementoExpresion.variableOm.n
 	//Si la transicion es entre macro a om
 	else{
 	
-		if(tr.origen.oms.select(pOm|pOm.name == om.name).first() == om and om.esVisible == true){
+		if((tr.elementoExpresion).isDefined() == true and tr.origen.oms.select(pOm|pOm.name == om.name).first() == om and om.esVisible == true){
 			elementoExpresion = tr.elementoExpresion;
 			//Ahora validar los 4 posibles caminos que puede tomar un elemento expresion.
 			while(termino == false){

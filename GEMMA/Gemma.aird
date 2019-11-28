@@ -11,6 +11,7 @@
     <semanticResources>gemmaCreator.genmodel</semanticResources>
     <semanticResources>AutoGenerate/Project%20Xml%20Open%20AutoGenerate.xml</semanticResources>
     <semanticResources>gemmaUltimoGeacomoV4.xmi</semanticResources>
+    <semanticResources>gemmaFuente.xmi</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_4aHGwNVwEemhw8kIVIhsYQ">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_6ir80NVwEemhw8kIVIhsYQ" name="Gemma class diagram" repPath="#_6g6bMNVwEemhw8kIVIhsYQ">
@@ -1761,7 +1762,7 @@
         </edges>
         <edges xmi:type="notation:Edge" xmi:id="_hfPJQAhvEeqEFqC6DbIkBg" type="4001" element="_heap4AhvEeqEFqC6DbIkBg" source="_VTVNEAhvEeqEFqC6DbIkBg" target="_nPFgRADVEeqLTMHVXrAIWA">
           <children xmi:type="notation:Node" xmi:id="_hfPwUAhvEeqEFqC6DbIkBg" type="6001">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_hfPwUQhvEeqEFqC6DbIkBg" x="-45" y="-10"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_hfPwUQhvEeqEFqC6DbIkBg" x="-136" y="-17"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_hfPwUghvEeqEFqC6DbIkBg" type="6002">
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_hfPwUwhvEeqEFqC6DbIkBg" x="-17" y="10"/>

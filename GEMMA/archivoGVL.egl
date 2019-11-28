@@ -42,7 +42,7 @@ var nameTr;
 for (tr in Transicion.all) { 
 	nameTr = tr.name;
 // valido si existen transiciones entre macro a om para transformarlas en om a om
-	if(tr.isTypeOf(TransicionEntreMacroOmOm)){
+	if(tr.isTypeOf(TransicionEntreMacroOmOm) and (tr.elementoExpresion).isDefined() == true){
 		var macroOm = tr.origen;
 		var nameNewTr;
 		for (om in macroOm.oms) { 
@@ -59,7 +59,7 @@ for (tr in Transicion.all) {
 		}
 	}
 	else {
-		if(tr.origen.esVisible){
+		if(tr.origen.esVisible and (tr.elementoExpresion).isDefined() == true){
 	%]
 [%= nameTr %] : BOOL := FALSE;
 	[%		

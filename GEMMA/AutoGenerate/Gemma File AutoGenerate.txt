@@ -39,16 +39,16 @@ CASE State OF
 			//Do behavior
 			A1();
 			//Transitions	
-			GVL.A1_F2_T := GVL.Start AND GVL.Automatic;					
+			GVL.A1_F4_T := GVL.Start AND ( GVL.StacionTest OR GVL.Manual );					
 			GVL.A1_F5_T := GVL.Start AND GVL.SemiAutomatic;					
-			GVL.A1_F4_T := GVL.Start AND ( GVL.StationTest OR GVL.Manual );					
+			GVL.A1_F2_T := GVL.Start AND GVL.Automatic;					
 			
 			//Exit behavior
-			IF GVL.A1_F2_T THEN
+			IF GVL.A1_F4_T THEN
 			
                			GVL.A1_GEMMA := FALSE;
 			   FlagEntry := TRUE;			 
-			   GVL.A1_F2_T:= FALSE;
+			   GVL.A1_F4_T:= FALSE;
 			   State:= 1;
 			   
 			ELSIF GVL.A1_F5_T THEN
@@ -58,11 +58,11 @@ CASE State OF
 				GVL.A1_F5_T:= FALSE;
 				State:= 1;
 				
-			ELSIF GVL.A1_F4_T THEN 
+			ELSIF GVL.A1_F2_T THEN 
               	
               			GVL.A1_GEMMA := FALSE;
 			   	FlagEntry := TRUE;
-				GVL.A1_F4_T:= FALSE;
+				GVL.A1_F2_T:= FALSE;
 				State:= 1;
 				
 			END_IF
@@ -122,7 +122,7 @@ CASE State OF
 			GVL.F1_D1_T := NOT GVL.EmergencyInterrupter;					
 			//Exit common behavior
 			
-			IF GVL.F1_F5_T OR  GVL.F1_F3_T OR  GVL.F1_A2_T OR  GVL.F1_D3_T OR  GVL.F1_D1_T OR  GVL.F1_D1_T THEN 			
+			IF GVL.F1_F5_T OR  GVL.F1_D1_T OR  GVL.F1_D3_T OR  GVL.F1_A2_T OR  GVL.F1_F3_T OR  GVL.F1_D1_T THEN 			
 				GVL.F1_GEMMA := FALSE;
 				FlagEntry := TRUE;
 			END_IF
@@ -133,21 +133,21 @@ CASE State OF
 			   GVL.F1_F5_T:= FALSE;
 			   State:= 11;
 			   F5.Reset:= TRUE;
-			ELSIF GVL.F1_F3_T THEN 
-				GVL.F1_F3_T:= FALSE;
+			ELSIF GVL.F1_D1_T THEN 
+				GVL.F1_D1_T:= FALSE;
 				State:= 11;
-				F3.Reset:= TRUE;
-			ELSIF GVL.F1_A2_T THEN 
-				GVL.F1_A2_T:= FALSE;
-				State:= 11;
-				A2.Reset:= TRUE;
 			ELSIF GVL.F1_D3_T THEN 
 				GVL.F1_D3_T:= FALSE;
 				State:= 11;
 				D3.Reset:= TRUE;
-			ELSIF GVL.F1_D1_T THEN 
-				GVL.F1_D1_T:= FALSE;
+			ELSIF GVL.F1_A2_T THEN 
+				GVL.F1_A2_T:= FALSE;
 				State:= 11;
+				A2.Reset:= TRUE;
+			ELSIF GVL.F1_F3_T THEN 
+				GVL.F1_F3_T:= FALSE;
+				State:= 11;
+				F3.Reset:= TRUE;
 			ELSIF GVL.F1_D1_T THEN 
 				GVL.F1_D1_T:= FALSE;
 				State:= 11;
@@ -323,14 +323,14 @@ CASE State OF
 			//Do behavior
 			D3();
 			//Transitions	
-			GVL.D3_D2_T := NOT GVL.ManualCapping;					
+			GVL.D3_A2_T := NOT GVL.ManualCapping;					
 			
 			//Exit behavior
-			IF GVL.D3_D2_T THEN 
+			IF GVL.D3_A2_T THEN 
                
                			GVL.D3_GEMMA := FALSE;
 			   FlagEntry := TRUE;				
-			   GVL.D3_D2_T:= FALSE;
+			   GVL.D3_A2_T:= FALSE;
 			   State:= 23;
 			   
 			END_IF

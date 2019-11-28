@@ -13,10 +13,11 @@
 	
 
 	for (om in Om.all) { 
-			
-		var app:Template:= TemplateFactory.load('archivoOM.egl');
-		app.populate('omT',om.tipo.name);
-		app.generate('./AutoGenerate/OMsFolder/'+ om.tipo.name + '.txt');
+		if(om.esVisible == true){	
+			var app:Template:= TemplateFactory.load('archivoOM.egl');
+			app.populate('omT',om.tipo.name);
+			app.generate('./AutoGenerate/OMsFolder/'+ om.tipo.name + '.txt');
+		}
 	}
 		
 	

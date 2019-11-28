@@ -11,7 +11,7 @@ END_VAR
 
 
 
-	GVL.F5_F4_T := GVL.Manual OR GVL.StationTest;					
+	GVL.F5_F4_T := GVL.Manual OR GVL.StacionTest;					
 	GVL.F5_F1_T := GVL.Automatic;					
 
 

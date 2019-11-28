@@ -76,6 +76,7 @@ CASE [%= nameSate %] OF
 var numOm = 0;
 var variables: Set; 
 	for (om in Om.all) {
+	if(om.esVisible == true){
 		tipoOm = om.tipo.name;
 			if(tipoOm == "A1"){
 				numOm = 1;
@@ -149,7 +150,7 @@ var variables: Set;
 		var eleDer;
 		for (tr in Transicion.all) { 
 			//Si la transicion es entre om a om
-			if (tr.isTypeOf(TrasicionEntreOmOm)){
+			if (tr.isTypeOf(TrasicionEntreOmOm) and (tr.elementoExpresion).isDefined() == true){
 				//Validar si mi om es el origen de la transicion.
 				if(tr.origen.name == om.name and om.esVisible == true){
 					elementoExpresion = tr.elementoExpresion;
@@ -179,6 +180,7 @@ var variables: Set;
 						}
 						//4) ser una expresion binaria.
 						else{
+						
 							eleIzq = elementoExpresion.expresionIzquierda;
 							eleDer = elementoExpresion.expresionDerecha;
 							//Validar el elemento de la izquierda
@@ -214,6 +216,7 @@ var variables: Set;
 							}
 							
 							elementoExpresion = eleDer;
+						
 						}
 					}
 					//Volver a termino false para la otra transicion.
@@ -223,7 +226,7 @@ var variables: Set;
 			//Si la transicion es entre macro a om
 			else{
 			
-				if(tr.origen.oms.select(pOm|pOm.name == om.name).first() == om and om.esVisible == true){
+				if((tr.elementoExpresion).isDefined() == true and tr.origen.oms.select(pOm|pOm.name == om.name).first() == om and om.esVisible == true){
 					elementoExpresion = tr.elementoExpresion;
 					//Ahora validar los 4 posibles caminos que puede tomar un elemento expresion.
 					while(termino == false){
@@ -251,6 +254,7 @@ var variables: Set;
 						}
 						//4) ser una expresion binaria.
 						else{
+
 							eleIzq = elementoExpresion.expresionIzquierda;
 							eleDer = elementoExpresion.expresionDerecha;
 							//Validar el elemento de la izquierda
@@ -286,6 +290,7 @@ var variables: Set;
 							}
 							
 							elementoExpresion = eleDer;
+						
 						}
 					}
 					//Volver a termino false para la otra transicion.
@@ -310,7 +315,7 @@ var variables: Set;
 		var eleDer;
 		for (tr in Transicion.all) { 
 			//Si la transicion es entre om a om
-			if (tr.isTypeOf(TrasicionEntreOmOm)){
+			if (tr.isTypeOf(TrasicionEntreOmOm) and (tr.elementoExpresion).isDefined() == true){
 				//Validar si mi om es el origen de la transicion.
 				if(tr.origen.name == om.name and om.esVisible == true){
 					elementoExpresion = tr.elementoExpresion;
@@ -356,6 +361,7 @@ var variables: Set;
 						}
 						//4) ser una expresion binaria.
 						else{
+			
 							eleIzq = elementoExpresion.expresionIzquierda;
 							eleDer = elementoExpresion.expresionDerecha;
 							//Validar el elemento de la izquierda
@@ -401,6 +407,7 @@ var variables: Set;
 		
 							
 							elementoExpresion = eleDer;
+						
 						}
 					}
 					//Volver a termino false para la otra transicion.
@@ -410,7 +417,7 @@ var variables: Set;
 			}
 			//Si la transicion es entre macro a om
 			else{
-				if(tr.origen.oms.select(pOm|pOm.name == om.name).first() == om and om.esVisible == true){
+				if((tr.elementoExpresion).isDefined() == true and tr.origen.oms.select(pOm|pOm.name == om.name).first() == om and om.esVisible == true){
 					elementoExpresion = tr.elementoExpresion;
 					//Ahora validar los 4 posibles caminos que puede tomar un elemento expresion.
 					while(termino == false){
@@ -454,6 +461,7 @@ var variables: Set;
 						}
 						//4) ser una expresion binaria.
 						else{
+						
 							eleIzq = elementoExpresion.expresionIzquierda;
 							eleDer = elementoExpresion.expresionDerecha;
 							//Validar el elemento de la izquierda
@@ -513,8 +521,8 @@ var variables: Set;
 			//Exit common behavior
 			
 			IF[%
-			var numTrDelOm = Transicion.all.select(tr|tr.origen.name == om.name).size();
-			for (trM in Transicion.all.select(tr|tr.isTypeOf(TransicionEntreMacroOmOm))) { 
+			var numTrDelOm = Transicion.all.select(tr|tr.origen.name == om.name and (tr.elementoExpresion).isDefined() == true).size();
+			for (trM in Transicion.all.select(tr|tr.isTypeOf(TransicionEntreMacroOmOm) and (tr.elementoExpresion).isDefined() == true)) { 
 				if(trM.origen.oms.select(pOm|pOm.name == om.name).first() == om){
 					numTrDelOm = numTrDelOm + 1;
 				}
@@ -522,7 +530,7 @@ var variables: Set;
 			var numTrActualDelOm = 0;
 			for (tr in Transicion.all) { 
 				//Si la transicion es entre om a om
-				if (tr.isTypeOf(TrasicionEntreOmOm)){
+				if (tr.isTypeOf(TrasicionEntreOmOm) and (tr.elementoExpresion).isDefined() == true){
 					//Validar si mi om es el origen de la transicion.
 					if(tr.origen.name == om.name and om.esVisible == true){
 						//Me encuentro en la ultima transicion del om.
@@ -540,7 +548,7 @@ var variables: Set;
 				//Si la transicion es entre macro a om
 				else{
 				
-					if(tr.origen.oms.select(pOm|pOm.name == om.name).first() == om and om.esVisible == true){
+					if((tr.elementoExpresion).isDefined() == true and tr.origen.oms.select(pOm|pOm.name == om.name).first() == om and om.esVisible == true){
 						//Me encuentro en la ultima transicion del om.
 						if(numTrActualDelOm >= (numTrDelOm-1)){
 							numTrActualDelOm = numTrActualDelOm + 1;
@@ -567,8 +575,8 @@ var variables: Set;
 			// Exit specific behavior
 			
 			IF[%
-			var numTrDelOm = Transicion.all.select(tr|tr.origen.name == om.name).size();
-			for (trM in Transicion.all.select(tr|tr.isTypeOf(TransicionEntreMacroOmOm))) { 
+			var numTrDelOm = Transicion.all.select(tr|tr.origen.name == om.name and (tr.elementoExpresion).isDefined() == true).size();
+			for (trM in Transicion.all.select(tr|tr.isTypeOf(TransicionEntreMacroOmOm) and (tr.elementoExpresion).isDefined() == true)) { 
 				if(trM.origen.oms.select(pOm|pOm.name == om.name).first() == om){
 					numTrDelOm = numTrDelOm + 1;
 				}
@@ -581,7 +589,7 @@ var variables: Set;
 			var eleDer;
 			for (tr in Transicion.all) { 
 				//Si la transicion es entre om a om
-				if (tr.isTypeOf(TrasicionEntreOmOm)){
+				if (tr.isTypeOf(TrasicionEntreOmOm) and (tr.elementoExpresion).isDefined() == true){
 					//Validar si mi om es el origen de la transicion.
 					if(tr.origen.name == om.name and om.esVisible == true){
 						elementoExpresion = tr.elementoExpresion;
@@ -731,7 +739,7 @@ var variables: Set;
 				}
 				//Si la transicion es entre macro a om
 				else{
-					if(tr.origen.oms.select(pOm|pOm.name == om.name).first() == om and om.esVisible == true){
+					if((tr.elementoExpresion).isDefined() == true and tr.origen.oms.select(pOm|pOm.name == om.name).first() == om and om.esVisible == true){
 						elementoExpresion = tr.elementoExpresion;
 						esTransicionGemma = false;
 						//Ahora validar los 4 posibles caminos que puede tomar un elemento expresion.
@@ -888,8 +896,8 @@ var variables: Set;
 			
 			//Exit behavior
 			IF[%
-			var numTrDelOm = Transicion.all.select(tr|tr.origen.name == om.name).size();
-			for (trM in Transicion.all.select(tr|tr.isTypeOf(TransicionEntreMacroOmOm))) { 
+			var numTrDelOm = Transicion.all.select(tr|tr.origen.name == om.name and (tr.elementoExpresion).isDefined() == true).size();
+			for (trM in Transicion.all.select(tr|tr.isTypeOf(TransicionEntreMacroOmOm) and (tr.elementoExpresion).isDefined() == true)) { 
 				if(trM.origen.oms.select(pOm|pOm.name == om.name).first() == om){
 					numTrDelOm = numTrDelOm + 1;
 				}
@@ -902,7 +910,7 @@ var variables: Set;
 			var eleDer;
 			for (tr in Transicion.all) { 
 				//Si la transicion es entre om a om
-				if (tr.isTypeOf(TrasicionEntreOmOm)){
+				if (tr.isTypeOf(TrasicionEntreOmOm) and (tr.elementoExpresion).isDefined() == true){
 					//Validar si mi om es el origen de la transicion.
 					if(tr.origen.name == om.name and om.esVisible == true){
 						elementoExpresion = tr.elementoExpresion;
@@ -930,6 +938,7 @@ var variables: Set;
 							}
 							//4) ser una expresion binaria.
 							else{
+							
 								eleIzq = elementoExpresion.expresionIzquierda;
 								eleDer = elementoExpresion.expresionDerecha;
 								//Validar el elemento de la izquierda
@@ -965,6 +974,7 @@ var variables: Set;
 								}
 								
 								elementoExpresion = eleDer;
+							
 							}
 						}
 						//Volver a termino false para la otra transicion.
@@ -1084,7 +1094,7 @@ var variables: Set;
 				}
 				//Si la transicion es entre macro a om
 				else{
-					if(tr.origen.oms.select(pOm|pOm.name == om.name).first() == om and om.esVisible == true){
+					if((tr.elementoExpresion).isDefined() == true and tr.origen.oms.select(pOm|pOm.name == om.name).first() == om and om.esVisible == true){
 						elementoExpresion = tr.elementoExpresion;
 						esTransicionGemma = false;
 						//Ahora validar los 4 posibles caminos que puede tomar un elemento expresion.
@@ -1265,6 +1275,7 @@ var variables: Set;
 	
 			}			
 		}
+	  }	
 	}
 %]
 END_CASE
