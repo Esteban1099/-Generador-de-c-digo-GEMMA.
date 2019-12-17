@@ -73,6 +73,7 @@ public class TransicionEntreMacroOmOmImpl extends TransicionImpl implements Tran
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public MacroOm getOrigen() {
 		if (origen != null && origen.eIsProxy()) {
 			InternalEObject oldOrigen = (InternalEObject)origen;
@@ -99,6 +100,7 @@ public class TransicionEntreMacroOmOmImpl extends TransicionImpl implements Tran
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOrigen(MacroOm newOrigen) {
 		MacroOm oldOrigen = origen;
 		origen = newOrigen;
@@ -111,6 +113,7 @@ public class TransicionEntreMacroOmOmImpl extends TransicionImpl implements Tran
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Om getDestino() {
 		if (destino != null && destino.eIsProxy()) {
 			InternalEObject oldDestino = (InternalEObject)destino;
@@ -137,6 +140,7 @@ public class TransicionEntreMacroOmOmImpl extends TransicionImpl implements Tran
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDestino(Om newDestino) {
 		Om oldDestino = destino;
 		destino = newDestino;

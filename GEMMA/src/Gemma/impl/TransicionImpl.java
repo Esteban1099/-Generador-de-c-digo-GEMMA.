@@ -84,6 +84,7 @@ public class TransicionImpl extends MinimalEObjectImpl.Container implements Tran
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -93,6 +94,7 @@ public class TransicionImpl extends MinimalEObjectImpl.Container implements Tran
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -105,6 +107,7 @@ public class TransicionImpl extends MinimalEObjectImpl.Container implements Tran
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ElementoExpresion getElementoExpresion() {
 		return elementoExpresion;
 	}
@@ -129,6 +132,7 @@ public class TransicionImpl extends MinimalEObjectImpl.Container implements Tran
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setElementoExpresion(ElementoExpresion newElementoExpresion) {
 		if (newElementoExpresion != elementoExpresion) {
 			NotificationChain msgs = null;
@@ -234,7 +238,7 @@ public class TransicionImpl extends MinimalEObjectImpl.Container implements Tran
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
 		result.append(')');

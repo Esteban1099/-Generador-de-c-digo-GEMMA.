@@ -123,6 +123,7 @@ public class GemmaFactoryImpl extends EFactoryImpl implements GemmaFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Gemma createGemma() {
 		GemmaImpl gemma = new GemmaImpl();
 		return gemma;
@@ -133,6 +134,7 @@ public class GemmaFactoryImpl extends EFactoryImpl implements GemmaFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public MacroOm createMacroOm() {
 		MacroOmImpl macroOm = new MacroOmImpl();
 		return macroOm;
@@ -143,6 +145,7 @@ public class GemmaFactoryImpl extends EFactoryImpl implements GemmaFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Om createOm() {
 		OmImpl om = new OmImpl();
 		return om;
@@ -153,6 +156,7 @@ public class GemmaFactoryImpl extends EFactoryImpl implements GemmaFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TrasicionEntreOmOm createTrasicionEntreOmOm() {
 		TrasicionEntreOmOmImpl trasicionEntreOmOm = new TrasicionEntreOmOmImpl();
 		return trasicionEntreOmOm;
@@ -163,6 +167,7 @@ public class GemmaFactoryImpl extends EFactoryImpl implements GemmaFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TransicionEntreMacroOmOm createTransicionEntreMacroOmOm() {
 		TransicionEntreMacroOmOmImpl transicionEntreMacroOmOm = new TransicionEntreMacroOmOmImpl();
 		return transicionEntreMacroOmOm;
@@ -173,6 +178,7 @@ public class GemmaFactoryImpl extends EFactoryImpl implements GemmaFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExpresionBinaria createExpresionBinaria() {
 		ExpresionBinariaImpl expresionBinaria = new ExpresionBinariaImpl();
 		return expresionBinaria;
@@ -183,6 +189,7 @@ public class GemmaFactoryImpl extends EFactoryImpl implements GemmaFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ElementoExpresion createElementoExpresion() {
 		ElementoExpresionImpl elementoExpresion = new ElementoExpresionImpl();
 		return elementoExpresion;
@@ -193,6 +200,7 @@ public class GemmaFactoryImpl extends EFactoryImpl implements GemmaFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public VariableOm createVariableOm() {
 		VariableOmImpl variableOm = new VariableOmImpl();
 		return variableOm;
@@ -203,6 +211,7 @@ public class GemmaFactoryImpl extends EFactoryImpl implements GemmaFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Transicion createTransicion() {
 		TransicionImpl transicion = new TransicionImpl();
 		return transicion;
@@ -213,6 +222,7 @@ public class GemmaFactoryImpl extends EFactoryImpl implements GemmaFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public VariableGemma createVariableGemma() {
 		VariableGemmaImpl variableGemma = new VariableGemmaImpl();
 		return variableGemma;
@@ -223,6 +233,7 @@ public class GemmaFactoryImpl extends EFactoryImpl implements GemmaFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public RefVariableGemma createRefVariableGemma() {
 		RefVariableGemmaImpl refVariableGemma = new RefVariableGemmaImpl();
 		return refVariableGemma;
@@ -233,6 +244,7 @@ public class GemmaFactoryImpl extends EFactoryImpl implements GemmaFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExpresionNot createExpresionNot() {
 		ExpresionNotImpl expresionNot = new ExpresionNotImpl();
 		return expresionNot;
@@ -243,6 +255,7 @@ public class GemmaFactoryImpl extends EFactoryImpl implements GemmaFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public RefVariableOm createRefVariableOm() {
 		RefVariableOmImpl refVariableOm = new RefVariableOmImpl();
 		return refVariableOm;
@@ -253,6 +266,7 @@ public class GemmaFactoryImpl extends EFactoryImpl implements GemmaFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExpresionConjunta createExpresionConjunta() {
 		ExpresionConjuntaImpl expresionConjunta = new ExpresionConjuntaImpl();
 		return expresionConjunta;
@@ -343,6 +357,7 @@ public class GemmaFactoryImpl extends EFactoryImpl implements GemmaFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GemmaPackage getGemmaPackage() {
 		return (GemmaPackage)getEPackage();
 	}

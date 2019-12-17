@@ -192,7 +192,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link GemmaPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -206,7 +206,8 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 		if (isInited) return (GemmaPackage)EPackage.Registry.INSTANCE.getEPackage(GemmaPackage.eNS_URI);
 
 		// Obtain or create and register package
-		GemmaPackageImpl theGemmaPackage = (GemmaPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof GemmaPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new GemmaPackageImpl());
+		Object registeredGemmaPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		GemmaPackageImpl theGemmaPackage = registeredGemmaPackage instanceof GemmaPackageImpl ? (GemmaPackageImpl)registeredGemmaPackage : new GemmaPackageImpl();
 
 		isInited = true;
 
@@ -219,7 +220,6 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 		// Mark meta-data to indicate it can't be changed
 		theGemmaPackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(GemmaPackage.eNS_URI, theGemmaPackage);
 		return theGemmaPackage;
@@ -230,6 +230,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getGemma() {
 		return gemmaEClass;
 	}
@@ -239,6 +240,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getGemma_MacroOms() {
 		return (EReference)gemmaEClass.getEStructuralFeatures().get(0);
 	}
@@ -248,6 +250,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getGemma_Transiciones() {
 		return (EReference)gemmaEClass.getEStructuralFeatures().get(1);
 	}
@@ -257,6 +260,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getGemma_VariablesGemma() {
 		return (EReference)gemmaEClass.getEStructuralFeatures().get(2);
 	}
@@ -266,6 +270,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getMacroOm() {
 		return macroOmEClass;
 	}
@@ -275,6 +280,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getMacroOm_Name() {
 		return (EAttribute)macroOmEClass.getEStructuralFeatures().get(0);
 	}
@@ -284,6 +290,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getMacroOm_Tipo() {
 		return (EAttribute)macroOmEClass.getEStructuralFeatures().get(1);
 	}
@@ -293,6 +300,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getMacroOm_Oms() {
 		return (EReference)macroOmEClass.getEStructuralFeatures().get(2);
 	}
@@ -302,6 +310,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getOm() {
 		return omEClass;
 	}
@@ -311,6 +320,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getOm_Name() {
 		return (EAttribute)omEClass.getEStructuralFeatures().get(0);
 	}
@@ -320,6 +330,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getOm_Tipo() {
 		return (EAttribute)omEClass.getEStructuralFeatures().get(1);
 	}
@@ -329,6 +340,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getOm_EsOmRaiz() {
 		return (EAttribute)omEClass.getEStructuralFeatures().get(2);
 	}
@@ -338,6 +350,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOm_VariablesOm() {
 		return (EReference)omEClass.getEStructuralFeatures().get(3);
 	}
@@ -347,6 +360,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getOm_EsVisible() {
 		return (EAttribute)omEClass.getEStructuralFeatures().get(4);
 	}
@@ -356,6 +370,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTrasicionEntreOmOm() {
 		return trasicionEntreOmOmEClass;
 	}
@@ -365,6 +380,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTrasicionEntreOmOm_Origen() {
 		return (EReference)trasicionEntreOmOmEClass.getEStructuralFeatures().get(0);
 	}
@@ -374,6 +390,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTrasicionEntreOmOm_Destino() {
 		return (EReference)trasicionEntreOmOmEClass.getEStructuralFeatures().get(1);
 	}
@@ -383,6 +400,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTransicionEntreMacroOmOm() {
 		return transicionEntreMacroOmOmEClass;
 	}
@@ -392,6 +410,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTransicionEntreMacroOmOm_Origen() {
 		return (EReference)transicionEntreMacroOmOmEClass.getEStructuralFeatures().get(0);
 	}
@@ -401,6 +420,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTransicionEntreMacroOmOm_Destino() {
 		return (EReference)transicionEntreMacroOmOmEClass.getEStructuralFeatures().get(1);
 	}
@@ -410,6 +430,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getExpresionBinaria() {
 		return expresionBinariaEClass;
 	}
@@ -419,6 +440,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getExpresionBinaria_ExpresionIzquierda() {
 		return (EReference)expresionBinariaEClass.getEStructuralFeatures().get(0);
 	}
@@ -428,6 +450,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getExpresionBinaria_ExpresionDerecha() {
 		return (EReference)expresionBinariaEClass.getEStructuralFeatures().get(1);
 	}
@@ -437,6 +460,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getExpresionBinaria_Operador() {
 		return (EAttribute)expresionBinariaEClass.getEStructuralFeatures().get(2);
 	}
@@ -446,6 +470,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getElementoExpresion() {
 		return elementoExpresionEClass;
 	}
@@ -455,6 +480,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getVariableOm() {
 		return variableOmEClass;
 	}
@@ -464,6 +490,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getVariableOm_Name() {
 		return (EAttribute)variableOmEClass.getEStructuralFeatures().get(0);
 	}
@@ -473,6 +500,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTransicion() {
 		return transicionEClass;
 	}
@@ -482,6 +510,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTransicion_Name() {
 		return (EAttribute)transicionEClass.getEStructuralFeatures().get(0);
 	}
@@ -491,6 +520,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTransicion_ElementoExpresion() {
 		return (EReference)transicionEClass.getEStructuralFeatures().get(1);
 	}
@@ -500,6 +530,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getVariableGemma() {
 		return variableGemmaEClass;
 	}
@@ -509,6 +540,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getVariableGemma_Name() {
 		return (EAttribute)variableGemmaEClass.getEStructuralFeatures().get(0);
 	}
@@ -518,6 +550,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getRefVariableGemma() {
 		return refVariableGemmaEClass;
 	}
@@ -527,6 +560,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRefVariableGemma_VariableGemma() {
 		return (EReference)refVariableGemmaEClass.getEStructuralFeatures().get(0);
 	}
@@ -536,6 +570,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getRefVariableGemma_NivelDeEscritura() {
 		return (EAttribute)refVariableGemmaEClass.getEStructuralFeatures().get(1);
 	}
@@ -545,6 +580,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getExpresionNot() {
 		return expresionNotEClass;
 	}
@@ -554,6 +590,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getExpresionNot_ElementoExpresion() {
 		return (EReference)expresionNotEClass.getEStructuralFeatures().get(0);
 	}
@@ -563,6 +600,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getRefVariableOm() {
 		return refVariableOmEClass;
 	}
@@ -572,6 +610,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRefVariableOm_VariableOm() {
 		return (EReference)refVariableOmEClass.getEStructuralFeatures().get(0);
 	}
@@ -581,6 +620,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getExpresionConjunta() {
 		return expresionConjuntaEClass;
 	}
@@ -590,6 +630,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getExpresionConjunta_ElementoExpresion() {
 		return (EReference)expresionConjuntaEClass.getEStructuralFeatures().get(0);
 	}
@@ -599,6 +640,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getTipoOm() {
 		return tipoOmEEnum;
 	}
@@ -608,6 +650,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getTipoMacroOm() {
 		return tipoMacroOmEEnum;
 	}
@@ -617,6 +660,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getTipoOperador() {
 		return tipoOperadorEEnum;
 	}
@@ -626,6 +670,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getNivelDeEscritura() {
 		return nivelDeEscrituraEEnum;
 	}
@@ -635,6 +680,7 @@ public class GemmaPackageImpl extends EPackageImpl implements GemmaPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GemmaFactory getGemmaFactory() {
 		return (GemmaFactory)getEFactoryInstance();
 	}

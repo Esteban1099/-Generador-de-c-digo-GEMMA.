@@ -95,6 +95,7 @@ public class ExpresionBinariaImpl extends ElementoExpresionImpl implements Expre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ElementoExpresion getExpresionIzquierda() {
 		return expresionIzquierda;
 	}
@@ -119,6 +120,7 @@ public class ExpresionBinariaImpl extends ElementoExpresionImpl implements Expre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setExpresionIzquierda(ElementoExpresion newExpresionIzquierda) {
 		if (newExpresionIzquierda != expresionIzquierda) {
 			NotificationChain msgs = null;
@@ -138,6 +140,7 @@ public class ExpresionBinariaImpl extends ElementoExpresionImpl implements Expre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ElementoExpresion getExpresionDerecha() {
 		return expresionDerecha;
 	}
@@ -162,6 +165,7 @@ public class ExpresionBinariaImpl extends ElementoExpresionImpl implements Expre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setExpresionDerecha(ElementoExpresion newExpresionDerecha) {
 		if (newExpresionDerecha != expresionDerecha) {
 			NotificationChain msgs = null;
@@ -181,6 +185,7 @@ public class ExpresionBinariaImpl extends ElementoExpresionImpl implements Expre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TipoOperador getOperador() {
 		return operador;
 	}
@@ -190,6 +195,7 @@ public class ExpresionBinariaImpl extends ElementoExpresionImpl implements Expre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOperador(TipoOperador newOperador) {
 		TipoOperador oldOperador = operador;
 		operador = newOperador == null ? OPERADOR_EDEFAULT : newOperador;
@@ -300,7 +306,7 @@ public class ExpresionBinariaImpl extends ElementoExpresionImpl implements Expre
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (operador: ");
 		result.append(operador);
 		result.append(')');

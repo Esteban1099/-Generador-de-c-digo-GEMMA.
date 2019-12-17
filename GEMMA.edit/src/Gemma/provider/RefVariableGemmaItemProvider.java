@@ -5,6 +5,8 @@ package Gemma.provider;
 
 import Gemma.GemmaPackage;
 
+import Gemma.NivelDeEscritura;
+import Gemma.RefVariableGemma;
 import java.util.Collection;
 import java.util.List;
 
@@ -13,6 +15,8 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
  * This is the item provider adapter for a {@link Gemma.RefVariableGemma} object.
@@ -43,6 +47,7 @@ public class RefVariableGemmaItemProvider extends ElementoExpresionItemProvider 
 			super.getPropertyDescriptors(object);
 
 			addVariableGemmaPropertyDescriptor(object);
+			addNivelDeEscrituraPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -70,6 +75,28 @@ public class RefVariableGemmaItemProvider extends ElementoExpresionItemProvider 
 	}
 
 	/**
+	 * This adds a property descriptor for the Nivel De Escritura feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNivelDeEscrituraPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_RefVariableGemma_nivelDeEscritura_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_RefVariableGemma_nivelDeEscritura_feature", "_UI_RefVariableGemma_type"),
+				 GemmaPackage.Literals.REF_VARIABLE_GEMMA__NIVEL_DE_ESCRITURA,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns RefVariableGemma.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -88,7 +115,11 @@ public class RefVariableGemmaItemProvider extends ElementoExpresionItemProvider 
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_RefVariableGemma_type");
+		NivelDeEscritura labelValue = ((RefVariableGemma)object).getNivelDeEscritura();
+		String label = labelValue == null ? null : labelValue.toString();
+		return label == null || label.length() == 0 ?
+			getString("_UI_RefVariableGemma_type") :
+			getString("_UI_RefVariableGemma_type") + " " + label;
 	}
 	
 
@@ -102,6 +133,12 @@ public class RefVariableGemmaItemProvider extends ElementoExpresionItemProvider 
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(RefVariableGemma.class)) {
+			case GemmaPackage.REF_VARIABLE_GEMMA__NIVEL_DE_ESCRITURA:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 

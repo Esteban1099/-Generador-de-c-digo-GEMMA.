@@ -82,6 +82,7 @@ public class RefVariableGemmaImpl extends ElementoExpresionImpl implements RefVa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public VariableGemma getVariableGemma() {
 		if (variableGemma != null && variableGemma.eIsProxy()) {
 			InternalEObject oldVariableGemma = (InternalEObject)variableGemma;
@@ -108,6 +109,7 @@ public class RefVariableGemmaImpl extends ElementoExpresionImpl implements RefVa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setVariableGemma(VariableGemma newVariableGemma) {
 		VariableGemma oldVariableGemma = variableGemma;
 		variableGemma = newVariableGemma;
@@ -120,6 +122,7 @@ public class RefVariableGemmaImpl extends ElementoExpresionImpl implements RefVa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NivelDeEscritura getNivelDeEscritura() {
 		return nivelDeEscritura;
 	}
@@ -129,6 +132,7 @@ public class RefVariableGemmaImpl extends ElementoExpresionImpl implements RefVa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNivelDeEscritura(NivelDeEscritura newNivelDeEscritura) {
 		NivelDeEscritura oldNivelDeEscritura = nivelDeEscritura;
 		nivelDeEscritura = newNivelDeEscritura == null ? NIVEL_DE_ESCRITURA_EDEFAULT : newNivelDeEscritura;
@@ -214,7 +218,7 @@ public class RefVariableGemmaImpl extends ElementoExpresionImpl implements RefVa
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (nivelDeEscritura: ");
 		result.append(nivelDeEscritura);
 		result.append(')');

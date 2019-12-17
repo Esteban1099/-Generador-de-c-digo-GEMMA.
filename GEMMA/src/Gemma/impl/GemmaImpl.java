@@ -92,6 +92,7 @@ public class GemmaImpl extends MinimalEObjectImpl.Container implements Gemma {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<MacroOm> getMacroOms() {
 		if (macroOms == null) {
 			macroOms = new EObjectContainmentEList<MacroOm>(MacroOm.class, this, GemmaPackage.GEMMA__MACRO_OMS);
@@ -104,6 +105,7 @@ public class GemmaImpl extends MinimalEObjectImpl.Container implements Gemma {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Transicion> getTransiciones() {
 		if (transiciones == null) {
 			transiciones = new EObjectContainmentEList<Transicion>(Transicion.class, this, GemmaPackage.GEMMA__TRANSICIONES);
@@ -116,6 +118,7 @@ public class GemmaImpl extends MinimalEObjectImpl.Container implements Gemma {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<VariableGemma> getVariablesGemma() {
 		if (variablesGemma == null) {
 			variablesGemma = new EObjectContainmentEList<VariableGemma>(VariableGemma.class, this, GemmaPackage.GEMMA__VARIABLES_GEMMA);

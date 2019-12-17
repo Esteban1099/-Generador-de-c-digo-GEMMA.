@@ -62,6 +62,7 @@ public class ExpresionConjuntaImpl extends ElementoExpresionImpl implements Expr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ElementoExpresion getElementoExpresion() {
 		return elementoExpresion;
 	}
@@ -86,6 +87,7 @@ public class ExpresionConjuntaImpl extends ElementoExpresionImpl implements Expr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setElementoExpresion(ElementoExpresion newElementoExpresion) {
 		if (newElementoExpresion != elementoExpresion) {
 			NotificationChain msgs = null;

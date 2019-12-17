@@ -155,6 +155,7 @@ public class OmImpl extends MinimalEObjectImpl.Container implements Om {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -164,6 +165,7 @@ public class OmImpl extends MinimalEObjectImpl.Container implements Om {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -176,6 +178,7 @@ public class OmImpl extends MinimalEObjectImpl.Container implements Om {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TipoOm getTipo() {
 		return tipo;
 	}
@@ -185,6 +188,7 @@ public class OmImpl extends MinimalEObjectImpl.Container implements Om {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTipo(TipoOm newTipo) {
 		TipoOm oldTipo = tipo;
 		tipo = newTipo == null ? TIPO_EDEFAULT : newTipo;
@@ -197,6 +201,7 @@ public class OmImpl extends MinimalEObjectImpl.Container implements Om {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isEsOmRaiz() {
 		return esOmRaiz;
 	}
@@ -206,6 +211,7 @@ public class OmImpl extends MinimalEObjectImpl.Container implements Om {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEsOmRaiz(boolean newEsOmRaiz) {
 		boolean oldEsOmRaiz = esOmRaiz;
 		esOmRaiz = newEsOmRaiz;
@@ -218,6 +224,7 @@ public class OmImpl extends MinimalEObjectImpl.Container implements Om {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<VariableOm> getVariablesOm() {
 		if (variablesOm == null) {
 			variablesOm = new EObjectContainmentEList<VariableOm>(VariableOm.class, this, GemmaPackage.OM__VARIABLES_OM);
@@ -230,6 +237,7 @@ public class OmImpl extends MinimalEObjectImpl.Container implements Om {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isEsVisible() {
 		return esVisible;
 	}
@@ -239,6 +247,7 @@ public class OmImpl extends MinimalEObjectImpl.Container implements Om {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEsVisible(boolean newEsVisible) {
 		boolean oldEsVisible = esVisible;
 		esVisible = newEsVisible;
@@ -369,7 +378,7 @@ public class OmImpl extends MinimalEObjectImpl.Container implements Om {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
 		result.append(", tipo: ");

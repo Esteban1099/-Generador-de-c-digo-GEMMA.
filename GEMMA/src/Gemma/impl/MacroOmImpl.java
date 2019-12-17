@@ -113,6 +113,7 @@ public class MacroOmImpl extends MinimalEObjectImpl.Container implements MacroOm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -122,6 +123,7 @@ public class MacroOmImpl extends MinimalEObjectImpl.Container implements MacroOm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -134,6 +136,7 @@ public class MacroOmImpl extends MinimalEObjectImpl.Container implements MacroOm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TipoMacroOm getTipo() {
 		return tipo;
 	}
@@ -143,6 +146,7 @@ public class MacroOmImpl extends MinimalEObjectImpl.Container implements MacroOm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTipo(TipoMacroOm newTipo) {
 		TipoMacroOm oldTipo = tipo;
 		tipo = newTipo == null ? TIPO_EDEFAULT : newTipo;
@@ -155,6 +159,7 @@ public class MacroOmImpl extends MinimalEObjectImpl.Container implements MacroOm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Om> getOms() {
 		if (oms == null) {
 			oms = new EObjectContainmentEList<Om>(Om.class, this, GemmaPackage.MACRO_OM__OMS);
@@ -265,7 +270,7 @@ public class MacroOmImpl extends MinimalEObjectImpl.Container implements MacroOm
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
 		result.append(", tipo: ");

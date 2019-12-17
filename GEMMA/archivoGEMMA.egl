@@ -4,10 +4,10 @@ PROGRAM GEMMA
 
 var flagEntry = true;
 var nameFlagEntry = "FlagEntry";
-var nameSate = "State";
-var state = 0;
+var namestate = "State";
 var tipoOm;
 var esOmInicial;
+var state = 0;
 for (om in Om.all) { 
 	tipoOm = om.tipo.name;
 	esOmInicial = om.esOmRaiz;
@@ -58,20 +58,19 @@ for (om in Om.all) {
 			state = 22;
 		}
 		else{
-			sate = 23;
+			state = 23;
 		}
-		break;
 	}
 }
 %]
 VAR
-	[%= nameSate %]:UINT:=[%= state %];
+	[%= namestate %]:UINT:=[%= state %];
 	[%= nameFlagEntry %]:BOOL:=[%= flagEntry %];
 
 END_VAR
 
 
-CASE [%= nameSate %] OF
+CASE [%= namestate %] OF
 [%
 var numOm = 0;
 var variables: Set; 
@@ -587,11 +586,61 @@ var variables: Set;
 			var termino = false;
 			var eleIzq;
 			var eleDer;
+			var tipoOmDestino;
 			for (tr in Transicion.all) { 
 				//Si la transicion es entre om a om
 				if (tr.isTypeOf(TrasicionEntreOmOm) and (tr.elementoExpresion).isDefined() == true){
 					//Validar si mi om es el origen de la transicion.
 					if(tr.origen.name == om.name and om.esVisible == true){
+						tipoOmDestino = tr.destino.tipo.name;
+						if(tipoOmDestino == "A1"){
+							state = 1;
+						}
+						else if(tipoOmDestino == "A2"){
+							state = 2;
+						}
+						else if(tipoOmDestino == "A3"){
+							state = 3;
+						}
+						else if(tipoOmDestino == "A4"){
+							state = 4;
+						}
+						else if(tipoOmDestino == "A5"){
+							state = 5;
+						}
+						else if(tipoOmDestino == "A6"){
+							state = 6;
+						}
+						else if(tipoOmDestino == "A7"){
+							state = 7;
+						}
+						else if(tipoOmDestino == "F1"){
+							state = 11;
+						}
+						else if(tipoOmDestino == "F2"){
+							state = 12;
+						}
+						else if(tipoOmDestino == "F3"){
+							state = 13;
+						}
+						else if(tipoOmDestino == "F4"){
+							state = 14;
+						}
+						else if(tipoOmDestino == "F5"){
+							state = 15;
+						}
+						else if(tipoOmDestino == "F6"){
+							state = 16;
+						}
+						else if(tipoOmDestino == "D1"){
+							state = 21;
+						}
+						else if(tipoOmDestino == "D2"){
+							state = 22;
+						}
+						else{
+							state = 23;
+						}
 						elementoExpresion = tr.elementoExpresion;
 						esTransicionGemma = false;
 						//Ahora validar los 4 posibles caminos que puede tomar un elemento expresion.
@@ -662,7 +711,7 @@ var variables: Set;
 							if((numTrDelOm-1) == 0){
 			%] GVL.[%= tr.name %] THEN 
 			   GVL.[%= tr.name %]:= FALSE;
-			   [%= nameSate %]:= [%= numOm %];
+			   [%= namestate %]:= [%= state %];
 			END_IF
 			[%							
 							}						
@@ -672,7 +721,7 @@ var variables: Set;
 			%]
 			ELSIF GVL.[%= tr.name %] THEN 
 				GVL.[%= tr.name %]:= FALSE;
-				[%= nameSate %]:= [%= numOm %];
+				[%= namestate %]:= [%= state %];
 			END_IF
 			[%
 							}
@@ -681,7 +730,7 @@ var variables: Set;
 								numTrActualDelOm = numTrActualDelOm + 1;
 			%] GVL.[%= tr.name %] THEN 
 			   GVL.[%= tr.name %]:= FALSE;
-			   [%= nameSate %]:= [%= numOm %];
+			   [%= namestate %]:= [%= state %];
 			[%
 							}
 							//Me encuentro en una transicion del om.
@@ -690,7 +739,7 @@ var variables: Set;
 			%]
 			ELSIF GVL.[%= tr.name %] THEN 
 				GVL.[%= tr.name %]:= FALSE;
-				[%= nameSate %]:= [%= numOm %];
+				[%= namestate %]:= [%= state %];
 			[%
 							}
 						}
@@ -700,7 +749,7 @@ var variables: Set;
 							if((numTrDelOm-1) == 0){
 			%] GVL.[%= tr.name %] THEN 
 			   GVL.[%= tr.name %]:= FALSE;
-			   [%= nameSate %]:= [%= numOm %];
+			   [%= namestate %]:= [%= state %];
 			END_IF
 			[%							
 							}						
@@ -710,7 +759,7 @@ var variables: Set;
 			%]
 			ELSIF GVL.[%= tr.name %] THEN 
 				GVL.[%= tr.name %]:= FALSE;
-				[%= nameSate %]:= [%= numOm %];
+				[%= namestate %]:= [%= state %];
 				[%= tr.destino.tipo.name %].Reset:= TRUE;
 			END_IF
 			[%
@@ -720,7 +769,7 @@ var variables: Set;
 								numTrActualDelOm = numTrActualDelOm + 1;
 			%] GVL.[%= tr.name %] THEN 
 			   GVL.[%= tr.name %]:= FALSE;
-			   [%= nameSate %]:= [%= numOm %];
+			   [%= namestate %]:= [%= state %];
 			   [%= tr.destino.tipo.name %].Reset:= TRUE;
 			[%
 							}
@@ -730,7 +779,7 @@ var variables: Set;
 			%]
 			ELSIF GVL.[%= tr.name %] THEN 
 				GVL.[%= tr.name %]:= FALSE;
-				[%= nameSate %]:= [%= numOm %];
+				[%= namestate %]:= [%= state %];
 				[%= tr.destino.tipo.name %].Reset:= TRUE;
 			[%
 							}						
@@ -740,6 +789,55 @@ var variables: Set;
 				//Si la transicion es entre macro a om
 				else{
 					if((tr.elementoExpresion).isDefined() == true and tr.origen.oms.select(pOm|pOm.name == om.name).first() == om and om.esVisible == true){
+						tipoOmDestino = tr.destino.tipo.name;
+						if(tipoOmDestino == "A1"){
+							state = 1;
+						}
+						else if(tipoOmDestino == "A2"){
+							state = 2;
+						}
+						else if(tipoOmDestino == "A3"){
+							state = 3;
+						}
+						else if(tipoOmDestino == "A4"){
+							state = 4;
+						}
+						else if(tipoOmDestino == "A5"){
+							state = 5;
+						}
+						else if(tipoOmDestino == "A6"){
+							state = 6;
+						}
+						else if(tipoOmDestino == "A7"){
+							state = 7;
+						}
+						else if(tipoOmDestino == "F1"){
+							state = 11;
+						}
+						else if(tipoOmDestino == "F2"){
+							state = 12;
+						}
+						else if(tipoOmDestino == "F3"){
+							state = 13;
+						}
+						else if(tipoOmDestino == "F4"){
+							state = 14;
+						}
+						else if(tipoOmDestino == "F5"){
+							state = 15;
+						}
+						else if(tipoOmDestino == "F6"){
+							state = 16;
+						}
+						else if(tipoOmDestino == "D1"){
+							state = 21;
+						}
+						else if(tipoOmDestino == "D2"){
+							state = 22;
+						}
+						else{
+							state = 23;
+						}
 						elementoExpresion = tr.elementoExpresion;
 						esTransicionGemma = false;
 						//Ahora validar los 4 posibles caminos que puede tomar un elemento expresion.
@@ -810,7 +908,7 @@ var variables: Set;
 							if((numTrDelOm-1) == 0){
 			%] GVL.[%= om.tipo.name+"_"+tr.destino.tipo.name+"_T" %] THEN 
 			   GVL.[%= om.tipo.name+"_"+tr.destino.tipo.name+"_T" %]:= FALSE;
-			   [%= nameSate %]:= [%= numOm %];
+			   [%= namestate %]:= [%= state %];
 			END_IF
 			[%							
 							}						
@@ -820,7 +918,7 @@ var variables: Set;
 			%]
 			ELSIF GVL.[%= om.tipo.name+"_"+tr.destino.tipo.name+"_T" %] THEN 
 				GVL.[%= om.tipo.name+"_"+tr.destino.tipo.name+"_T" %]:= FALSE;
-				[%= nameSate %]:= [%= numOm %];
+				[%= namestate %]:= [%= state %];
 			END_IF
 			[%
 							}
@@ -829,7 +927,7 @@ var variables: Set;
 								numTrActualDelOm = numTrActualDelOm + 1;
 			%] GVL.[%= om.tipo.name+"_"+tr.destino.tipo.name+"_T" %] THEN 
 			   GVL.[%= om.tipo.name+"_"+tr.destino.tipo.name+"_T" %]:= FALSE;
-			   [%= nameSate %]:= [%= numOm %];
+			   [%= namestate %]:= [%= state %];
 			[%
 							}
 							//Me encuentro en una transicion del om.
@@ -838,7 +936,7 @@ var variables: Set;
 			%]
 			ELSIF GVL.[%= om.tipo.name+"_"+tr.destino.tipo.name+"_T" %] THEN 
 				GVL.[%= om.tipo.name+"_"+tr.destino.tipo.name+"_T" %]:= FALSE;
-				[%= nameSate %]:= [%= numOm %];
+				[%= namestate %]:= [%= state %];
 			[%
 							}
 						}
@@ -848,7 +946,7 @@ var variables: Set;
 							if((numTrDelOm-1) == 0){
 			%] GVL.[%= om.tipo.name+"_"+tr.destino.tipo.name+"_T" %] THEN 
 			   GVL.[%= om.tipo.name+"_"+tr.destino.tipo.name+"_T" %]:= FALSE;
-			   [%= nameSate %]:= [%= numOm %];
+			   [%= namestate %]:= [%= state %];
 			END_IF
 			[%							
 							}						
@@ -858,7 +956,7 @@ var variables: Set;
 			%]
 			ELSIF GVL.[%= om.tipo.name+"_"+tr.destino.tipo.name+"_T" %] THEN 
 				GVL.[%= om.tipo.name+"_"+tr.destino.tipo.name+"_T" %]:= FALSE;
-				[%= nameSate %]:= [%= numOm %];
+				[%= namestate %]:= [%= state %];
 				[%= tr.destino.tipo.name %].Reset:= TRUE;
 			END_IF
 			[%
@@ -868,7 +966,7 @@ var variables: Set;
 								numTrActualDelOm = numTrActualDelOm + 1;
 			%] GVL.[%= om.tipo.name+"_"+tr.destino.tipo.name+"_T" %] THEN 
 			   GVL.[%= om.tipo.name+"_"+tr.destino.tipo.name+"_T" %]:= FALSE;
-			   [%= nameSate %]:= [%= numOm %];
+			   [%= namestate %]:= [%= state %];
 			   [%= tr.destino.tipo.name %].Reset:= TRUE;
 			[%
 							}
@@ -878,7 +976,7 @@ var variables: Set;
 			%]
 			ELSIF GVL.[%= om.tipo.name+"_"+tr.destino.tipo.name+"_T" %] THEN 
 				GVL.[%= om.tipo.name+"_"+tr.destino.tipo.name+"_T" %]:= FALSE;
-				[%= nameSate %]:= [%= numOm %];
+				[%= namestate %]:= [%= state %];
 				[%= tr.destino.tipo.name %].Reset:= TRUE;
 			[%
 							}						
@@ -908,11 +1006,61 @@ var variables: Set;
 			var termino = false;
 			var eleIzq;
 			var eleDer;
+			var tipoOmDestino;
 			for (tr in Transicion.all) { 
 				//Si la transicion es entre om a om
 				if (tr.isTypeOf(TrasicionEntreOmOm) and (tr.elementoExpresion).isDefined() == true){
 					//Validar si mi om es el origen de la transicion.
 					if(tr.origen.name == om.name and om.esVisible == true){
+						tipoOmDestino = tr.destino.tipo.name;
+						if(tipoOmDestino == "A1"){
+							state = 1;
+						}
+						else if(tipoOmDestino == "A2"){
+							state = 2;
+						}
+						else if(tipoOmDestino == "A3"){
+							state = 3;
+						}
+						else if(tipoOmDestino == "A4"){
+							state = 4;
+						}
+						else if(tipoOmDestino == "A5"){
+							state = 5;
+						}
+						else if(tipoOmDestino == "A6"){
+							state = 6;
+						}
+						else if(tipoOmDestino == "A7"){
+							state = 7;
+						}
+						else if(tipoOmDestino == "F1"){
+							state = 11;
+						}
+						else if(tipoOmDestino == "F2"){
+							state = 12;
+						}
+						else if(tipoOmDestino == "F3"){
+							state = 13;
+						}
+						else if(tipoOmDestino == "F4"){
+							state = 14;
+						}
+						else if(tipoOmDestino == "F5"){
+							state = 15;
+						}
+						else if(tipoOmDestino == "F6"){
+							state = 16;
+						}
+						else if(tipoOmDestino == "D1"){
+							state = 21;
+						}
+						else if(tipoOmDestino == "D2"){
+							state = 22;
+						}
+						else{
+							state = 23;
+						}
 						elementoExpresion = tr.elementoExpresion;
 						esTransicionGemma = false;
 						//Ahora validar los 4 posibles caminos que puede tomar un elemento expresion.
@@ -980,7 +1128,7 @@ var variables: Set;
 						//Volver a termino false para la otra transicion.
 						termino = false;
 						//Es una transicion Gemma.
-						if(esTransicionGemma){				
+						if(esTransicionGemma){			
 							//Solo tiene un elemento.				
 							if((numTrDelOm-1) == 0){
 			%] GVL.[%= tr.name %] THEN 
@@ -988,7 +1136,7 @@ var variables: Set;
                			GVL.[%= om.tipo.name %]_GEMMA := FALSE;
 			   [%= nameFlagEntry %] := TRUE;				
 			   GVL.[%= tr.name %]:= FALSE;
-			   [%= nameSate %]:= [%= numOm %];
+			   [%= namestate %]:= [%= state %];
 			   
 			END_IF
 			[%							
@@ -1002,7 +1150,7 @@ var variables: Set;
               			GVL.[%= om.tipo.name %]_GEMMA := FALSE;
 			   	[%= nameFlagEntry %] := TRUE;
 				GVL.[%= tr.name %]:= FALSE;
-				[%= nameSate %]:= [%= numOm %];
+				[%= namestate %]:= [%= state %];
 				
 			END_IF
 			[%
@@ -1015,7 +1163,7 @@ var variables: Set;
                			GVL.[%= om.tipo.name %]_GEMMA := FALSE;
 			   [%= nameFlagEntry %] := TRUE;			 
 			   GVL.[%= tr.name %]:= FALSE;
-			   [%= nameSate %]:= [%= numOm %];
+			   [%= namestate %]:= [%= state %];
 			   
 			[%
 							}
@@ -1028,7 +1176,7 @@ var variables: Set;
                			GVL.[%= om.tipo.name %]_GEMMA := FALSE;
 			   	[%= nameFlagEntry %] := TRUE; 
 				GVL.[%= tr.name %]:= FALSE;
-				[%= nameSate %]:= [%= numOm %];
+				[%= namestate %]:= [%= state %];
 				
 			[%
 							}
@@ -1042,7 +1190,7 @@ var variables: Set;
                			GVL.[%= om.tipo.name %]_GEMMA := FALSE;
 			   [%= nameFlagEntry %] := TRUE;			
 			   GVL.[%= tr.name %]:= FALSE;
-			   [%= nameSate %]:= [%= numOm %];
+			   [%= namestate %]:= [%= state %];
 			   
 			END_IF
 			[%							
@@ -1056,7 +1204,7 @@ var variables: Set;
                			GVL.[%= om.tipo.name %]_GEMMA := FALSE;
 			   	[%= nameFlagEntry %] := TRUE;			
 				GVL.[%= tr.name %]:= FALSE;
-				[%= nameSate %]:= [%= numOm %];
+				[%= namestate %]:= [%= state %];
 				[%= tr.destino.tipo.name %].Reset:=TRUE;
 				
 			END_IF
@@ -1070,7 +1218,7 @@ var variables: Set;
                			GVL.[%= om.tipo.name %]_GEMMA := FALSE;
 			   [%= nameFlagEntry %] := TRUE;			
 			   GVL.[%= tr.name %]:= FALSE;
-			   [%= nameSate %]:= [%= numOm %];
+			   [%= namestate %]:= [%= state %];
 			   [%= tr.destino.tipo.name %].Reset:=TRUE;
 			   
 			[%
@@ -1084,7 +1232,7 @@ var variables: Set;
                			GVL.[%= om.tipo.name %]_GEMMA := FALSE;
 			   	[%= nameFlagEntry %] := TRUE;			
 				GVL.[%= tr.name %]:= FALSE;
-				[%= nameSate %]:= [%= numOm %];
+				[%= namestate %]:= [%= state %];
 				[%= tr.destino.tipo.name %].Reset:=TRUE;
 				
 			[%
@@ -1095,6 +1243,55 @@ var variables: Set;
 				//Si la transicion es entre macro a om
 				else{
 					if((tr.elementoExpresion).isDefined() == true and tr.origen.oms.select(pOm|pOm.name == om.name).first() == om and om.esVisible == true){
+						tipoOmDestino = tr.destino.tipo.name;
+						if(tipoOmDestino == "A1"){
+							state = 1;
+						}
+						else if(tipoOmDestino == "A2"){
+							state = 2;
+						}
+						else if(tipoOmDestino == "A3"){
+							state = 3;
+						}
+						else if(tipoOmDestino == "A4"){
+							state = 4;
+						}
+						else if(tipoOmDestino == "A5"){
+							state = 5;
+						}
+						else if(tipoOmDestino == "A6"){
+							state = 6;
+						}
+						else if(tipoOmDestino == "A7"){
+							state = 7;
+						}
+						else if(tipoOmDestino == "F1"){
+							state = 11;
+						}
+						else if(tipoOmDestino == "F2"){
+							state = 12;
+						}
+						else if(tipoOmDestino == "F3"){
+							state = 13;
+						}
+						else if(tipoOmDestino == "F4"){
+							state = 14;
+						}
+						else if(tipoOmDestino == "F5"){
+							state = 15;
+						}
+						else if(tipoOmDestino == "F6"){
+							state = 16;
+						}
+						else if(tipoOmDestino == "D1"){
+							state = 21;
+						}
+						else if(tipoOmDestino == "D2"){
+							state = 22;
+						}
+						else{
+							state = 23;
+						}
 						elementoExpresion = tr.elementoExpresion;
 						esTransicionGemma = false;
 						//Ahora validar los 4 posibles caminos que puede tomar un elemento expresion.
@@ -1168,7 +1365,7 @@ var variables: Set;
                			GVL.[%= om.tipo.name %]_GEMMA := FALSE;
 			   [%= nameFlagEntry %] := TRUE;				
 			   GVL.[%= om.tipo.name+"_"+tr.destino.tipo.name+"_T" %]:= FALSE;
-			   [%= nameSate %]:= [%= numOm %];
+			   [%= namestate %]:= [%= state %];
 			   
 			END_IF
 			[%							
@@ -1182,7 +1379,7 @@ var variables: Set;
               			GVL.[%= om.tipo.name %]_GEMMA := FALSE;
 			   	[%= nameFlagEntry %] := TRUE;
 				GVL.[%= om.tipo.name+"_"+tr.destino.tipo.name+"_T" %]:= FALSE;
-				[%= nameSate %]:= [%= numOm %];
+				[%= namestate %]:= [%= state %];
 				
 			END_IF
 			[%
@@ -1195,7 +1392,7 @@ var variables: Set;
                			GVL.[%= om.tipo.name %]_GEMMA := FALSE;
 			   [%= nameFlagEntry %] := TRUE;			 
 			   GVL.[%= om.tipo.name+"_"+tr.destino.tipo.name+"_T" %]:= FALSE;
-			   [%= nameSate %]:= [%= numOm %];
+			   [%= namestate %]:= [%= state %];
 			   
 			[%
 							}
@@ -1208,7 +1405,7 @@ var variables: Set;
                			GVL.[%= om.tipo.name %]_GEMMA := FALSE;
 			   	[%= nameFlagEntry %] := TRUE; 
 				GVL.[%= om.tipo.name+"_"+tr.destino.tipo.name+"_T" %]:= FALSE;
-				[%= nameSate %]:= [%= numOm %];
+				[%= namestate %]:= [%= state %];
 				
 			[%
 							}
@@ -1222,7 +1419,7 @@ var variables: Set;
                			GVL.[%= om.tipo.name %]_GEMMA := FALSE;
 			   [%= nameFlagEntry %] := TRUE;			
 			   GVL.[%= om.tipo.name+"_"+tr.destino.tipo.name+"_T" %]:= FALSE;
-			   [%= nameSate %]:= [%= numOm %];
+			   [%= namestate %]:= [%= state %];
 			   
 			END_IF
 			[%							
@@ -1236,7 +1433,7 @@ var variables: Set;
                			GVL.[%= om.tipo.name %]_GEMMA := FALSE;
 			   	[%= nameFlagEntry %] := TRUE;			
 				GVL.[%= om.tipo.name+"_"+tr.destino.tipo.name+"_T" %]:= FALSE;
-				[%= nameSate %]:= [%= numOm %];
+				[%= namestate %]:= [%= state %];
 				[%= tr.destino.tipo.name %].Reset:=TRUE;
 				
 			END_IF
@@ -1250,7 +1447,7 @@ var variables: Set;
                			GVL.[%= om.tipo.name %]_GEMMA := FALSE;
 			   [%= nameFlagEntry %] := TRUE;			
 			   GVL.[%= om.tipo.name+"_"+tr.destino.tipo.name+"_T" %]:= FALSE;
-			   [%= nameSate %]:= [%= numOm %];
+			   [%= namestate %]:= [%= state %];
 			   [%= tr.destino.tipo.name %].Reset:=TRUE;
 			   
 			[%
@@ -1264,7 +1461,7 @@ var variables: Set;
                			GVL.[%= om.tipo.name %]_GEMMA := FALSE;
 			   	[%= nameFlagEntry %] := TRUE;			
 				GVL.[%= om.tipo.name+"_"+tr.destino.tipo.name+"_T" %]:= FALSE;
-				[%= nameSate %]:= [%= numOm %];
+				[%= namestate %]:= [%= state %];
 				[%= tr.destino.tipo.name %].Reset:=TRUE;
 				
 			[%

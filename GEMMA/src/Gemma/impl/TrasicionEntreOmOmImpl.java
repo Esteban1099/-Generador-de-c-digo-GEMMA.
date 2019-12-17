@@ -72,6 +72,7 @@ public class TrasicionEntreOmOmImpl extends TransicionImpl implements TrasicionE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Om getOrigen() {
 		if (origen != null && origen.eIsProxy()) {
 			InternalEObject oldOrigen = (InternalEObject)origen;
@@ -98,6 +99,7 @@ public class TrasicionEntreOmOmImpl extends TransicionImpl implements TrasicionE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOrigen(Om newOrigen) {
 		Om oldOrigen = origen;
 		origen = newOrigen;
@@ -110,6 +112,7 @@ public class TrasicionEntreOmOmImpl extends TransicionImpl implements TrasicionE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Om getDestino() {
 		if (destino != null && destino.eIsProxy()) {
 			InternalEObject oldDestino = (InternalEObject)destino;
@@ -136,6 +139,7 @@ public class TrasicionEntreOmOmImpl extends TransicionImpl implements TrasicionE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDestino(Om newDestino) {
 		Om oldDestino = destino;
 		destino = newDestino;

@@ -61,6 +61,7 @@ public class RefVariableOmImpl extends ElementoExpresionImpl implements RefVaria
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public VariableOm getVariableOm() {
 		if (variableOm != null && variableOm.eIsProxy()) {
 			InternalEObject oldVariableOm = (InternalEObject)variableOm;
@@ -87,6 +88,7 @@ public class RefVariableOmImpl extends ElementoExpresionImpl implements RefVaria
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setVariableOm(VariableOm newVariableOm) {
 		VariableOm oldVariableOm = variableOm;
 		variableOm = newVariableOm;
