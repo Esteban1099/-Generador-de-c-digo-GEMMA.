@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Gemma:Gemma xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Gemma="http://www.uniandes.edu.co/gemma">
+  <macroOms name="Process Stopped">
+    <oms name="OP in initial state" tipo="A6" esOmRaiz="true" esVisible="true"/>
+    <oms name="Stopped in initial state" esVisible="true"/>
+    <oms name="Prepare to run after a failure" tipo="A5" esVisible="true"/>
+    <oms name="Stop command in the end of cycle " tipo="A2" esVisible="true"/>
+    <oms name="OP in a determinated state" tipo="A7"/>
+    <oms name="Stop command on a determinated state" tipo="A3"/>
+    <oms name="Obtained stop" tipo="A4"/>
+  </macroOms>
+  <macroOms name="Working" tipo="F">
+    <oms name="Normal production" tipo="F1" esVisible="true"/>
+    <oms name="Preparation mode" tipo="F2" esVisible="true"/>
+    <oms name="Closing mode" tipo="F3" esVisible="true"/>
+    <oms name="Unordered verification mode" tipo="F4" esVisible="true"/>
+    <oms name="Ordered verification mode" tipo="F5" esVisible="true"/>
+    <oms name="Test mode" tipo="F6"/>
+  </macroOms>
+  <macroOms name="Defect" tipo="D">
+    <oms name="Emergency stop" tipo="D1" esVisible="true"/>
+    <oms name="Detect or repare failures" tipo="D2" esVisible="true"/>
+    <oms name="Produce in any way" tipo="D3" esVisible="true"/>
+  </macroOms>
+  <transiciones xsi:type="Gemma:TrasicionEntreOmOm" name="A1_F4_T" origen="//@macroOms.0/@oms.1" destino="//@macroOms.1/@oms.3">
+    <elementoExpresion xsi:type="Gemma:ExpresionBinaria">
+      <expresionIzquierda xsi:type="Gemma:RefVariableGemma" variableGemma="//@variablesGemma.9"/>
+      <expresionDerecha xsi:type="Gemma:ExpresionConjunta">
+        <elementoExpresion xsi:type="Gemma:ExpresionBinaria" operador="OR">
+          <expresionIzquierda xsi:type="Gemma:RefVariableGemma" variableGemma="//@variablesGemma.5"/>
+          <expresionDerecha xsi:type="Gemma:RefVariableGemma" variableGemma="//@variablesGemma.4"/>
+        </elementoExpresion>
+      </expresionDerecha>
+    </elementoExpresion>
+  </transiciones>
+  <transiciones xsi:type="Gemma:TrasicionEntreOmOm" name="A1_F5_T" origen="//@macroOms.0/@oms.1" destino="//@macroOms.1/@oms.4">
+    <elementoExpresion xsi:type="Gemma:ExpresionBinaria">
+      <expresionIzquierda xsi:type="Gemma:RefVariableGemma" variableGemma="//@variablesGemma.9"/>
+      <expresionDerecha xsi:type="Gemma:RefVariableGemma" variableGemma="//@variablesGemma.3"/>
+    </elementoExpresion>
+  </transiciones>
+  <transiciones xsi:type="Gemma:TrasicionEntreOmOm" name="A1_F2_T" origen="//@macroOms.0/@oms.1" destino="//@macroOms.1/@oms.1">
+    <elementoExpresion xsi:type="Gemma:ExpresionBinaria">
+      <expresionIzquierda xsi:type="Gemma:RefVariableGemma" variableGemma="//@variablesGemma.9"/>
+      <expresionDerecha xsi:type="Gemma:RefVariableGemma" variableGemma="//@variablesGemma.2"/>
+    </elementoExpresion>
+  </transiciones>
+  <transiciones xsi:type="Gemma:TrasicionEntreOmOm" name="A1_F1_T" origen="//@macroOms.0/@oms.1" destino="//@macroOms.1/@oms.0"/>
+  <transiciones xsi:type="Gemma:TrasicionEntreOmOm" name="A2_A1_T" origen="//@macroOms.0/@oms.3" destino="//@macroOms.0/@oms.1">
+    <elementoExpresion xsi:type="Gemma:ExpresionBinaria">
+      <expresionIzquierda xsi:type="Gemma:RefVariableGemma" variableGemma="//@variablesGemma.1"/>
+      <expresionDerecha xsi:type="Gemma:RefVariableGemma" variableGemma="//@variablesGemma.8"/>
+    </elementoExpresion>
+  </transiciones>
+  <transiciones xsi:type="Gemma:TrasicionEntreOmOm" name="A3_A4_T" origen="//@macroOms.0/@oms.5" destino="//@macroOms.0/@oms.6"/>
+  <transiciones xsi:type="Gemma:TrasicionEntreOmOm" name="A4_F1_T" origen="//@macroOms.0/@oms.6" destino="//@macroOms.1/@oms.0"/>
+  <transiciones xsi:type="Gemma:TrasicionEntreOmOm" name="A5_A7_T" origen="//@macroOms.0/@oms.2" destino="//@macroOms.0/@oms.4"/>
+  <transiciones xsi:type="Gemma:TrasicionEntreOmOm" name="A5_A6_T" origen="//@macroOms.0/@oms.2" destino="//@macroOms.0/@oms.0">
+    <elementoExpresion xsi:type="Gemma:RefVariableGemma" variableGemma="//@variablesGemma.10"/>
+  </transiciones>
+  <transiciones xsi:type="Gemma:TrasicionEntreOmOm" name="A6_A1_T" origen="//@macroOms.0/@oms.0" destino="//@macroOms.0/@oms.1">
+    <elementoExpresion xsi:type="Gemma:ExpresionBinaria">
+      <expresionIzquierda xsi:type="Gemma:RefVariableGemma" variableGemma="//@variablesGemma.7"/>
+      <expresionDerecha xsi:type="Gemma:RefVariableGemma" variableGemma="//@variablesGemma.8"/>
+    </elementoExpresion>
+  </transiciones>
+  <transiciones xsi:type="Gemma:TrasicionEntreOmOm" name="A7_A4_T" origen="//@macroOms.0/@oms.4" destino="//@macroOms.0/@oms.6"/>
+  <transiciones xsi:type="Gemma:TrasicionEntreOmOm" name="F1_F5_T" origen="//@macroOms.1/@oms.0" destino="//@macroOms.1/@oms.4">
+    <elementoExpresion xsi:type="Gemma:RefVariableGemma" variableGemma="//@variablesGemma.3" nivelDeEscritura="om"/>
+  </transiciones>
+  <transiciones xsi:type="Gemma:TrasicionEntreOmOm" name="F1_F6_T" origen="//@macroOms.1/@oms.0" destino="//@macroOms.1/@oms.5"/>
+  <transiciones xsi:type="Gemma:TrasicionEntreOmOm" name="F1_D1_T" origen="//@macroOms.1/@oms.0" destino="//@macroOms.2/@oms.0">
+    <elementoExpresion xsi:type="Gemma:RefVariableGemma" variableGemma="//@variablesGemma.11"/>
+  </transiciones>
+  <transiciones xsi:type="Gemma:TrasicionEntreOmOm" name="F1_D2_T" origen="//@macroOms.1/@oms.0" destino="//@macroOms.2/@oms.1"/>
+  <transiciones xsi:type="Gemma:TrasicionEntreOmOm" name="F1_D3_T" origen="//@macroOms.1/@oms.0" destino="//@macroOms.2/@oms.2">
+    <elementoExpresion xsi:type="Gemma:RefVariableGemma" variableGemma="//@variablesGemma.0" nivelDeEscritura="om"/>
+  </transiciones>
+  <transiciones xsi:type="Gemma:TrasicionEntreOmOm" name="F1_A2_T" origen="//@macroOms.1/@oms.0" destino="//@macroOms.0/@oms.3">
+    <elementoExpresion xsi:type="Gemma:ExpresionNot">
+      <elementoExpresion xsi:type="Gemma:RefVariableGemma" variableGemma="//@variablesGemma.1" nivelDeEscritura="om"/>
+    </elementoExpresion>
+  </transiciones>
+  <transiciones xsi:type="Gemma:TrasicionEntreOmOm" name="F1_F3_T" origen="//@macroOms.1/@oms.0" destino="//@macroOms.1/@oms.2">
+    <elementoExpresion xsi:type="Gemma:RefVariableGemma" variableGemma="//@variablesGemma.6" nivelDeEscritura="om"/>
+  </transiciones>
+  <transiciones xsi:type="Gemma:TrasicionEntreOmOm" name="F1_F4_T" origen="//@macroOms.1/@oms.0" destino="//@macroOms.1/@oms.3"/>
+  <transiciones xsi:type="Gemma:TrasicionEntreOmOm" name="F2_F1_T" origen="//@macroOms.1/@oms.1" destino="//@macroOms.1/@oms.0">
+    <elementoExpresion xsi:type="Gemma:ExpresionBinaria">
+      <expresionIzquierda xsi:type="Gemma:RefVariableGemma" variableGemma="//@variablesGemma.12"/>
+      <expresionDerecha xsi:type="Gemma:ExpresionBinaria">
+        <expresionIzquierda xsi:type="Gemma:RefVariableGemma" variableGemma="//@variablesGemma.13"/>
+        <expresionDerecha xsi:type="Gemma:RefVariableGemma" variableGemma="//@variablesGemma.14"/>
+      </expresionDerecha>
+    </elementoExpresion>
+  </transiciones>
+  <transiciones xsi:type="Gemma:TrasicionEntreOmOm" name="F3_A1_T" origen="//@macroOms.1/@oms.2" destino="//@macroOms.0/@oms.1">
+    <elementoExpresion xsi:type="Gemma:ExpresionBinaria">
+      <expresionIzquierda xsi:type="Gemma:ExpresionNot">
+        <elementoExpresion xsi:type="Gemma:RefVariableGemma" variableGemma="//@variablesGemma.13"/>
+      </expresionIzquierda>
+      <expresionDerecha xsi:type="Gemma:ExpresionNot">
+        <elementoExpresion xsi:type="Gemma:RefVariableGemma" variableGemma="//@variablesGemma.14"/>
+      </expresionDerecha>
+    </elementoExpresion>
+  </transiciones>
+  <transiciones xsi:type="Gemma:TrasicionEntreOmOm" name="F4_A6_T" origen="//@macroOms.1/@oms.3" destino="//@macroOms.0/@oms.0">
+    <elementoExpresion xsi:type="Gemma:RefVariableGemma" variableGemma="//@variablesGemma.4"/>
+  </transiciones>
+  <transiciones xsi:type="Gemma:TrasicionEntreOmOm" name="F5_F4_T" origen="//@macroOms.1/@oms.4" destino="//@macroOms.1/@oms.3">
+    <elementoExpresion xsi:type="Gemma:ExpresionBinaria" operador="OR">
+      <expresionIzquierda xsi:type="Gemma:RefVariableGemma" variableGemma="//@variablesGemma.4" nivelDeEscritura="om"/>
+      <expresionDerecha xsi:type="Gemma:RefVariableGemma" variableGemma="//@variablesGemma.5" nivelDeEscritura="om"/>
+    </elementoExpresion>
+  </transiciones>
+  <transiciones xsi:type="Gemma:TrasicionEntreOmOm" name="F5_F1_T" origen="//@macroOms.1/@oms.4" destino="//@macroOms.1/@oms.0">
+    <elementoExpresion xsi:type="Gemma:RefVariableGemma" variableGemma="//@variablesGemma.2" nivelDeEscritura="om"/>
+  </transiciones>
+  <transiciones xsi:type="Gemma:TrasicionEntreOmOm" name="F6_F1_T" origen="//@macroOms.1/@oms.5" destino="//@macroOms.1/@oms.0"/>
+  <transiciones xsi:type="Gemma:TrasicionEntreOmOm" name="F6_D1_T" origen="//@macroOms.1/@oms.5" destino="//@macroOms.2/@oms.0"/>
+  <transiciones xsi:type="Gemma:TrasicionEntreOmOm" name="D1_A5_T" origen="//@macroOms.2/@oms.0" destino="//@macroOms.0/@oms.2">
+    <elementoExpresion xsi:type="Gemma:ExpresionBinaria">
+      <expresionIzquierda xsi:type="Gemma:RefVariableGemma" variableGemma="//@variablesGemma.16"/>
+      <expresionDerecha xsi:type="Gemma:RefVariableGemma" variableGemma="//@variablesGemma.8"/>
+    </elementoExpresion>
+  </transiciones>
+  <transiciones xsi:type="Gemma:TrasicionEntreOmOm" name="D1_D2_T" origen="//@macroOms.2/@oms.0" destino="//@macroOms.2/@oms.1"/>
+  <transiciones xsi:type="Gemma:TrasicionEntreOmOm" name="D2_A5_T" origen="//@macroOms.2/@oms.1" destino="//@macroOms.0/@oms.2">
+    <elementoExpresion xsi:type="Gemma:RefVariableGemma" variableGemma="//@variablesGemma.15"/>
+  </transiciones>
+  <transiciones xsi:type="Gemma:TrasicionEntreOmOm" name="D3_A2_T" origen="//@macroOms.2/@oms.2" destino="//@macroOms.0/@oms.3">
+    <elementoExpresion xsi:type="Gemma:ExpresionNot">
+      <elementoExpresion xsi:type="Gemma:RefVariableGemma" variableGemma="//@variablesGemma.0"/>
+    </elementoExpresion>
+  </transiciones>
+  <transiciones xsi:type="Gemma:TrasicionEntreOmOm" name="D3_A3_T" origen="//@macroOms.2/@oms.2" destino="//@macroOms.0/@oms.5"/>
+  <transiciones xsi:type="Gemma:TransicionEntreMacroOmOm" name="F_D1_T" origen="//@macroOms.1" destino="//@macroOms.2/@oms.0">
+    <elementoExpresion xsi:type="Gemma:ExpresionNot">
+      <elementoExpresion xsi:type="Gemma:RefVariableGemma" variableGemma="//@variablesGemma.16"/>
+    </elementoExpresion>
+  </transiciones>
+  <variablesGemma name="ManualCapping"/>
+  <variablesGemma name="Stop"/>
+  <variablesGemma name="Automatic"/>
+  <variablesGemma name="SemiAutomatic"/>
+  <variablesGemma name="Manual"/>
+  <variablesGemma name="StacionTest"/>
+  <variablesGemma name="EmptyMachine"/>
+  <variablesGemma name="ManualCheck"/>
+  <variablesGemma name="RestingPosition"/>
+  <variablesGemma name="Start"/>
+  <variablesGemma name="OperatorCheck"/>
+  <variablesGemma name="Alarm"/>
+  <variablesGemma name="CP1"/>
+  <variablesGemma name="CP2"/>
+  <variablesGemma name="CP3"/>
+  <variablesGemma name="CappingRepaired"/>
+  <variablesGemma name="EmergencyInterrupter"/>
+</Gemma:Gemma>

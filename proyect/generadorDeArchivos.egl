@@ -1,0 +1,27 @@
+[% 
+	var xmlOpen:Template:= TemplateFactory.load('archivoXMLopen.egl');
+	
+	xmlOpen.generate('./AutoGenerate/Project Xml Open AutoGenerate.xml');
+	
+	var gemma:Template:= TemplateFactory.load('archivoGEMMA.egl');
+	
+	gemma.generate('./AutoGenerate/Gemma File AutoGenerate.txt');
+	
+	var gvl:Template:= TemplateFactory.load('archivoGVL.egl');
+	
+	gvl.generate('./AutoGenerate/GVL File AutoGenerate.txt');		
+	
+
+	for (om in Om.all) { 
+		if(om.esVisible == true){	
+			var app:Template:= TemplateFactory.load('archivoOM.egl');
+			app.populate('omT',om.tipo.name);
+			app.generate('./AutoGenerate/OMsFolder/'+ om.tipo.name + '.txt');
+		}
+	}
+		
+	
+	
+	
+	
+%]

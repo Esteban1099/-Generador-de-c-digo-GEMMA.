@@ -1,0 +1,75 @@
+{attribute 'qualified_only'}
+VAR_GLOBAL
+
+[%
+// aca busco primero todos los OMs para crear la variable booleana
+var nameOm;
+var esOmInicial;
+var esOmInicialTexto;
+var tipoOm;
+for (om in Om.all) {
+	if(om.esVisible == true){
+		nameOm = om.name;
+		esOmInicial = om.esOmRaiz;
+		if(esOmInicial){
+			esOmInicialTexto = "TRUE";
+		}
+		else{
+			esOmInicialTexto = "FALSE";
+		}
+		tipoOm = om.tipo.name;
+	%]
+[%= tipoOm %]_GEMMA : BOOL := [%= esOmInicialTexto %];
+	[%	
+	}
+}
+%]
+
+[%
+var nameVg;
+// aca busco todas las variables del GEMMA.
+for (vg in VariableGemma.all) { 
+	nameVg = vg.name;
+	%]
+[%= nameVg %] : BOOL := FALSE;
+	[% 
+}
+%]
+
+[%
+// aca busco todas las transiciones posibles en el GEMMA.
+var nameTr;
+for (tr in Transicion.all) { 
+	nameTr = tr.name;
+// valido si existen transiciones entre macro a om para transformarlas en om a om
+	if(tr.isTypeOf(TransicionEntreMacroOmOm) and (tr.elementoExpresion).isDefined() == true){
+		var macroOm = tr.origen;
+		var nameNewTr;
+		for (om in macroOm.oms) { 
+			if(Transicion.all.select(tra|tra.origen == om and tra.destino == tr.destino).size() == 0 and om.esVisible ){
+			nameNewTr = nameNewTr + om.tipo.name;
+			nameNewTr = nameNewTr+"_";
+			nameNewTr = nameNewTr + tr.destino.tipo.name;
+			nameNewTr = nameNewTr +"_T";
+			%]
+[%= nameNewTr %] : BOOL := FALSE;
+			[%
+			nameNewTr = "";
+			}
+		}
+	}
+	else {
+		if(tr.origen.esVisible and (tr.elementoExpresion).isDefined() == true){
+	%]
+[%= nameTr %] : BOOL := FALSE;
+	[%		
+		}
+	}
+}
+%]
+
+
+// Fill with your own gloval variables.
+
+
+END_VAR
